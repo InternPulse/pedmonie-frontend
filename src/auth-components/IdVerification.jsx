@@ -12,6 +12,13 @@ import { LuCircleCheck as ListIcon } from "react-icons/lu";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
 
+import { countries } from "../../fake-data/countries";
+import image from '../../assets/images/fi_image.png'
+import { useState } from "react";
+import { FileUploader } from "react-drag-drop-files";
+
+const fileTypes = ["JPEG", "PNG", "GIF"];
+
 const IdVerification = () => {
     /* Items for select array id section */
     const docTypes = createListCollection({
@@ -20,11 +27,17 @@ const IdVerification = () => {
           { label: "International Passport", value: "international-passport" },
           { label: "Driving License", value: "driving-license" },
           { label: "National ID Card", value: "national-id" },
-          { label: "Voter ID Card", value: "voter-id" },
+          { label: "Voter ID Card", value: "voter-id" },   
         ],
-      });
-      
+        countries:countries,
+    });
+     
    
+      const [file, setFile] = useState(null);
+      const handleChange = (file) => {
+        setFile(file);
+      }
+  
   return (
     <Flex
     as="main"
@@ -133,50 +146,69 @@ const IdVerification = () => {
                         <Text as="h1" fontSize="sm" color="gray.800" textAlign="left">Verify your identy</Text>
                         
                         {/* ID type and region selection */}
-                        <Flex>
-                            <Box>
-                                    {/* ID doc type */}
-                                <SelectRoot 
-                                collection={docTypes} 
-                                size="sm" 
-                                w="200px"
-                                variant="subtle"
-                                >
-                                    <SelectLabel>Select ID Type</SelectLabel>
-                                    <SelectTrigger>
-                                        <SelectValueText pl={3} pr={3} placeholder="Select document type" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {docTypes.items.map((id) => (
-                                        <SelectItem item={id} key={id.value} p={3} _hover={{bgColor: "green.800", color: "white"}}>
-                                            {id.label}
-                                        </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </SelectRoot>
+                        <Flex  w='90%'>
+                            <Box w="full" color='gray.400' display='flex' justifyContent='space-between' alignItems='center' >
+                            
+                                 <SelectRoot 
+                                 collection={idTypes} 
+                                 size="sm" 
+                                 width="200px"
+                                 p={2}
+                                 color='black'
+                                 >
+                                     <SelectLabel >Select Document Type</SelectLabel>
+                                     <SelectTrigger >
+                                         <SelectValueText placeholder="Select ID Type"   />
+                                     </SelectTrigger>
+                                     <SelectContent>
+                                         {idTypes.items.map((id) => (
+                                         <SelectItem item={id} key={id.value}>
+                                             {id.label}
+                                         </SelectItem>
+                                         ))}
+                                     </SelectContent>
+                                 </SelectRoot>
 
-                                {/* ID issued Region */}
-                               {/*  <SelectRoot 
-                                collection={docTypes} 
-                                size="sm" 
-                                w="200px"
-                                variant="subtle"
-                                >
-                                    <SelectLabel>Select ID Type</SelectLabel>
-                                    <SelectTrigger>
-                                        <SelectValueText pl={3} pr={3} placeholder="Government issued country" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {idTypes.items.map((id) => (
-                                        <SelectItem item={id} key={id.value} p={3} _hover={{bgColor: "green.800", color: "white"}}>
-                                            {id.label}
-                                        </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </SelectRoot>
 
-   */}                          </Box>
+                                 <SelectRoot 
+                                 collection={idTypes} 
+                                 size="sm" 
+                                 width="200px"
+                                 p={2}
+                                 color='black'
+                                 >
+                                     <SelectLabel w='25rem'>Government Issued Country</SelectLabel>
+                                     <SelectTrigger>
+                                         <SelectValueText placeholder="Select Country" />
+                                     </SelectTrigger>
+                                     <SelectContent>
+                                         {countries.map((id, index) => (
+                                         <SelectItem item={id} key={index}>
+                                             {id}
+                                         </SelectItem>
+                                         ))}
+                                     </SelectContent>
+                                 </SelectRoot>
+                                     
+                            </Box>
                         </Flex>
+
+                        <Flex height='15rem' direction='column' align='center' justify='center' bgColor='gray.200' mt={5}>
+                            <Box h={10}><img src={image}  alt="" /></Box>
+                            <FileUploader
+        multiple={true}
+        handleChange={handleChange}
+        name="file"
+        types={fileTypes}
+        label='Drag file here to upload or choose file'
+      />
+                            {/* <p style={{marginLeft:'100px'}}>Drag file here to upload or  <input type="file" name="" id="" accept="image/png, image/jpeg" /></p> */}
+                            </Flex>
+                    </Flex>
+                    <Flex justify='space-evenly' gap={10} >
+                        <Button w='15rem' bgColor='white' color='green.800' border='solid 1px' borderColor='green.800' _hover={{bgColor:'green.800', color:'white'}}>Previous</Button>
+                        <Button  w='15rem' bgColor='white' color='green.800'  border='solid 1px' borderColor='green.800'_hover={{bgColor:'green.800', color:'white'}}>Next</Button>
+
                     </Flex>
                 </Flex>
 

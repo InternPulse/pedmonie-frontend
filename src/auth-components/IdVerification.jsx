@@ -13,6 +13,12 @@ import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
 import { countries } from "../../fake-data/countries";
 import image from '../../assets/images/fi_image.png'
+import { useState } from "react";
+import { FileUploader } from "react-drag-drop-files";
+
+
+const fileTypes = ["JPEG", "PNG", "GIF"];
+
 
 const IdVerification = () => {
     /* Items for select array id section */
@@ -22,12 +28,18 @@ const IdVerification = () => {
           { label: "International Passport", value: "international-passport" },
           { label: "Driving License", value: "driving-license" },
           { label: "National ID Card", value: "national-id" },
-          { label: "Voter ID Card", value: "voter-id" },{countries:countries},
+          { label: "Voter ID Card", value: "voter-id" },
+          {countries:countries},
          
         ]
        
       });
-  
+     
+   
+      const [file, setFile] = useState(null);
+      const handleChange = (file) => {
+        setFile(file);
+      }
       
   return (
     <Flex
@@ -145,6 +157,7 @@ const IdVerification = () => {
                                  size="sm" 
                                  width="200px"
                                  p={2}
+                                 color='black'
                                  >
                                      <SelectLabel >Select Document Type</SelectLabel>
                                      <SelectTrigger >
@@ -165,14 +178,15 @@ const IdVerification = () => {
                                  size="sm" 
                                  width="200px"
                                  p={2}
+                                 color='black'
                                  >
                                      <SelectLabel w='25rem'>Government Issued Country</SelectLabel>
                                      <SelectTrigger>
                                          <SelectValueText placeholder="Select Country" />
                                      </SelectTrigger>
                                      <SelectContent>
-                                         {countries.map((id) => (
-                                         <SelectItem item={id} key={id.value}>
+                                         {countries.map((id, index) => (
+                                         <SelectItem item={id} key={index}>
                                              {id}
                                          </SelectItem>
                                          ))}
@@ -186,8 +200,15 @@ const IdVerification = () => {
                         </Flex>
                         <Flex height='15rem' direction='column' align='center' justify='center' bgColor='gray.200' mt={5}>
                             <Box h={10}><img src={image}  alt="" /></Box>
-                            
-                            <p style={{marginLeft:'100px'}}>Drag file here to upload or  <input type="file" name="" id="" accept="image/png, image/jpeg" /></p></Flex>
+                            <FileUploader
+        multiple={true}
+        handleChange={handleChange}
+        name="file"
+        types={fileTypes}
+        label='Drag file here to upload or choose file'
+      />
+                            {/* <p style={{marginLeft:'100px'}}>Drag file here to upload or  <input type="file" name="" id="" accept="image/png, image/jpeg" /></p> */}
+                            </Flex>
                     </Flex>
                     <Flex justify='space-evenly' gap={10} >
                         <Button w='15rem' bgColor='white' color='green.800' border='solid 1px' borderColor='green.800' _hover={{bgColor:'green.800', color:'white'}}>Previous</Button>

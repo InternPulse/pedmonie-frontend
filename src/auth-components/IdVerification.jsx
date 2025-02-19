@@ -14,7 +14,7 @@ import {users} from "../../fake-data/user-data";
 
 const IdVerification = () => {
     /* Items for select array id section */
-    const idTypes = createListCollection({
+    const docTypes = createListCollection({
         items: [
           { label: "Local Passport", value: "local-passport" },
           { label: "International Passport", value: "international-passport" },
@@ -134,28 +134,48 @@ const IdVerification = () => {
                         
                         {/* ID type and region selection */}
                         <Flex>
-                            <Box w="full">
-                       
+                            <Box>
+                                    {/* ID doc type */}
                                 <SelectRoot 
-                                collection={idTypes} 
+                                collection={docTypes} 
                                 size="sm" 
-                                width="200px"
-                                p={2}
+                                w="200px"
+                                variant="subtle"
                                 >
                                     <SelectLabel>Select ID Type</SelectLabel>
                                     <SelectTrigger>
-                                        <SelectValueText placeholder="Select ID Type" />
+                                        <SelectValueText pl={3} pr={3} placeholder="Select document type" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {idTypes.items.map((id) => (
-                                        <SelectItem item={id} key={id.value}>
+                                        {docTypes.items.map((id) => (
+                                        <SelectItem item={id} key={id.value} p={3} _hover={{bgColor: "green.800", color: "white"}}>
                                             {id.label}
                                         </SelectItem>
                                         ))}
                                     </SelectContent>
                                 </SelectRoot>
 
-                            </Box>
+                                {/* ID issued Region */}
+                               {/*  <SelectRoot 
+                                collection={docTypes} 
+                                size="sm" 
+                                w="200px"
+                                variant="subtle"
+                                >
+                                    <SelectLabel>Select ID Type</SelectLabel>
+                                    <SelectTrigger>
+                                        <SelectValueText pl={3} pr={3} placeholder="Government issued country" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {idTypes.items.map((id) => (
+                                        <SelectItem item={id} key={id.value} p={3} _hover={{bgColor: "green.800", color: "white"}}>
+                                            {id.label}
+                                        </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </SelectRoot>
+
+   */}                          </Box>
                         </Flex>
                     </Flex>
                 </Flex>

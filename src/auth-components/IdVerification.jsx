@@ -1,4 +1,4 @@
-import { Flex, Text, Heading, Input, Button, VStack, Image, Box, List, Icon, NativeSelect, createListCollection, For
+import { Flex, Text, Heading, Input, Button, VStack, Image, Box, List, Icon, NativeSelect, createListCollection
  } from "@chakra-ui/react";
 import {
     SelectContent,
@@ -11,8 +11,6 @@ import {
 import { LuCircleCheck as ListIcon } from "react-icons/lu";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
-import { countries } from "../../fake-data/countries";
-import image from '../../assets/images/fi_image.png'
 
 const IdVerification = () => {
     /* Items for select array id section */
@@ -22,13 +20,11 @@ const IdVerification = () => {
           { label: "International Passport", value: "international-passport" },
           { label: "Driving License", value: "driving-license" },
           { label: "National ID Card", value: "national-id" },
-          { label: "Voter ID Card", value: "voter-id" },{countries:countries},
-         
-        ]
-       
+          { label: "Voter ID Card", value: "voter-id" },
+        ],
       });
-  
       
+   
   return (
     <Flex
     as="main"
@@ -118,26 +114,25 @@ const IdVerification = () => {
         {/* Right Section - Form and action side */}
         <Flex direction="column" flex={2} bgColor="white" h="full" p={6}>
                 <Box display="flex" flexDir="column" alignItems="end" color="gray.500" pt={4} pb={4}>
-                    <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "green.800"}}>
+                    <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "blue.500"}}>
                         <Text
                         fontWeight="600" 
                         fontSize="md" 
                         lineHeight="sm" 
                         letterSpacing="0%"
-                        color='green.800'
+                        color="inherit"
                         >Skip process for now </Text>
-                        <Icon color='black' size="md">
+                        <Icon color="inherit" size="md">
                             <SkipArrowIcon />
                         </Icon>
                     </Flex>
                 </Box>
 
-                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center"  gap={5} px={6}>
-                    <Flex flexDirection='column'  w='100%'>
-                        <Text as="h1" fontSize="20px" fontWeight='' color="gray.800" textAlign="left">Verify your identity</Text>
+                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center">
+                    <Flex>
+                        <Text as="h1" fontSize="sm" color="gray.800" textAlign="left">Verify your identy</Text>
                         
                         {/* ID type and region selection */}
-<<<<<<< HEAD
                         <Flex>
                             <Box>
                                     {/* ID doc type */}
@@ -181,63 +176,7 @@ const IdVerification = () => {
                                 </SelectRoot>
 
    */}                          </Box>
-=======
-                        <Flex  w='90%'>
-                            <Box w="full" color='gray.400' display='flex' justifyContent='space-between' alignItems='center' >
-                            
-                                 <SelectRoot 
-                                 collection={idTypes} 
-                                 size="sm" 
-                                 width="200px"
-                                 p={2}
-                                 >
-                                     <SelectLabel >Select Document Type</SelectLabel>
-                                     <SelectTrigger >
-                                         <SelectValueText placeholder="Select ID Type"   />
-                                     </SelectTrigger>
-                                     <SelectContent>
-                                         {idTypes.items.map((id) => (
-                                         <SelectItem item={id} key={id.value}>
-                                             {id.label}
-                                         </SelectItem>
-                                         ))}
-                                     </SelectContent>
-                                 </SelectRoot>
-
-
-                                 <SelectRoot 
-                                 collection={idTypes} 
-                                 size="sm" 
-                                 width="200px"
-                                 p={2}
-                                 >
-                                     <SelectLabel w='25rem'>Government Issued Country</SelectLabel>
-                                     <SelectTrigger>
-                                         <SelectValueText placeholder="Select Country" />
-                                     </SelectTrigger>
-                                     <SelectContent>
-                                         {countries.map((id) => (
-                                         <SelectItem item={id} key={id.value}>
-                                             {id}
-                                         </SelectItem>
-                                         ))}
-                                     </SelectContent>
-                                 </SelectRoot>
-                            
-                               
-                               
-                              
-                            </Box>
->>>>>>> 9e29c74122012527da1aeaa65e4d8f782e45eb82
                         </Flex>
-                        <Flex height='15rem' direction='column' align='center' justify='center' bgColor='gray.200' mt={5}>
-                            <Box h={10}><img src={image}  alt="" /></Box>
-                            
-                            <p style={{marginLeft:'100px'}}>Drag file here to upload or  <input type="file" name="" id="" accept="image/png, image/jpeg" /></p></Flex>
-                    </Flex>
-                    <Flex justify='space-evenly' gap={10} >
-                        <Button w='15rem' bgColor='white' color='green.800' border='solid 1px' borderColor='green.800' _hover={{bgColor:'green.800', color:'white'}}>Previous</Button>
-                        <Button  w='15rem' bgColor='white' color='green.800'  border='solid 1px' borderColor='green.800'_hover={{bgColor:'green.800', color:'white'}}>Next</Button>
                     </Flex>
                 </Flex>
 
@@ -245,7 +184,6 @@ const IdVerification = () => {
 
       </Flex>
     </Flex>
-    
   );
 };
 

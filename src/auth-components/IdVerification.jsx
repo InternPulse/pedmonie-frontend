@@ -132,13 +132,13 @@ const IdVerification = () => {
                     </Flex>
                 </Box>
 
-                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center"  gap={5}>
+                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center"  gap={5} px={6}>
                     <Flex flexDirection='column'  w='100%'>
-                        <Text as="h1" fontSize="32px" fontWeight='' color="gray.800" textAlign="left">Verify your identity</Text>
+                        <Text as="h1" fontSize="20px" fontWeight='' color="gray.800" textAlign="left">Verify your identity</Text>
                         
                         {/* ID type and region selection */}
                         <Flex  w='90%'>
-                            <Box w="full" color='gray.400' display='flex' justifyContent='space-around' alignItems='center' >
+                            <Box w="full" color='gray.400' display='flex' justifyContent='space-between' alignItems='center' >
                             
                                  <SelectRoot 
                                  collection={idTypes} 
@@ -147,8 +147,8 @@ const IdVerification = () => {
                                  p={2}
                                  >
                                      <SelectLabel >Select Document Type</SelectLabel>
-                                     <SelectTrigger>
-                                         <SelectValueText placeholder="Select ID Type" />
+                                     <SelectTrigger >
+                                         <SelectValueText placeholder="Select ID Type"   />
                                      </SelectTrigger>
                                      <SelectContent>
                                          {idTypes.items.map((id) => (
@@ -187,7 +187,7 @@ const IdVerification = () => {
                         <Flex height='15rem' direction='column' align='center' justify='center' bgColor='gray.200' mt={5}>
                             <Box h={10}><img src={image}  alt="" /></Box>
                             
-                            <p>Drag file here to upload or  <input type="file" name="" id="" /></p></Flex>
+                            <p style={{marginLeft:'100px'}}>Drag file here to upload or  <input type="file" name="" id="" accept="image/png, image/jpeg" /></p></Flex>
                     </Flex>
                     <Flex justify='space-evenly' gap={10} >
                         <Button w='15rem' bgColor='white' color='green.800' border='solid 1px' borderColor='green.800' _hover={{bgColor:'green.800', color:'white'}}>Previous</Button>

@@ -1,4 +1,4 @@
-import { Flex, Text, Heading, Input, Button, VStack, Image, Box, List, Icon, NativeSelect, createListCollection
+import { Flex, Text, Heading, Input, Button, VStack, Image, Box, List, Icon, NativeSelect, createListCollection, For
  } from "@chakra-ui/react";
 import {
     SelectContent,
@@ -11,6 +11,8 @@ import {
 import { LuCircleCheck as ListIcon } from "react-icons/lu";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
+import { countries } from "../../fake-data/countries";
+import image from '../../assets/images/fi_image.png'
 
 const IdVerification = () => {
     /* Items for select array id section */
@@ -20,11 +22,13 @@ const IdVerification = () => {
           { label: "International Passport", value: "international-passport" },
           { label: "Driving License", value: "driving-license" },
           { label: "National ID Card", value: "national-id" },
-          { label: "Voter ID Card", value: "voter-id" },
-        ],
+          { label: "Voter ID Card", value: "voter-id" },{countries:countries},
+         
+        ]
+       
       });
+  
       
-   
   return (
     <Flex
     as="main"
@@ -114,49 +118,80 @@ const IdVerification = () => {
         {/* Right Section - Form and action side */}
         <Flex direction="column" flex={2} bgColor="white" h="full" p={6}>
                 <Box display="flex" flexDir="column" alignItems="end" color="gray.500" pt={4} pb={4}>
-                    <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "blue.500"}}>
+                    <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "green.800"}}>
                         <Text
                         fontWeight="600" 
                         fontSize="md" 
                         lineHeight="sm" 
                         letterSpacing="0%"
-                        color="inherit"
+                        color='green.800'
                         >Skip process for now </Text>
-                        <Icon color="inherit" size="md">
+                        <Icon color='black' size="md">
                             <SkipArrowIcon />
                         </Icon>
                     </Flex>
                 </Box>
 
-                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center">
-                    <Flex>
-                        <Text as="h1" fontSize="sm" color="gray.800" textAlign="left">Verify your identy</Text>
+                <Flex flexDir={{base: "row", lg: "column"}} alignItems="center" justify="center"  gap={5}>
+                    <Flex flexDirection='column'  w='100%'>
+                        <Text as="h1" fontSize="32px" fontWeight='' color="gray.800" textAlign="left">Verify your identity</Text>
                         
                         {/* ID type and region selection */}
-                        <Flex>
-                            <Box w="full">
-                       
-                                <SelectRoot 
-                                collection={idTypes} 
-                                size="sm" 
-                                width="200px"
-                                p={2}
-                                >
-                                    <SelectLabel>Select ID Type</SelectLabel>
-                                    <SelectTrigger>
-                                        <SelectValueText placeholder="Select ID Type" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {idTypes.items.map((id) => (
-                                        <SelectItem item={id} key={id.value}>
-                                            {id.label}
-                                        </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </SelectRoot>
+                        <Flex  w='90%'>
+                            <Box w="full" color='gray.400' display='flex' justifyContent='space-around' alignItems='center' >
+                            
+                                 <SelectRoot 
+                                 collection={idTypes} 
+                                 size="sm" 
+                                 width="200px"
+                                 p={2}
+                                 >
+                                     <SelectLabel >Select Document Type</SelectLabel>
+                                     <SelectTrigger>
+                                         <SelectValueText placeholder="Select ID Type" />
+                                     </SelectTrigger>
+                                     <SelectContent>
+                                         {idTypes.items.map((id) => (
+                                         <SelectItem item={id} key={id.value}>
+                                             {id.label}
+                                         </SelectItem>
+                                         ))}
+                                     </SelectContent>
+                                 </SelectRoot>
 
+
+                                 <SelectRoot 
+                                 collection={idTypes} 
+                                 size="sm" 
+                                 width="200px"
+                                 p={2}
+                                 >
+                                     <SelectLabel w='25rem'>Government Issued Country</SelectLabel>
+                                     <SelectTrigger>
+                                         <SelectValueText placeholder="Select Country" />
+                                     </SelectTrigger>
+                                     <SelectContent>
+                                         {countries.map((id) => (
+                                         <SelectItem item={id} key={id.value}>
+                                             {id}
+                                         </SelectItem>
+                                         ))}
+                                     </SelectContent>
+                                 </SelectRoot>
+                            
+                               
+                               
+                              
                             </Box>
                         </Flex>
+                        <Flex height='15rem' direction='column' align='center' justify='center' bgColor='gray.200' mt={5}>
+                            <Box h={10}><img src={image}  alt="" /></Box>
+                            
+                            <p>Drag file here to upload or  <input type="file" name="" id="" /></p></Flex>
+                    </Flex>
+                    <Flex justify='space-evenly' gap={10} >
+                        <Button w='15rem' bgColor='white' color='green.800' border='solid 1px' borderColor='green.800' _hover={{bgColor:'green.800', color:'white'}}>Previous</Button>
+                        <Button  w='15rem' bgColor='white' color='green.800'  border='solid 1px' borderColor='green.800'_hover={{bgColor:'green.800', color:'white'}}>Next</Button>
                     </Flex>
                 </Flex>
 
@@ -164,6 +199,7 @@ const IdVerification = () => {
 
       </Flex>
     </Flex>
+    
   );
 };
 

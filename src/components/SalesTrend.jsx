@@ -65,7 +65,7 @@ const SalesTrend = () => {
   }, []);
 
   return (
-    <Box w="526px" m="auto" mt="50px">
+    <Box w="526px" m="auto" mt="50px" bg="#FFFFFF">
        <Heading color="#373D4D" as='h4' mb="10px" fontSize= '20px'>Sales Trend</Heading>
       <canvas ref={chartRef} />
     </Box>

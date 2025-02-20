@@ -214,12 +214,12 @@ const Payment = () => {
         >
           <Flex w="full" align="center" justify="space-between" mb={2}>
             <Flex align="center" gap={2}>
-              <Image src={Logo} alt="Logo" w="24px" h="24px" />
+              <Image src={logo} alt="Logo" w="24px" h="24px" />
               <Text fontSize="16px" fontWeight="500" color="#424141">
                 PEDMONIE
               </Text>
             </Flex>
-            <Image src={Toogle} alt="Toggle" w="24px" h="24px" />
+            <Image src={toogle} alt="Toggle" w="24px" h="24px" />
           </Flex>
           <Divider />
 
@@ -229,7 +229,7 @@ const Payment = () => {
           </Text>
 
           {[
-            { icon: Overview, text: "Overview" },
+            { icon: overview, text: "Overview" },
             { icon: Analytics, text: "Analytics" },
             { icon: Transactions, text: "Transactions" },
             { icon: Payments, text: "Payment", isActive: true },
@@ -324,6 +324,7 @@ const Payment = () => {
               >
                 Payment
               </Text>
+
             </VStack>
 
             {/* Search and Action Buttons */}
@@ -366,13 +367,7 @@ const Payment = () => {
                 align="center"
                 gap={2}
               >
-                <Text
-                  fontSize="12px"
-                  fontWeight="400"
-                  color="#A7A7A7"
-                  whiteSpace="nowrap"
-                  minW="max-content"
-                >
+                <Text fontSize="12px" fontWeight="400" color="#A7A7A7" whiteSpace="nowrap" minW="max-content">
                   Sort by:
                 </Text>
                 <Select
@@ -481,23 +476,38 @@ const Payment = () => {
           {/* Pagination Carousel */}
           <Flex align="right" justify="space-between" mt={4} gap={1}>
             <Box>
-              <Text color="#424141">
+              <Text w="253px"
+                color="#B5B7C0"
+                fontSize="14px"
+                fontFamily="Inter"
+                fontWeight="500"
+                wordBreak="break-word">
                 Showing {startItem} to {endItem} of {paymentData.length} entries
               </Text>
             </Box>
             <Flex>
               <IconButton
                 size="sm"
+                bg="#F5F5F5"
+                border="1px solid #EEEEEE"
+                borderRadius="4px"
                 icon={<ChevronLeftIcon />}
                 variant="outline"
                 onClick={() => setCurrentPage(1)} // Navigate to first page
                 isDisabled={currentPage === 1}
-                color="#424141"
+                color="#292D32"
               />
+              <Flex gap={2}>
               {[...Array(totalPages)].map((_, index) => (
                 <Button
                   key={index}
                   size="sm"
+                  w="26px"
+                  h="28px"
+                  border="1px solid"
+                  borderRadius="4px"
+                  fontSize="12px"
+                  fontWeight="500"
                   variant={currentPage === index + 1 ? "solid" : "outline"}
                   colorScheme={currentPage === index + 1 ? "green" : "gray"}
                   onClick={() => setCurrentPage(index + 1)}
@@ -506,9 +516,15 @@ const Payment = () => {
                   {index + 1}
                 </Button>
               ))}
-              <Text color="#424141">...</Text>
+              </Flex>
+              <Text fontSize="12px" fontWeight="500" color="black" mx={2}>
+                ...
+              </Text>
               <Button
                 size="sm"
+                bg="#F5F5F5"
+                border="1px solid #EEEEEE"
+                borderRadius="4px"
                 variant="outline"
                 onClick={() => setCurrentPage(totalPages)} // Navigate to last page
                 isDisabled={currentPage === totalPages}
@@ -524,7 +540,7 @@ const Payment = () => {
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 isDisabled={currentPage === totalPages}
-                color="#424141"
+                color="#292D32"
               />
             </Flex>
           </Flex>

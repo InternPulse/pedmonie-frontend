@@ -1,13 +1,14 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React from 'react'
+import Leftside from './Leftside'
+import Rightside from './Rightside'
 
 const Signup = () => {
   return (
-    <>
-      <Box>
-        <Text>Hello</Text>
-      </Box>
-    </>
+    <Flex w="1440px" h="1024px">
+      <Leftside />
+      <Rightside />
+    </Flex>
   )
 }
 export default Signup

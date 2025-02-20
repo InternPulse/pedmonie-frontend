@@ -214,12 +214,12 @@ const Payment = () => {
         >
           <Flex w="full" align="center" justify="space-between" mb={2}>
             <Flex align="center" gap={2}>
-              <Image src={logo} alt="Logo" w="24px" h="24px" />
+              <Image src={Logo} alt="Logo" w="24px" h="24px" />
               <Text fontSize="16px" fontWeight="500" color="#424141">
                 PEDMONIE
               </Text>
             </Flex>
-            <Image src={toogle} alt="Toggle" w="24px" h="24px" />
+            <Image src={Toogle} alt="Toggle" w="24px" h="24px" />
           </Flex>
           <Divider />
 
@@ -229,7 +229,7 @@ const Payment = () => {
           </Text>
 
           {[
-            { icon: overview, text: "Overview" },
+            { icon: Overview, text: "Overview" },
             { icon: Analytics, text: "Analytics" },
             { icon: Transactions, text: "Transactions" },
             { icon: Payments, text: "Payment", isActive: true },

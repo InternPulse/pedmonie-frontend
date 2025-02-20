@@ -314,56 +314,79 @@ const Payment = () => {
         <Box flex={1} p={4} overflow="auto">
           <Flex justify="space-between" align="center" mb={4}>
             <VStack align="start" spacing={1}>
-              <Text fontSize="18px" fontWeight="500" color="#313431">
+              <Text
+                color="#313431"
+                fontSize="20px"
+                fontFamily="Inter"
+                fontWeight="500"
+                wordBreak="break-word"
+                textShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+              >
                 Payment
-              </Text>
-              <Text fontSize="14px" color="#637381">
-                {paymentData.length} payment links
               </Text>
             </VStack>
 
             {/* Search and Action Buttons */}
             <Flex gap={4} align="center">
-              <InputGroup w="250px" size="sm">
-                <InputLeftElement>
-                  <SearchIcon color="gray.400" />
-                </InputLeftElement>
-                <Input
-                  placeholder="Search..."
-                  bg="white"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </InputGroup>
-
-              {/* Dropdown Menu for Payment Links */}
-              <Menu>
-                <MenuButton
-                  size="sm"
-                  as={Button}
-                  variant="outline"
-                  leftIcon={<ChevronDownIcon />}
-                  bg="#919191"
-                  color="white"
-                  px={4}
-                  py={2}
-                  borderRadius="0"
+              <Box
+                w="216px"
+                h="50px"
+                bg="white"
+                border="1px solid #CCCCCC"
+                borderRadius="8px"
+                px="4"
+                py="2"
+                overflow="hidden"
+              >
+                <InputGroup>
+                  <InputLeftElement pointerEvents="none">
+                    <SearchIcon color="#292D32" />
+                  </InputLeftElement>
+                  <Input
+                    placeholder="Search"
+                    fontSize="12px"
+                    fontWeight="400"
+                    fontFamily="Inter"
+                    color="#A7A7A7"
+                    border="none"
+                    _focus={{ boxShadow: "none" }}
+                  />
+                </InputGroup>
+              </Box>
+              <Flex
+                h="50px"
+                w="180px"
+                bg="white"
+                border="1px solid #CCCCCC"
+                borderRadius="8px"
+                px="3"
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                align="center"
+                gap={2}
+              >
+                <Text
+                  fontSize="12px"
+                  fontWeight="400"
+                  color="#A7A7A7"
+                  whiteSpace="nowrap"
+                  minW="max-content"
                 >
-                  {selectedOption}
-                </MenuButton>
-                <MenuList>
-                  <MenuItem onClick={() => setSelectedOption("Link Type 1")}>
-                    Link Type 1
-                  </MenuItem>
-                  <MenuItem onClick={() => setSelectedOption("Link Type 2")}>
-                    Link Type 2
-                  </MenuItem>
-                  <MenuItem onClick={() => setSelectedOption("Link Type 3")}>
-                    Link Type 3
-                  </MenuItem>
-                  {/* Add more menu items as needed */}
-                </MenuList>
-              </Menu>
+                  Sort by:
+                </Text>
+                <Select
+                  fontSize="12px"
+                  fontWeight="600"
+                  color="#3D3D3D"
+                  icon={<ChevronDownIcon />}
+                  border="none"
+                  _focus={{ boxShadow: "none" }}
+                >
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
+                </Select>
+              </Flex>
             </Flex>
           </Flex>
 

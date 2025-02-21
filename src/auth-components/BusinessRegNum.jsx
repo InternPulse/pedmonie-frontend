@@ -89,7 +89,7 @@ return (
          >
 
          <Box>
-           <Text fontWeight="bold" fontSize="lg" textAlign="left">CAC Number</Text>
+           <Text fontWeight="bold" fontSize="lg" textAlign="left" color='gray.800'>CAC Number</Text>
          </Box>
 
          </Flex>

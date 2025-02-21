@@ -94,7 +94,7 @@ return (
          >
 
          <Box>
-           <Text fontWeight="bold" fontSize="lg" textAlign="left">Please confirm the validity of your email address</Text>
+           <Text  fontSize="md" textAlign="left" color='gray.600'>Please confirm the validity of your email address</Text>
          </Box>
 
          <Box display="flex" alignItems="center" gap={2} w="full">
@@ -108,8 +108,9 @@ return (
             as="p"
             fontSize={{ base: "2xs", md: "sm", lg: "md" }} 
             textAlign="left"
+            color='gray.400'
           >
-            We require your email for security purposes and essential technical communication.
+            We require your email for security reasons and also for essential technical communication.
           </Text>
         </Box>
 
@@ -152,7 +153,7 @@ return (
                  <Flex flexDir={"column"} justify={"center"} align={"center"} gapY={8}>          
                 
                      <Flex direction="column">         
-                      <Text as="h1" fontSize={{base:"sm", lg: "md"}} color="gray.800" textAlign={{base: "center", lg: "left"}} fontWeight="bold" pb={4}>Check your email for a verification link</Text>  
+                      <Text as="h1" fontSize={{base:"sm", lg: "md"}} color="gray.800" textAlign={{base: "center", lg: "left"}} fontWeight="bold" pb={4} mb={2}>Check your email for a verification link</Text>  
                         
                 {/* CAC number verification*/}                
                 <Box as="div" display="flex" alignItems="center" gap={4} w="full">
@@ -170,7 +171,7 @@ return (
                         color="gray.800"
                         border="none"
                         borderRadius="md"
-                        h="4rem" 
+                        h="3rem" 
                         pl={8}
                         pr={3}
                         _focus={{
@@ -181,9 +182,7 @@ return (
                     />
                     
                     <Field.Label css={floatingStyles}>
-                      <Flex direction='column' px={3}> <Text fontSize={{base: "xs", lg: "xs"}} pl={4}>Check your email address</Text>
-                        <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>teeraboh@gmail.com</Text></Flex>
-                       
+                        <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>Check your email address</Text>
                     </Field.Label>
                     </Box>
                 </Field.Root>
@@ -191,7 +190,7 @@ return (
                 </Box>
 
                 <Box>
-                  <Text as="p" fontSize={{base: "xs", lg: "sm"}} textAlign="left" pt={3}>Didn't receive the email? Please check your spam folder or try resetting your email.</Text>
+                  <Text as="p" fontSize={{base: "xs", lg: "sm"}} textAlign="left" pt={3}>Didn't receive the email? Please check your spam folder or try to reset your email.</Text>
                 </Box>
                 
              </Flex>

@@ -92,7 +92,7 @@ return (
          >
 
          <Box>
-           <Text fontWeight="bold" fontSize="lg" textAlign="left">BVN Verification is required</Text>
+           <Text fontWeight="bold" fontSize="lg" textAlign="left" color='gray.800'>BVN Verification is required</Text>
          </Box>
 
          <Box display="flex" alignItems="center" gap={2} w="full">
@@ -106,6 +106,7 @@ return (
             as="p"
             fontSize={{ base: "2xs", md: "sm", lg: "md" }} 
             textAlign="left"
+            color='gray.400'
           >
             I have written down the 16-digit secret phrase key
           </Text>

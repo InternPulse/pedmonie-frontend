@@ -200,7 +200,7 @@ const IdVerification = ({ paths, getPathDataById }) => {
                                {/* ID issued countries */}
                                < Flex direction='column' fontSize='14px' gap={1} mt={0}> 
                                <label htmlFor="" style={{fontWeight:'500'}}>Select ID Issued Country</label>
-                               <select name="" id="" style={{height:'35px',  backgroundColor:'#f7f7f7', borderRadius:'5px', outline:'0px', padding:'5px'}}>
+                               <select name="" id="" style={{height:'35px', color:'gray',  backgroundColor:'#f7f7f7', borderRadius:'5px', outline:'0px', padding:'5px'}}>
                                {/* <option value="">Select country</option> */}
                                 {countries.map((value, index) =>{
                                     return <option value="" key={index}>{value}</option>

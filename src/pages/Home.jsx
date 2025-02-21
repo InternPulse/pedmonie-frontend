@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import CombinedCharts from "../components/HomeSection/CombinedCharts";
+import CombinedCharts from "../components/CombinedCharts";
 import Container from "../components/HomeSection/Container";
 import SalesTrend from "../components/SalesTrend";
 import Summary from "../components/SummarySection/Summary";

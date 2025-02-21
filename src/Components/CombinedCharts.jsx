@@ -1,6 +1,6 @@
 import React from "react";
-import LineChart from "../LineChart";
-import PieChart from "../PieChart";
+import LineChart from "./LineChart";
+import PieChart from "./PieChart";
 import { Flex } from "@chakra-ui/react";
 
 const CombinedCharts = () => {

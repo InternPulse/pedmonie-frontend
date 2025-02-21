@@ -90,8 +90,6 @@ const LineChart = () => {
       w={{ base: "", md: "", lg: "full" }}
       h={{ base: "", md: "", lg: "297px" }}
       bg={"rgba(255, 255, 255, 1)"}
-      border="sm"
-      borderColor="black"
     >
       <Flex
         direction={{ base: "", md: "", lg: "row" }}

@@ -1,8 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Heading } from "@chakra-ui/react";
-import { Chart, LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart,
+  LineController,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-Chart.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+Chart.register(
+  LineController,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const SalesTrend = () => {
   const chartRef = useRef(null);
@@ -10,7 +29,7 @@ const SalesTrend = () => {
 
   useEffect(() => {
     if (chartInstance.current) {
-      chartInstance.current.destroy(); 
+      chartInstance.current.destroy();
     }
 
     const context = chartRef.current.getContext("2d");
@@ -56,7 +75,7 @@ const SalesTrend = () => {
             font: { size: 16 },
           },
         },
-      },      
+      },
     });
 
     return () => {
@@ -65,12 +84,13 @@ const SalesTrend = () => {
   }, []);
 
   return (
-    <Box w="526px" m="auto" mt="50px" bg="#FFFFFF">
-       <Heading color="#373D4D" as='h4' mb="10px" fontSize= '20px'>Sales Trend</Heading>
+    <Box w="526px" m="auto" bg="#FFFFFF">
+      <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
+        Sales Trend
+      </Heading>
       <canvas ref={chartRef} />
     </Box>
   );
 };
 
 export default SalesTrend;
-

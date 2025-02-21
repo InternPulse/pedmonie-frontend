@@ -1,8 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Heading } from "@chakra-ui/react";
-import { Chart, BarController, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart,
+  BarController,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-Chart.register(BarController, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+Chart.register(
+  BarController,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const PaymentSuccessRate = () => {
   const chartRef = useRef(null);
@@ -10,7 +27,7 @@ const PaymentSuccessRate = () => {
 
   useEffect(() => {
     if (chartInstance.current) {
-      chartInstance.current.destroy(); 
+      chartInstance.current.destroy();
     }
 
     const ctx = chartRef.current.getContext("2d");
@@ -30,8 +47,8 @@ const PaymentSuccessRate = () => {
       options: {
         responsive: true,
         interaction: {
-            mode: null,
-          },
+          mode: null,
+        },
         scales: {
           x: {
             grid: {
@@ -44,7 +61,7 @@ const PaymentSuccessRate = () => {
             ticks: {
               stepSize: 20,
               callback: function (value) {
-                return `${value}%`; 
+                return `${value}%`;
               },
             },
             grid: {
@@ -59,7 +76,7 @@ const PaymentSuccessRate = () => {
           tooltip: {
             callbacks: {
               label: function (context) {
-                return `${context.raw}%`; 
+                return `${context.raw}%`;
               },
             },
           },
@@ -73,8 +90,10 @@ const PaymentSuccessRate = () => {
   }, []);
 
   return (
-    <Box  w="526px" m="auto" mt="50px" bg="#FFFFFF">
-      <Heading color="#373D4D" as='h4' mb="10px" fontSize= '20px'>Payment Success Rate</Heading>
+    <Box w="526px" m="auto" bg="#FFFFFF">
+      <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
+        Payment Success Rate
+      </Heading>
       <canvas ref={chartRef} />
     </Box>
   );

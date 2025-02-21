@@ -170,7 +170,7 @@ return (
                         color="gray.800"
                         border="none"
                         borderRadius="md"
-                        h="3rem" 
+                        h="4rem" 
                         pl={8}
                         pr={3}
                         _focus={{
@@ -181,7 +181,9 @@ return (
                     />
                     
                     <Field.Label css={floatingStyles}>
-                        <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>Check your email address</Text>
+                      <Flex direction='column' px={3}> <Text fontSize={{base: "xs", lg: "xs"}} pl={4}>Check your email address</Text>
+                        <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>teeraboh@gmail.com</Text></Flex>
+                       
                     </Field.Label>
                     </Box>
                 </Field.Root>

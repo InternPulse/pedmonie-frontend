@@ -23,7 +23,8 @@ import {
 import { LuCircleCheck as ListIcon } from "react-icons/lu";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
-import countriesData from "world-countries";
+// import countriesData from "world-countries";
+import { countries } from "../../fake-data/countries";
 import { Link } from "react-router-dom";
 
 const IdVerification = ({ paths, getPathDataById }) => {
@@ -43,14 +44,14 @@ const IdVerification = ({ paths, getPathDataById }) => {
      });
 
       /* Items for select id issued country */
-     const countryNames = countriesData.map((country) => ({
-        label: country.name.common, 
-        value: country.name.common.toLowerCase().replace(/\s+/g, "-"), 
-      }));
+    //  const countryNames = countriesData.map((country) => ({
+    //     label: country.name.common, 
+    //     value: country.name.common.toLowerCase().replace(/\s+/g, "-"), 
+    //   }));
       
-      const countryList = createListCollection({
-        items: countryNames, 
-      });
+    //   const countryList = createListCollection({
+    //     items: countryNames, 
+    //   });
   
  return (
    <Flex
@@ -173,7 +174,7 @@ const IdVerification = ({ paths, getPathDataById }) => {
                    <Flex flexDir={"column"} justify={"center"} align={"center"} gapY={8}>          
                   
                        <Flex direction="column">         
-                        <Text as="h1" fontSize={{base:"sm", lg: "md"}} color="gray.800" textAlign={{base: "center", lg: "left"}} fontWeight="bold" pb={4}>Verify your identy</Text>  
+                        <Text as="h1" fontSize={{base:"sm", lg: "md"}} color="gray.800" textAlign={{base: "center", lg: "left"}} fontWeight="bold" pb={4}>Verify your identity</Text>  
                            {/* ID type and countries selection */}
                            <Box as="div" display="flex" alignItems="center" gap={4}>
                                    {/* ID doc type */}
@@ -197,7 +198,19 @@ const IdVerification = ({ paths, getPathDataById }) => {
                                </SelectRoot>
 
                                {/* ID issued countries */}
-                              <SelectRoot 
+                               < Flex direction='column' fontSize='14px' gap={1} mt={0}> 
+                               <label htmlFor="" style={{fontWeight:'500'}}>Select ID Issued Country</label>
+                               <select name="" id="" style={{height:'35px',  backgroundColor:'#f7f7f7', borderRadius:'5px', outline:'0px', padding:'5px'}}>
+                               {/* <option value="">Select country</option> */}
+                                {countries.map((value, index) =>{
+                                    return <option value="" key={index}>{value}</option>
+                                })}
+                                
+                                
+                               </select>
+                               </Flex>
+                             
+                              {/* <SelectRoot 
                                collection={countryList} 
                                size="sm" 
                                w={{base: "10rem", md: "15rem", lg: "20rem"}}
@@ -214,7 +227,7 @@ const IdVerification = ({ paths, getPathDataById }) => {
                                        </SelectItem>
                                        ))}
                                    </SelectContent>
-                               </SelectRoot>
+                               </SelectRoot> */}
                            </Box>
                        </Flex>
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Flex, Text, NativeSelect } from "@chakra-ui/react";
-import Data from "./data.json";
+import { lineChartData } from "./data";
 import { Line } from "react-chartjs-2";
 import {
   Chart,
@@ -28,11 +28,11 @@ Chart.register(
 );
 
 const LineChart = () => {
-  const yearsArray = Object.keys(Data);
+  const yearsArray = Object.keys(lineChartData);
 
   const [selectedYear, setSelcetedYear] = useState(yearsArray[0]);
 
-  const dataList = Data[selectedYear] || {};
+  const dataList = lineChartData[selectedYear] || {};
 
   const labels = Object.keys(dataList);
 

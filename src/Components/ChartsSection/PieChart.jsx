@@ -1,19 +1,19 @@
 import React from "react";
-import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { Pie } from "react-chartjs-2";
+import { piechartData } from "./data2";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import pieData from "./data2.json";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
-  const label = Object.keys(pieData);
-  const dataPie = Object.values(pieData);
+  const label = Object.keys(piechartData);
+  const dataPie = Object.values(piechartData);
 
-  const credit = pieData["Credit Card"];
-  const bank = pieData["Bank Transfer"];
-  const Crypto = pieData["Crypto"];
-  const PayPal = pieData["PayPal"];
+  const credit = piechartData["Credit Card"];
+  const bank = piechartData["Bank Transfer"];
+  const Crypto = piechartData["Crypto"];
+  const PayPal = piechartData["PayPal"];
 
   const data = {
     labels: "",

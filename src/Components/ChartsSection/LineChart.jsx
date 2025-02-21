@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Flex, Text, NativeSelect } from "@chakra-ui/react";
-import Data from "../data.json";
+import Data from "./data.json";
 import { Line } from "react-chartjs-2";
 import {
   Chart,

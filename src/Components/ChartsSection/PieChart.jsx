@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
-import pieData from "../data2.json";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import pieData from "./data2.json";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

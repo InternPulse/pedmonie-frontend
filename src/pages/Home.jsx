@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import CombinedCharts from "../components/CombinedCharts";
+import CombinedCharts from "../components/ChartsSection/CombinedCharts";
 import Container from "../components/HomeSection/Container";
-import SalesTrend from "../components/SalesTrend";
+import SalesTrend from "../components/ChartsSection/SalesTrend";
 import Summary from "../components/SummarySection/Summary";
-import PaymentSuccessRate from "../components/PaymentSuccessRate";
-import QuickActions from "../components/QuickActions";
+import PaymentSuccessRate from "../components/ChartsSection/PaymentSuccessRate";
+import QuickActions from "../components/ChartsSection/QuickActions";
 
 export default function Home() {
   return (

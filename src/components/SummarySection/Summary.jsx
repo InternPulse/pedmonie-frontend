@@ -5,7 +5,7 @@ function Summary() {
   return (
     <Stack
       w="full"
-      h="115px"
+      h={{ base: "", lg: "115px" }}
       direction={{ base: "column", lg: "row" }}
       justifyContent="space-between"
     >

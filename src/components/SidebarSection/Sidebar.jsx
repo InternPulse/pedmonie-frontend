@@ -21,6 +21,8 @@ function Sidebar({ closeSidebar, setCloseSidebar }) {
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": { display: "none" }, // Chrome, Safari
       }}
+      borderLeft="sm"
+      borderColor={{ lg: "black" }}
     >
       <Box display="flex" flexDirection="column" w="232px" gap="8">
         <Box

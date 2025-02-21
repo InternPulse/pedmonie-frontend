@@ -32,18 +32,6 @@ import {
   CopyIcon,
 } from "@chakra-ui/icons";
 
-// Import your assets here
-import Logo from "./transactionConfirmationAssets/logo.png"; // ✅ Define the logo path
-import Toogle from "./transactionConfirmationAssets/toogle.png"; // ✅ Define the toggle path
-import Overview from "./transactionConfirmationAssets/overview.png"; // ✅ Define the overview icon path
-import Analytics from "./transactionConfirmationAssets/analytics.png"; // ✅ Define the analytics icon path
-import Transactions from "./transactionConfirmationAssets/transactions.png"; // ✅ Define the transactions icon path
-import Payments from "./transactionConfirmationAssets/payment.png"; // ✅ Define the payments icon path
-import Subscription from "./transactionConfirmationAssets/subscription.png"; // ✅ Define the subscription icon path
-import Support from "./transactionConfirmationAssets/support.png"; // ✅ Define the support icon path
-import Settings from "./transactionConfirmationAssets/settings.png"; // ✅ Define the settings icon path
-import Logout from "./transactionConfirmationAssets/logout.png"; // ✅ Define the logout icon path
-
 const Payment = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("Newest");

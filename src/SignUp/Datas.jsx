@@ -6,17 +6,17 @@ import {
   Input,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { InputGroup } from "@/components/ui/input-group";
-import { LuLock, LuMail, LuUser } from "react-icons/lu";
-import React from "react";
-import { PasswordInput } from "@/components/ui/password-input";
-import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import google from "../svgs/google.svg";
+} from '@chakra-ui/react'
+import { InputGroup } from '@/components/ui/input-group'
+import { LuLock, LuMail, LuUser, LuPhone } from 'react-icons/lu'
+import React from 'react'
+import { PasswordInput } from '@/components/ui/password-input'
+import { useState } from 'react'
+import { Checkbox } from '@/components/ui/checkbox'
+import google from '../svgs/google.svg'
 
 const Demos = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
   return (
     <Stack gap="16px">
       {/* First Name */}
@@ -24,11 +24,13 @@ const Demos = () => {
         <InputGroup flex="1" startElement={<LuUser />}>
           <Input placeholder="Enter Your First Name" variant="subtle" />
         </InputGroup>
+
         {/* Last Name */}
         <InputGroup flex="1" startElement={<LuUser />}>
           <Input placeholder="Enter Your Last Name" variant="subtle" />
         </InputGroup>
       </HStack>
+
       {/* Middle Name */}
       <InputGroup flex="1" startElement={<LuUser />}>
         <Input
@@ -36,10 +38,17 @@ const Demos = () => {
           variant="subtle"
         />
       </InputGroup>
+
       {/* Email Address */}
       <InputGroup flex="1" startElement={<LuMail />}>
         <Input placeholder="Enter Your Email Address" variant="subtle" />
       </InputGroup>
+
+      {/* Phone Number */}
+      <InputGroup flex="1" startElement={<LuPhone />}>
+        <Input placeholder="Enter Your Phone Number" variant="subtle" />
+      </InputGroup>
+
       {/* Date of birth */}
       <Input
         placeholder="Enter Your Last Name"
@@ -47,6 +56,7 @@ const Demos = () => {
         color="#575757"
         type="date"
       />
+
       {/* Password */}
       <Stack>
         <InputGroup flex="1" startElement={<LuLock />}>
@@ -83,6 +93,6 @@ const Demos = () => {
         </Button>
       </ButtonGroup>
     </Stack>
-  );
-};
-export default Demos;
+  )
+}
+export default Demos

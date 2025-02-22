@@ -1,6 +1,7 @@
 import { Text, Flex, Image, Box } from "@chakra-ui/react";
 import React from "react";
 import lg from "../svgs/lg.svg";
+import phone from '../svgs/phone.svg'
 
 import Demos from "./Datas";
 

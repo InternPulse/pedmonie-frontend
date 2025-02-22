@@ -92,7 +92,7 @@ const PaymentSuccessRate = () => {
   }, []);
 
   return (
-    <Box w="526px" m="auto" bg="#FFFFFF">
+    <Box w="326px" alignSelf="end" bg="#FFFFFF">
       <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
         Payment Success Rate
       </Heading>

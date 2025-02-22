@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
-import CombinedCharts from "../components/ChartsSection/CombinedCharts";
 import Container from "../components/HomeSection/Container";
+import CombinedCharts from "../components/ChartsSection/CombinedCharts";
 import SalesTrend from "../components/ChartsSection/SalesTrend";
 import Summary from "../components/SummarySection/Summary";
 import PaymentSuccessRate from "../components/ChartsSection/PaymentSuccessRate";

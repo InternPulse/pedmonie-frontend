@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 
-const CombinedCharts = () => {
+const CombineCharts = () => {
   return (
     <Flex
       w="full"
@@ -18,4 +18,4 @@ const CombinedCharts = () => {
   );
 };
 
-export default CombinedCharts;
+export default CombineCharts;

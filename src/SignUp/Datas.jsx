@@ -78,20 +78,39 @@ const Demos = () => {
           />
         </InputGroup>
       </Stack>
+
       {/* CheckBox */}
       <Checkbox color="#2D3748">
         I agree to all the Terms and Privacy policy
       </Checkbox>
+
       {/* Buttons */}
       <ButtonGroup variant="subtle" gap="6%">
         <Button bg="#CBCBCB" color="#8E8E8E" w="47%" h="49px">
           Create Account
         </Button>
         <Button bg="#737375" color="white" w="47%" h="49px">
-          <Image src={google}></Image>
+          <Image src={google} />
           Sign-up with google
         </Button>
       </ButtonGroup>
+
+      {/* SIGN UP OPTION */}
+      <Stack align="center">
+        <HStack>
+          <Text textAlign="center" fontSize="sm">
+            Don't have an account?
+          </Text>
+          <Text
+            textAlign="center"
+            color="#2E5C38"
+            fontWeight="bold"
+            fontSize="sm"
+          >
+            Log in
+          </Text>
+        </HStack>
+      </Stack>
     </Stack>
   )
 }

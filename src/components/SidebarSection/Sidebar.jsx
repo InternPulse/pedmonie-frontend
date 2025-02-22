@@ -15,7 +15,7 @@ function Sidebar({ closeSidebar, setCloseSidebar }) {
       px="6"
       py="6"
       gap="2.5"
-      display={{ base: "none", lg: "block" }}
+      display={{ base: "none", md: "none", lg: "block" }}
       overflowY="auto"
       css={{
         scrollbarWidth: "none",

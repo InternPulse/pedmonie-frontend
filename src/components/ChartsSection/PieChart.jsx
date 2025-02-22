@@ -50,12 +50,14 @@ const PieChart = () => {
       as="flex"
       bg="white"
       w="full"
-      maxW="460px"
+      maxW={{ md: "full", xl: "460px" }}
       h={{ base: "", md: "", lg: "298px" }}
       // p={"20px"}
       gap={"10px"}
+      // border="sm"
+      // borderColor="black"
     >
-      <Box w="full" h={{ base: "", md: "", lg: "244px" }} p={{ lg: "20px" }}>
+      <Box w="full" h={{ base: "", md: "", xl: "244px" }} p={{ lg: "20px" }}>
         <Text
           h={"24px"}
           fontWeight={"500"}
@@ -68,30 +70,46 @@ const PieChart = () => {
 
         <Flex
           w="full"
-          maxW="460px"
+          maxW={{ md: "full", xl: "370px" }}
           // mt={"10px"}
           h={{ base: "", md: "", lg: "200px" }}
-          direction={{ base: "column", lg: "row" }}
+          direction={{ base: "column", md: "row", lg: "row" }}
           align={"center"}
           justifyContent={"space-between"}
+          // border="sm"
+          // borderColor="black"
         >
           <Box
-            w={{ base: "full", md: "", lg: "200px" }}
+            w={{ base: "220px", md: "full", xl: "200px" }}
             h={{ base: "", md: "", lg: "200px" }}
+            alignItems="center"
+            m="auto"
+            p="28px"
+            // border="sm"
+            // borderColor="black"
           >
-            <Pie data={data} options={options} />
+            <Pie
+              data={data}
+              options={options}
+              width={{ md: "145px", xl: "145px" }}
+            />
           </Box>
 
           <Flex
             direction={"column"}
             gap={"16px"}
-            justifyContent={"center"}
-            w={{ base: "full", md: "", lg: "208px" }}
+            justifyContent="center"
+            alignItems={{ base: "center" }}
+            w="full"
+            maxW={{ md: "full", xl: "208px" }}
             h={{ base: "", md: "", lg: "199px" }}
             py={"16px"}
+            // border="sm"
+            // borderColor="black"
           >
             <Flex
-              w={{ base: "", md: "", lg: "208px" }}
+              w={{ base: "full", md: "", xl: "full" }}
+              maxW="208px"
               h={{ base: "", md: "", lg: "24px" }}
               direction={"row"}
               align={"center"}
@@ -105,8 +123,8 @@ const PieChart = () => {
                 height={"24px"}
               >
                 <Text
-                  w={"24px"}
-                  h={"24px"}
+                  w={"12px"}
+                  h={"12px"}
                   bg={"rgba(64, 163, 124, 1)"}
                   rounded={"full"}
                 ></Text>
@@ -130,7 +148,8 @@ const PieChart = () => {
             </Flex>
 
             <Flex
-              w={{ base: "", md: "", lg: "208px" }}
+              w={{ base: "full", md: "", xl: "full" }}
+              maxW="208px"
               h={{ base: "", md: "", lg: "24px" }}
               direction={"row"}
               align={"center"}
@@ -144,8 +163,8 @@ const PieChart = () => {
                 height={"24px"}
               >
                 <Text
-                  w={"24px"}
-                  h={"24px"}
+                  w={"12px"}
+                  h={"12px"}
                   bg={"rgba(240, 97, 226, 1)"}
                   rounded={"full"}
                 ></Text>
@@ -169,7 +188,8 @@ const PieChart = () => {
             </Flex>
 
             <Flex
-              w={{ base: "", md: "", lg: "208px" }}
+              w={{ base: "full", md: "", xl: "full" }}
+              maxW="208px"
               h={{ base: "", md: "", lg: "24px" }}
               direction={"row"}
               align={"center"}
@@ -183,8 +203,8 @@ const PieChart = () => {
                 height={"24px"}
               >
                 <Text
-                  w={"24px"}
-                  h={"24px"}
+                  w={"12px"}
+                  h={"12px"}
                   bg={"rgba(255, 180, 79, 1)"}
                   rounded={"full"}
                 ></Text>
@@ -208,7 +228,8 @@ const PieChart = () => {
             </Flex>
 
             <Flex
-              w={{ base: "", md: "", lg: "208px" }}
+              w={{ base: "full", md: "", lg: "full" }}
+              maxW="208px"
               h={{ base: "", md: "", lg: "24px" }}
               direction={"row"}
               align={"center"}
@@ -222,8 +243,8 @@ const PieChart = () => {
                 height={"24px"}
               >
                 <Text
-                  w={"24px"}
-                  h={"24px"}
+                  w={"12px"}
+                  h={"12px"}
                   bg={"rgba(72, 161, 243, 1)"}
                   rounded={"full"}
                 ></Text>

@@ -5,8 +5,8 @@ function Summary() {
   return (
     <Stack
       w="full"
-      h={{ base: "", lg: "115px" }}
-      direction={{ base: "column", lg: "row" }}
+      h={{ base: "", xl: "115px" }}
+      direction={{ base: "column", md: "column", xl: "row" }}
       justifyContent="space-between"
     >
       {summary.map((summary) => (

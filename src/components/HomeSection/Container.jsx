@@ -23,17 +23,23 @@ function Container({ children }) {
       }}
     >
       <Header
+        h={{ xl: "60px" }}
         display="flex"
-        flexDirection="row"
-        alignItems="center"
+        flexDirection={{
+          base: "column-reverse",
+          md: "column-reverse",
+          xl: "row",
+        }}
+        gap={{ base: "10px", md: "10px" }}
+        alignItems={{ xl: "center" }}
         justifyContent="space-between"
       >
         <Heading
           as="h4"
-          // w="fit"
+          w={{ base: "fit-content" }}
           // hideBelow="lg"
           fontWeight="bold"
-          fontSize="32px"
+          fontSize={{ base: "20px", xl: "32px" }}
           lineHeight="38.73px"
           textAlign="left"
           color="black"
@@ -41,7 +47,14 @@ function Container({ children }) {
           Merchant Dashboard
         </Heading>
         <SearchInput />
-        <Box h="50px" display="flex" flexDirection="row" alignItems="center">
+        <Box
+          w={{ sm: "fit-content", md: "fit-content" }}
+          h="50px"
+          display="flex"
+          flexDirection="row"
+          alignSelf={{ sm: "end", md: "end" }}
+          alignItems="center"
+        >
           <Box display="flex" flexDirection="row" gap="8" my="2" mr="52px">
             <Icon
               as={NotificationIcon}

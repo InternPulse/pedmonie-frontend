@@ -87,17 +87,21 @@ const LineChart = () => {
 
   return (
     <Box
-      w={{ base: "", md: "", lg: "full" }}
-      h={{ base: "", md: "", lg: "297px" }}
-      bg={"rgba(255, 255, 255, 1)"}
+      w="full"
+      maxW="540px"
+      h={{ base: "", md: "", lg: "254px" }}
+      // bg={"rgba(255, 255, 255, 1)"}
+      border="sm"
+      m="auto"
     >
       <Flex
         direction={{ base: "", md: "", lg: "row" }}
         align={"center"}
         justifyContent={"space-between"}
-        w={{ base: "", md: "", lg: "full" }}
+        w="full"
+        maxW="540px"
         h={{ base: "", md: "", lg: "35px" }}
-        mt={"20px"}
+        // mt={"20px"}
       >
         <Text
           fontFamily={""}
@@ -110,6 +114,7 @@ const LineChart = () => {
         </Text>
 
         <Box
+          as="flex"
           w={{ base: "", md: "", lg: "105px" }}
           h={{ base: "", md: "", lg: "35px" }}
           borderRadius={"1px"}
@@ -117,13 +122,14 @@ const LineChart = () => {
           pr={"10px"}
           pb={"4px"}
           pl={"15px"}
-          border={"1px"}
+          alignItems="center"
         >
           <NativeSelect.Root>
             <NativeSelect.Field
               placeholder={"Year" === 2020}
               onChange={(e) => setSelcetedYear(e.target.value)}
               value={selectedYear}
+              color="#5C5C5C"
             >
               {yearsArray.map((year, index) => (
                 <option key={index} value={year}>
@@ -137,12 +143,13 @@ const LineChart = () => {
       </Flex>
 
       <Box
-        w={{ base: "", md: "", lg: "full" }}
+        w="full"
+        maxW="540px"
         h={{ base: "", md: "", lg: "203px" }}
         mx={"auto"}
         mt={"16px"}
         borderRadius={"6.04"}
-        overflow="hidden"
+        // overflow="hidden"
       >
         <Line data={data} options={options} />
       </Box>

@@ -47,18 +47,16 @@ const PieChart = () => {
 
   return (
     <Box
-      w={{ base: "", md: "", lg: "full" }}
+      as="flex"
+      bg="white"
+      w="full"
+      maxW="460px"
       h={{ base: "", md: "", lg: "298px" }}
       // p={"20px"}
       gap={"10px"}
     >
-      <Box
-        w={{ base: "", md: "", lg: "420px" }}
-        h={{ base: "", md: "", lg: "244px" }}
-        p={"20px"}
-      >
+      <Box w="full" h={{ base: "", md: "", lg: "244px" }} p={{ lg: "20px" }}>
         <Text
-          w={"420px"}
           h={"24px"}
           fontWeight={"500"}
           fontSize={"20px"}
@@ -69,15 +67,16 @@ const PieChart = () => {
         </Text>
 
         <Flex
-          w={{ base: "", md: "", lg: "420px" }}
-          mt={"10px"}
+          w="full"
+          maxW="460px"
+          // mt={"10px"}
           h={{ base: "", md: "", lg: "200px" }}
-          direction={"row"}
+          direction={{ base: "column", lg: "row" }}
           align={"center"}
           justifyContent={"space-between"}
         >
           <Box
-            w={{ base: "", md: "", lg: "200px" }}
+            w={{ base: "full", md: "", lg: "200px" }}
             h={{ base: "", md: "", lg: "200px" }}
           >
             <Pie data={data} options={options} />
@@ -87,7 +86,7 @@ const PieChart = () => {
             direction={"column"}
             gap={"16px"}
             justifyContent={"center"}
-            w={{ base: "", md: "", lg: "208px" }}
+            w={{ base: "full", md: "", lg: "208px" }}
             h={{ base: "", md: "", lg: "199px" }}
             py={"16px"}
           >

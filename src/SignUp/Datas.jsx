@@ -44,8 +44,8 @@ const Demos = () => {
       <Input
         placeholder="Enter Your Last Name"
         variant="subtle"
-        type="datetime-local"
         color="#575757"
+        type="date"
       />
       {/* Password */}
       <Stack>
@@ -69,13 +69,15 @@ const Demos = () => {
         </InputGroup>
       </Stack>
       {/* CheckBox */}
-      <Checkbox>I agree to all the Terms and Privacy policy</Checkbox>
+      <Checkbox color="#2D3748">
+        I agree to all the Terms and Privacy policy
+      </Checkbox>
       {/* Buttons */}
-      <ButtonGroup size="xl" variant="subtle">
-        <Button bg="#CBCBCB" color="#8E8E8E">
+      <ButtonGroup variant="subtle" gap="6%">
+        <Button bg="#CBCBCB" color="#8E8E8E" w="47%" h="49px">
           Create Account
         </Button>
-        <Button bg="#737375" color="white">
+        <Button bg="#737375" color="white" w="47%" h="49px">
           <Image src={google}></Image>
           Sign-up with google
         </Button>

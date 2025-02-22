@@ -8,46 +8,41 @@ import lg from "../svgs/lg.svg";
 const Leftside = () => {
   return (
     <>
-      <Box w="753px" h="1024px">
-        <Box w="753px" h="1024px" bg="#103C29">
-          {/* HEADING TEXT */}
-          <Text
-            as="p"
-            textAlign="center"
-            pt="109px"
-            color="#ffffff"
-            isTruncated
-          >
-            Powering businesses with seamless digital payments
-          </Text>
+      <Box
+        w="50%"
+        bg="#103C29"
+        pb="45px"
+        h="-moz-max-content"
+        width={{ lg: "50%", md: "100%" }}
+      >
+        {/* HEADING TEXT */}
+        <Text as="p" textAlign="center" pt="99px" color="#ffffff" isTruncated>
+          Powering businesses with seamless digital payments
+        </Text>
 
-          {/* ELLIPSE CONTAINER */}
-          <Box
-            textAlign="center"
-            alignItems="center"
-            pt="50px"
-            position="relative"
-            w="518px"
-            h="634px"
-            mx="auto"
-          >
-            {/* Background SVG */}
-            <Image src={esvg} w="518px" h="634px" />
+        {/* ELLIPSE CONTAINER */}
+        <Box
+          textAlign="center"
+          alignItems="center"
+          pt="50px"
+          position="relative"
+          w="100%"
+        >
+          {/* Background SVG */}
+          <Image src={esvg} w="82%" ml="8%" />
 
-            {/* CARTOON IMAGE INSIDE */}
-            <Image
-              src={cartoon}
-              w="397px"
-              h="314px"
-              position="absolute"
-              top="60%"
-              left="50%"
-              transform="translate(-50%, -50%)"
-            />
-          </Box>
-
-          {/* STATIC DOTS FOR SLIDER */}
+          {/* CARTOON IMAGE INSIDE */}
+          <Image
+            src={cartoon}
+            w="65%"
+            position="absolute"
+            top="55%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+          />
         </Box>
+
+        {/* STATIC DOTS FOR SLIDER */}
       </Box>
     </>
   );

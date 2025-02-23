@@ -3,7 +3,13 @@ import userImage from "../assets/userImage.svg";
 
 function UserProfile() {
   return (
-    <Box display="flex" flexDirection="row" alignItems="center" gap="4">
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent={{ base: "end" }}
+      gap="4"
+    >
       <Image
         w="50px"
         src={userImage}
@@ -16,6 +22,7 @@ function UserProfile() {
         fontSize="16px"
         lineHeight="24.2px"
         color="black"
+        hideBelow="md"
       >
         John Doe
       </Text>

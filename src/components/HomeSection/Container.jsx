@@ -1,8 +1,9 @@
-import { Box, Heading, Icon, Text } from "@chakra-ui/react";
+import { Box, Heading, Icon, Image, Text } from "@chakra-ui/react";
 import Header from "../Header";
 import SearchInput from "../SearchInput";
 import CardIcon from "/src/assets/card.svg?react";
 import NotificationIcon from "/src/assets/direct-notification.svg?react";
+import pedmonieLogo from "/src/assets/pedmonieLogo.svg?react";
 import UserProfile from "../UserProfile";
 
 function Container({ children }) {
@@ -13,7 +14,7 @@ function Container({ children }) {
       flex="1"
       display="flex"
       flexDirection="column"
-      px="50px"
+      px={{ base: "20px", xl: "50px" }}
       py="40px"
       gap="30px"
       overflowY="auto"
@@ -48,37 +49,67 @@ function Container({ children }) {
         </Heading>
         <SearchInput />
         <Box
-          w={{ sm: "fit-content", md: "fit-content" }}
+          w={{
+            base: "full",
+            sm: "full",
+            md: "full",
+            lg: "fit-content",
+            xl: "fit-content",
+          }}
           h="50px"
           display="flex"
           flexDirection="row"
+          justifyContent={{ base: "space-between" }}
           alignSelf={{ sm: "end", md: "end" }}
           alignItems="center"
         >
-          <Box display="flex" flexDirection="row" gap="8" my="2" mr="52px">
-            <Icon
-              as={NotificationIcon}
-              bg="#EAEFEB"
-              rounded="full"
-              alignSelf="center"
-              boxSize="8"
-              p="2"
-              m="auto"
+          <Box alignItems="center" hideFrom="lg">
+            <Image
+              src="/src/assets/pedmonieLogo.svg?react"
+              w="40px"
+              h="40px"
               cursor="pointer"
-            />
-
-            <Icon
-              as={CardIcon}
-              bg="#EAEFEB"
-              rounded="full"
-              alignSelf="center"
-              boxSize="8"
-              p="2"
-              m="auto"
-              cursor="pointer"
+              alt="logo"
+              loading="lazy"
             />
           </Box>
-          <UserProfile />
+          <Box
+            display="flex"
+            flexDirection="row"
+            gap="50px"
+            justifySelf="right"
+          >
+            <Box
+              display="flex"
+              flexDirection="row"
+              gap="8"
+              my="2"
+              mr={{ xl: "52px" }}
+            >
+              <Icon
+                as={NotificationIcon}
+                bg="#EAEFEB"
+                rounded="full"
+                alignSelf="center"
+                boxSize="8"
+                p="2"
+                m="auto"
+                cursor="pointer"
+              />
+
+              <Icon
+                as={CardIcon}
+                bg="#EAEFEB"
+                rounded="full"
+                alignSelf="center"
+                boxSize="8"
+                p="2"
+                m="auto"
+                cursor="pointer"
+              />
+            </Box>
+            <UserProfile />
+          </Box>
         </Box>
       </Header>
       {children}

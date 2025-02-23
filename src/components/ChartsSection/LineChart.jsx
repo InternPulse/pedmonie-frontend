@@ -115,7 +115,7 @@ const LineChart = () => {
         </Text>
 
         <Box
-          as="flex"
+          display="flex"
           w={{ base: "", md: "", lg: "105px" }}
           h={{ base: "", md: "", lg: "35px" }}
           borderRadius={"1px"}

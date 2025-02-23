@@ -47,7 +47,7 @@ const PieChart = () => {
 
   return (
     <Box
-      as="flex"
+      display="flex"
       bg="white"
       w="full"
       maxW={{ md: "full", xl: "460px" }}

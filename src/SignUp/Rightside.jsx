@@ -1,19 +1,18 @@
-import { Text, Flex, Image, Box } from "@chakra-ui/react";
-import React from "react";
-import lg from "../svgs/lg.svg";
-import phone from '../svgs/phone.svg'
+import { Text, Flex, Image, Box } from '@chakra-ui/react'
+import React from 'react'
+import lg from '../svgs/lg.svg'
 
-import Demos from "./Datas";
+import Demos from './Datas'
 
 const Rightside = () => {
   return (
     <Box
       w="50%"
       bg="white"
-      width={{ lg: "50%", md: "100%" }}
-      pl={{ lg: "40px", md: "0px" }}
-      pr={{ lg: "40px", md: "0px" }}
-      pt={{ lg: "120px", md: "60px" }}
+      width={{ lg: '50%', md: '100%' }}
+      pl={{ lg: '40px', md: '0px' }}
+      pr={{ lg: '40px', md: '0px' }}
+      pt={{ lg: '120px', md: '60px' }}
     >
       <Flex w="100%" flexDirection="column">
         {/* LOGO */}
@@ -35,7 +34,7 @@ const Rightside = () => {
         <Demos pt="35px"></Demos>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default Rightside;
+export default Rightside

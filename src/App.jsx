@@ -1,11 +1,11 @@
-import React from "react";
-import Signup from "./SignUp/Signup";
+import React from 'react'
+import SignUp from '../src/SignUp/SignUp'
 
 const App = () => {
   return (
     <>
-      <Signup />
+      <SignUp />
     </>
-  );
-};
-export default App;
+  )
+}
+export default App

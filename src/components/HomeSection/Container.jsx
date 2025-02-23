@@ -3,8 +3,7 @@ import Header from "../Header";
 import SearchInput from "../SearchInput";
 import CardIcon from "/src/assets/card.svg?react";
 import NotificationIcon from "/src/assets/direct-notification.svg?react";
-import pedLogo from "/src/assets/pedmonieLogo.svg?react";
-// import pedmonieLogo from "/src/assets/pedmonieLogo.svg?react";
+import pedLogo from "/src/assets/pedLogo.svg?react";
 import UserProfile from "../UserProfile";
 
 function Container({ children }) {
@@ -64,13 +63,16 @@ function Container({ children }) {
           alignSelf={{ sm: "end", md: "end" }}
           alignItems="center"
         >
-          <Box
-            alignItems="center"
-            hideFrom="lg"
-            border="sm"
-            borderColor="black"
-          >
-            <Icon as={pedLogo} w="40px" h="40px" cursor="pointer" />
+          <Box alignItems="center" hideFrom="lg">
+            {pedLogo && (
+              <Icon
+                as={pedLogo}
+                w="40px"
+                h="40px"
+                cursor="pointer"
+                visibility="visible"
+              />
+            )}
           </Box>
           <Box
             display="flex"

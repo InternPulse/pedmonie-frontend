@@ -1,12 +1,12 @@
-import { Box, Heading, Icon, Image, Text } from "@chakra-ui/react";
-import Header from "../Header";
-import SearchInput from "../SearchInput";
+import { Box, Heading, Icon } from "@chakra-ui/react";
+import Header from "./Header";
+import SearchInput from "./SearchInput";
 import CardIcon from "/src/assets/card.svg?react";
 import NotificationIcon from "/src/assets/direct-notification.svg?react";
 import pedLogo from "/src/assets/pedLogo.svg?react";
-import UserProfile from "../UserProfile";
+import UserProfile from "./UserProfile";
 
-function Container({ children }) {
+function Main({ closeSidebar, setCloseSidebar, children }) {
   return (
     <Box
       as="section"
@@ -118,4 +118,4 @@ function Container({ children }) {
   );
 }
 
-export default Container;
+export default Main;

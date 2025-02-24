@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import Container from "../components/HomeSection/Container";
 import Summary from "../components/SummarySection/Summary";
 import SalesTrend from "../components/ChartsSection/SalesTrend";
 import PaymentSuccessRate from "../components/ChartsSection/PaymentSuccessRate";
@@ -8,7 +7,7 @@ import CombineCharts from "../components/ChartsSection/CombineCharts";
 
 export default function Home() {
   return (
-    <Container>
+    <>
       <Summary />
       <CombineCharts />
       <Box w="full" display="flex" flexDirection="row">
@@ -19,6 +18,6 @@ export default function Home() {
         </Box>
       </Box>
       <QuickActions />
-    </Container>
+    </>
   );
 }

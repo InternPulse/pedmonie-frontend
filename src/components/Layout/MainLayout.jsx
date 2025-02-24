@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Sidebar from "../SidebarSection/Sidebar";
+import Main from "../Main";
 
 export default function MainLayout({ children }) {
   const [closeSidebar, setCloseSidebar] = useState(true);
@@ -21,7 +22,9 @@ export default function MainLayout({ children }) {
         />
       )}
 
-      {children}
+      <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>
+        {children}
+      </Main>
     </Box>
   );
 }

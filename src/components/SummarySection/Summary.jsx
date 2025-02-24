@@ -4,9 +4,10 @@ import { summary } from "./summaryData";
 function Summary() {
   return (
     <Stack
+      as="section"
       w="full"
-      h={{ base: "", xl: "115px" }}
-      direction={{ base: "column", md: "column", xl: "row" }}
+      h={{ xl: "115px" }}
+      direction={{ base: "column", md: "row", xl: "row" }}
       justifyContent="space-between"
     >
       {summary.map((summary) => (

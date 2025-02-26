@@ -1,19 +1,51 @@
 import React from 'react'
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import SalesByCountry from './components/SalesByCountry'
+
+const data = [
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/800px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+    totalSales: "30k",
+    country: "United States",
+    salesPercentage: 24.5,
+    isIncrease: false,
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/800px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+    totalSales: "30k",
+    country: "United States",
+    salesPercentage: 24.5,
+    isIncrease: false,
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/800px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+    totalSales: "30k",
+    country: "United States",
+    salesPercentage: 24.5,
+    isIncrease: false,
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/800px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+    totalSales: "30k",
+    country: "United States",
+    salesPercentage: 24.5,
+    isIncrease: false,
+  },
+];
+
+const displaySalesByCountry = data.map(item => (
+    <SalesByCountry key={data.country} logo={item.logo} totalSales={item.totalSales} country={item.country} salesPercentage={item.salesPercentage} isIncrease={item.isIncrease} />
+  ))
 
 function App() {
   return (
     <Box bg="white" width="80">
-      <Box
-        color="#313431"
-        fontSize="md"
-        fontWeight="medium"
-        textAlign={"center"}
-        pb="4"
-        pt="4"
-      >
-        Transaction volume by Region
-      </Box>
+      <Flex justify={"space-between"} py="4" px="2" fontWeight={"medium"}>
+        <Box color="gray.800">Sales by Country</Box>
+        <Box color={"gray.800"}>Sales</Box>
+      </Flex>
+
+      {displaySalesByCountry}
     </Box>
   );
 }

@@ -1,0 +1,50 @@
+import React from 'react'
+import { Image, Flex, VStack, Box, HStack } from "@chakra-ui/react";
+import { FaAngleUp } from "react-icons/fa";
+
+
+function SalesByCountry({
+  logo,
+  totalSales,
+  country,
+  salesPercentage,
+  isIncrease,
+}) {
+  return (
+    <Flex px="2" mb="4" alignItems={"center"} justifyContent={"space-between"}>
+      <Image src={logo} rounded={"full"} w="4" h="4" />
+
+      <VStack
+        color="gray.800"
+        fontSize="2xs"
+        gap="-10"
+        alignItems={'flex-start'}
+        >
+        <p>
+          {totalSales}
+        </p>
+        <p>{country}</p>
+      </VStack>
+
+      <Box width="1/2" bg="gray.200" height="2" rounded="full">
+        <Box
+          width={salesPercentage}
+          rounded="full"
+          bg="green.700"
+          height="2"
+        ></Box>
+      </Box>
+
+      <HStack
+        color={isIncrease ? "green" : "red"}
+        fontSize="xs"
+        fontWeight={"medium"}
+      >
+        <FaAngleUp />
+        <p>{salesPercentage}%</p>
+      </HStack>
+    </Flex>
+  );
+}
+
+export default SalesByCountry

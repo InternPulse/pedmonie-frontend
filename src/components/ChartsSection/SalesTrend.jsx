@@ -84,11 +84,20 @@ const SalesTrend = () => {
   }, []);
 
   return (
-    <Box w="326px" py="20px" pl="20px" alignSelf="end" bg="#FFFFFF">
-      <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
-        Sales Trend
-      </Heading>
-      <canvas ref={chartRef} />
+    <Box
+      w="full"
+      maxW={{ base: "full", md: "full", xl: "326px" }}
+      py="20px"
+      pl="20px"
+      bg="#FFFFFF"
+      borderRadius="8px"
+    >
+      <Box mb="4px">
+        <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
+          Sales Trend
+        </Heading>
+        <canvas ref={chartRef} />
+      </Box>
     </Box>
   );
 };

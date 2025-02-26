@@ -88,11 +88,9 @@ const LineChart = () => {
   return (
     <Box
       w="full"
-      maxW={{ md: "full", lg: "600px" }}
-      h={{ base: "", md: "", lg: "254px" }}
+      maxW={{ md: "full", xl: "600px" }}
+      h={{ base: "", md: "", xl: "254px" }}
       // bg={"rgba(255, 255, 255, 1)"}
-      // border="sm"
-      // borderColor="black"
       m="auto"
     >
       <Flex
@@ -100,7 +98,7 @@ const LineChart = () => {
         align={"center"}
         justifyContent={"space-between"}
         w="full"
-        maxW={{ md: "full", lg: "600px" }}
+        maxW={{ md: "full", xl: "600px" }}
         h={{ base: "", md: "", lg: "35px" }}
         // mt={"20px"}
       >
@@ -145,14 +143,14 @@ const LineChart = () => {
 
       <Box
         w="full"
-        maxW={{ md: "full", lg: "600px" }}
-        h={{ base: "", md: "", lg: "203px" }}
+        maxW={{ base: "full", md: "full", xl: "600px" }}
+        h={{ base: "", md: "", xl: "203px" }}
         mx={"auto"}
         mt={"16px"}
         borderRadius={"6.04"}
         // overflow="hidden"
       >
-        <Line data={data} options={options} />
+        <Line data={data} options={options} width="full" />
       </Box>
     </Box>
   );

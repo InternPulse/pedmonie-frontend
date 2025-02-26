@@ -92,11 +92,20 @@ const PaymentSuccessRate = () => {
   }, []);
 
   return (
-    <Box w="326px" py="20px" pl="20px" alignSelf="end" bg="#FFFFFF">
+    <Box
+      w="full"
+      h="full"
+      maxW={{ md: "full", xl: "326px" }}
+      borderRadius="md"
+      py="20px"
+      pl="20px"
+      pr="10px"
+      bg="#FFFFFF"
+    >
       <Heading color="#373D4D" as="h4" mb="10px" fontSize="20px">
         Payment Success Rate
       </Heading>
-      <canvas ref={chartRef} />
+      <canvas ref={chartRef} height="190px" />
     </Box>
   );
 };

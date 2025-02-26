@@ -5,7 +5,7 @@ import ViewTransactionButton from "../ViewTransactionsButton";
 function QuickActions() {
   return (
     <Box
-      w={{ xl: "646px" }}
+      w={{ base: "full", xl: "646px" }}
       display="flex"
       flexDirection={{ base: "column", xl: "row" }}
       gap="6.5px"

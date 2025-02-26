@@ -1,8 +1,8 @@
-import React from 'react'
+// import React from 'react'
+import PropTypes from "prop-types";
 import { Image, Flex, VStack, Box, HStack, Text } from "@chakra-ui/react";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
-
 
 
 function SalesByCountry({
@@ -48,5 +48,13 @@ function SalesByCountry({
     </Flex>
   );
 }
+
+SalesByCountry.propTypes = {
+  logo: PropTypes.string.isRequired,
+  totalSales: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  country: PropTypes.string.isRequired,
+  salesPercentage: PropTypes.number.isRequired,
+  isIncrease: PropTypes.bool.isRequired, 
+};
 
 export default SalesByCountry

@@ -4,8 +4,6 @@ import {
   Flex,
   Text,
   Button,
-  Image,
-  Divider,
   VStack,
   IconButton,
   Input,
@@ -17,10 +15,7 @@ import {
   Tr,
   Th,
   Td,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
+  Select,
 } from "@chakra-ui/react";
 import {
   ChevronDownIcon,
@@ -32,6 +27,7 @@ import {
   CopyIcon,
 } from "@chakra-ui/icons";
 
+           
 const Payment = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("Newest");

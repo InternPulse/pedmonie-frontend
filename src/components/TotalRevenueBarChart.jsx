@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-import { Box, Heading, Text, Flex, Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const TotalRevenueBarChart = () => {
   const chartRef = useRef(null);
@@ -21,17 +21,17 @@ const TotalRevenueBarChart = () => {
           {
             label: "Available Balance",
             data: [15000, 18000, 20000, 14000, 17000, 16000],
-            backgroundColor: "blue",
+            backgroundColor: "#34C759",
           },
           {
             label: "Money In",
             data: [16000, 17000, 19000, 13000, 17500, 15000], 
-            backgroundColor: "green",
+            backgroundColor: "#007AFF",
           },
           {
             label: "Money Out",
             data: [10000, 12000, 16000, 11000, 14000, 10500], 
-            backgroundColor: "purple",
+            backgroundColor: "#AF52DE",
           },
         ],
       },

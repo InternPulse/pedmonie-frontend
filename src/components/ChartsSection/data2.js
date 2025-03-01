@@ -1,0 +1,6 @@
+export const piechartData = {
+  "Credit Card": 45,
+  PayPal: 25,
+  "Bank Transfer": 20,
+  Crypto: 10,
+};

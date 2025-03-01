@@ -1,11 +1,9 @@
-import { Box, Text } from '@chakra-ui/react'
+import PaymentPage from "./page/PaymentPage";
 
 const App = () => {
   return (
     <>
-      <Box>
-        <Text>Hello</Text>
-      </Box>
+      <PaymentPage />
     </>
   )
 }

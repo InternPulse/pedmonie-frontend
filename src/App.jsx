@@ -1,22 +1,23 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router";
+import { lazy, Suspense, useState } from "react";
+import { Route, Routes } from "react-router";
 import MainLayout from "./components/Layout/MainLayout";
 import Loading from "./components/Loading";
-import "./index.css";
+import AuthPage from "./pages/AuthPage";
 import Signup from "./SignUp/SignUp";
+import "./index.css";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
   return (
     <Suspense fallback={<Loading />}>
-      <Router>
-        <Routes>
-          <Route path="sign-up" element={<Signup />} />
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="sign-up" element={<Signup />} />
+
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="analytics" element={<Home />} />
+        </Route>
+      </Routes>
     </Suspense>
   );
 }

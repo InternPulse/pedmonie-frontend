@@ -26,6 +26,7 @@ export default function MainLayout({ children }) {
 
       <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>
         <Outlet />
+        {/* {children} */}
       </Main>
     </Box>
   );

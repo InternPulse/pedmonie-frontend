@@ -5,10 +5,12 @@ import TotalRevenue from "../components/TotalRevenue";
 import TotalRevenueBarChart from "../components/TotalRevenueBarChart";
 import SalesByCountryData from "@/components/SalesByCountryData";
 import TransactionStatus from "@/components/TransactionStatus";
+import AnalyticsCards from '../components/AnalyticsCards'
 
 const Analytics = () => {
   return (
     <VStack spacing={8} align="stretch" p={6}> 
+      <AnalyticsCards/>
       {/* Top Section: Total Revenue and Bar Chart */}
       <Flex justify="center" align="center" gap={6} wrap="wrap">
         <TotalRevenue />

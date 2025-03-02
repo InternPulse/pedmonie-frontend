@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { Box, Heading, Text, Flex, Image } from "@chakra-ui/react";
 import myImage from "../assets/DownArrow.svg";
@@ -14,10 +14,10 @@ const TotalRevenue = () => {
 
     const ctx = chartRef.current.getContext("2d");
 
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, "#22C55E");
-    gradient.addColorStop(1, "rgba(34, 197, 94, 0)");
-
+    const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+    gradient.addColorStop(0, "#22C55E"); // 100% (Top)
+    gradient.addColorStop(1, "#69DE94"); // 0% (Bottom)
+    
     chartInstance.current = new Chart(ctx, {
       type: "line",
       data: {
@@ -39,7 +39,7 @@ const TotalRevenue = () => {
           {
             label: "Performance",
             data: [10, 25, 15, 40, 35, 50, 30, 20, 40, 35, 50, 30],
-            borderColor: "green",
+            borderColor: "#53D683",
             backgroundColor: gradient,
             pointRadius: 0,
             fill: true,
@@ -68,7 +68,7 @@ const TotalRevenue = () => {
   }, []);
 
   return (
-    <Box bg="#FFFF" w="239px">
+    <Box bg="#FFFF" w="300px">
       <Text as="h2" size="md" color="#475569">
         Total Revenue
       </Text>
@@ -87,8 +87,8 @@ const TotalRevenue = () => {
         justifyContent="center"
         gap="5px"
       >
-        <Box w="120px" h="200px">
-          <canvas ref={chartRef}></canvas>
+        <Box w="239px" h="77px">
+          <canvas ref={chartRef} ></canvas>
         </Box>
         <Flex
           bg="#F87171"

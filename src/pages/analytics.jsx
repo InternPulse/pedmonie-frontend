@@ -4,6 +4,7 @@ import UsersPerMin from "../components/UsersPerMin";
 import TotalRevenue from "../components/TotalRevenue";
 import TotalRevenueBarChart from "../components/TotalRevenueBarChart";
 import SalesByCountryData from "@/components/SalesByCountryData";
+import TransactionStatus from "@/components/TransactionStatus";
 
 const Analytics = () => {
   return (
@@ -75,6 +76,7 @@ const Analytics = () => {
           </VStack>
         </Box>
       </Flex>
+      <TransactionStatus/>
     </VStack>
   );
 };

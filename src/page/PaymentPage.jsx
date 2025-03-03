@@ -14,6 +14,10 @@ const PaymentPage = () => {
          <Route path="payment-link" element={ <PaymentLink /> } />
          <Route path="payment" element={ <Payment /> } />
       </Routes>
+    
+    */}
+    <Payment />
+     
     </>
   )
 }

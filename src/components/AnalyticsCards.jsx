@@ -21,9 +21,9 @@ const AnalyticsCards = () => {
             Download <FaDownload />
           </Button>
         </Flex>
-        <Box height='2px'borderBottom="2px solid" borderColor='#8491A5'></Box> {/*horiontal rule*/}
+       
       </Flex>
-
+      <Box height='2px'borderBottom="2px solid" borderColor='#8491A5' mb='30px'></Box> {/*horiontal rule*/}
       {/* Analytics Cards */}
       <Flex gap='100px'>
         <Flex width='716px' height='271px' justify='space-between'>

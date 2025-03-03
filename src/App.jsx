@@ -1,10 +1,9 @@
-import PaymentPage from "./page/PaymentPage";
+import SelectPayment from "./page/SelectPayment"
 
 const App = () => {
   return (
     <>
-      <PaymentPage />
-      
+      <SelectPayment />
     </>
   )
 }

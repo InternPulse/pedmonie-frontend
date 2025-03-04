@@ -7,6 +7,11 @@ function MainLayout({ children }) {
       bg="white"
       w={["", "", "", "62em", "80em", "96em"]}
       h="dvh"
+      overflowY="auto"
+      css={{
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": { display: "none" },
+      }}
       display="flex"
       flexDirection="column"
       m="auto"

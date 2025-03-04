@@ -1,9 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import Hero from "../components/Hero/Hero";
 
 function Home() {
   return (
-    <Box>
-      <Text>Home</Text>
+    <Box h="20px">
+      <Hero />
     </Box>
   );
 }

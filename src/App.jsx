@@ -1,12 +1,14 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Route, Routes } from "react-router";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <>
-      <Box>
-        <Text>Hello</Text>
-      </Box>
-    </>
-  )
-}
-export default App
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </MainLayout>
+  );
+};
+export default App;

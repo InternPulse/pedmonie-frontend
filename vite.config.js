@@ -4,11 +4,4 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: "/",
-  build: {
-    outDir: "dist",
-  },
-  server: {
-    historyApiFallback: true,
-  },
 });

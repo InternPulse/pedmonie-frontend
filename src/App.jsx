@@ -8,6 +8,7 @@ import Signup from "./SignUp/SignUp";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
+  const Analytics = lazy(() => import("./pages/analytics"));
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -15,7 +16,7 @@ function App() {
 
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="analytics" element={<Home />} />
+          <Route path="analytics" element={<Analytics />} />
         </Route>
       </Routes>
     </Suspense>

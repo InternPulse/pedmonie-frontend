@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import SalesByCountry from './SalesByCountry'
+import SalesByCountry from "./SalesByCountry";
 
 const data = [
   {
@@ -32,26 +32,30 @@ const data = [
   },
 ];
 
-const displaySalesByCountry = data.map(item => (
-    <SalesByCountry key={data.country} logo={item.logo} totalSales={item.totalSales} country={item.country} salesPercentage={item.salesPercentage} isIncrease={item.isIncrease} />
-  ))
-
-
+const displaySalesByCountry = data.map((item) => (
+  <SalesByCountry
+    key={item.country}
+    logo={item.logo}
+    totalSales={item.totalSales}
+    country={item.country}
+    salesPercentage={item.salesPercentage}
+    isIncrease={item.isIncrease}
+  />
+));
 
 function SalesByCountryData() {
-
   return (
     <>
-    <Box bg="white" width="96"pb='2'>
-      <Flex justify={"space-between"} py="4" px="2" fontWeight={"medium"}>
-        <Box color="gray.800">Sales by Country</Box>
-        <Box color={"gray.800"}>Sales</Box>
-      </Flex>
+      <Box bg="white" width="96" pb="2">
+        <Flex justify={"space-between"} py="4" px="2" fontWeight={"medium"}>
+          <Box color="gray.800">Sales by Country</Box>
+          <Box color={"gray.800"}>Sales</Box>
+        </Flex>
 
-      {displaySalesByCountry}
-    </Box>
+        {displaySalesByCountry}
+      </Box>
     </>
-  )
+  );
 }
 
 export default SalesByCountryData;

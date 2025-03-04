@@ -13,11 +13,11 @@ function App() {
     <ChakraProvider>
       <Payment />
       <PaymentType />
+      <Group26951 />
       <CreatePaymentLink />
       <PaymentSuccessMessage />
       <PaymentLinkPage />
       <MakePaymentPage />
-      {/* <Group26951 /> */}
     </ChakraProvider>
   );
 }

@@ -13,10 +13,10 @@ import React, { useState } from "react";
 import { PasswordInput } from "../components/ui/password-input";
 import { Checkbox } from "../components/ui/checkbox";
 import google from "../svgs/google.svg";
-import { useNavigate } from "react-router-dom";  // Add this for navigation
+import { useNavigate } from "react-router-dom"; 
 
 const Demos = () => {
-  const navigate = useNavigate();  // Use this to redirect after form submission
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -53,7 +53,7 @@ const Demos = () => {
     localStorage.setItem("userData", JSON.stringify(formData));
 
     // Navigate to the next page (example: /AuthPage)
-    navigate("/AuthPage");
+    navigate("/Auth");
   };
 
   return (

@@ -45,7 +45,7 @@ const Steps = () => {
       })}
             
       </Flex>
-       <Button className="btn" fontSize='15px' >Create a Free Account <img src={img1} alt="" /></Button>
+       <Button className="btn" fontSize='15px' >Create a Free Account <img src={img1} alt="button" /></Button>
     
      
     </Flex>

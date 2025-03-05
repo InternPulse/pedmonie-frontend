@@ -1,12 +1,13 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box } from "@chakra-ui/react";
+import Pricing from "./components/Pricing/Pricing";
 
 const App = () => {
   return (
     <>
       <Box>
-        <Text>Hello</Text>
+        <Pricing></Pricing>
       </Box>
     </>
-  )
-}
-export default App
+  );
+};
+export default App;

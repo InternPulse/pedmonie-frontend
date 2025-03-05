@@ -4,11 +4,11 @@ import { Box } from "@chakra-ui/react";
 
 const TotalRevenueBarChart = () => {
   const chartRef = useRef(null);
-  const chartInstance = useRef(null); 
+  const chartInstance = useRef(null);
 
   useEffect(() => {
     if (chartInstance.current) {
-      chartInstance.current.destroy(); 
+      chartInstance.current.destroy();
     }
 
     const ctx = chartRef.current.getContext("2d");
@@ -25,12 +25,12 @@ const TotalRevenueBarChart = () => {
           },
           {
             label: "Money In",
-            data: [16000, 17000, 19000, 13000, 17500, 15000], 
+            data: [16000, 17000, 19000, 13000, 17500, 15000],
             backgroundColor: "#007AFF",
           },
           {
             label: "Money Out",
-            data: [10000, 12000, 16000, 11000, 14000, 10500], 
+            data: [10000, 12000, 16000, 11000, 14000, 10500],
             backgroundColor: "#AF52DE",
           },
         ],
@@ -40,9 +40,7 @@ const TotalRevenueBarChart = () => {
         maintainAspectRatio: false,
         scales: {
           x: { grid: { display: false } },
-          y: { beginAtZero: true,
-               ticks : { stepSize: 5000 }
-           }, 
+          y: { beginAtZero: true, ticks: { stepSize: 5000 } },
         },
         plugins: {
           legend: { display: false },
@@ -58,7 +56,7 @@ const TotalRevenueBarChart = () => {
   }, []);
 
   return (
-    <Box w="757px" h="300px" bg="#FFFF">    
+    <Box w="757px" h="300px" bg="#FFFF">
       <canvas ref={chartRef}></canvas>
     </Box>
   );

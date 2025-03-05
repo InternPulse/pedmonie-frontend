@@ -13,7 +13,7 @@ import { FaFileExport } from "react-icons/fa";
 
 const AnalyticsCards = () => {
   return (
-    <Box>
+    <Box display="flex" flexDirection="column">
       <Heading mb={4} color="black">
         Analytics
       </Heading>
@@ -39,8 +39,14 @@ const AnalyticsCards = () => {
       ></Box>{" "}
       {/*horiontal rule*/}
       {/* Analytics Cards */}
-      <Flex gap="100px">
-        <Flex width="716px" height="271px" justify="space-between">
+      <Box
+        display="flex"
+        flexDirection="row"
+        w="full"
+        gap={{ md: "52px" }}
+        justifyContent={{ md: "space-between", xl: "left" }}
+      >
+        <Flex w="716px" gap={4} height="271px" justifyContent="space-between">
           <Box display="flex" flexDirection="column" gap={4}>
             <Cards
               title="Available"
@@ -62,34 +68,67 @@ const AnalyticsCards = () => {
             />
           </Box>
         </Flex>
-        <VStack align="start" spacing={3}>
-          <Heading>Details</Heading>
-          <HStack align="start" spacing="20px" w="full">
-            <Text color="#8491A5">Available Bal</Text>
-            <Text fontWeight="bold" marginLeft="50px">
+        <VStack
+          display="flex"
+          w={{ base: "", md: "363px", xl: "256px" }}
+          align="start"
+          spacing={3}
+        >
+          <Heading color="#09244B">Details</Heading>
+          <HStack w="full" display="flex" justifyContent="space-between">
+            <Text fontSize="12px" fontWeight="medium" color="#8491A5">
+              Available Bal
+            </Text>
+            <Text
+              fontWeight="bold"
+              fontSize="12px"
+              color="#09244B"
+              marginLeft="50px"
+            >
               4,324.32
             </Text>
           </HStack>
-          <HStack align="start" spacing="14px">
-            <Text color="#8491A5">Money In</Text>
-            <Text fontWeight="bold" marginLeft="70px">
+          <HStack w="full" display="flex" justifyContent="space-between">
+            <Text fontSize="12px" fontWeight="medium" color="#8491A5">
+              Money In
+            </Text>
+            <Text
+              fontWeight="bold"
+              fontSize="12px"
+              color="#09244B"
+              marginLeft="70px"
+            >
               4,834.32
             </Text>
           </HStack>
-          <HStack align="start" spacing="14px">
-            <Text color="#8491A5">Money Out</Text>
-            <Text fontWeight="bold" marginLeft="58px">
+          <HStack w="full" display="flex" justifyContent="space-between">
+            <Text fontSize="12px" fontWeight="medium" color="#8491A5">
+              Money Out
+            </Text>
+            <Text
+              fontWeight="bold"
+              fontSize="12px"
+              color="#09244B"
+              marginLeft="58px"
+            >
               2,623.28
             </Text>
           </HStack>
-          <HStack align="start" spacing="14px">
-            <Text color="#8491A5">Customers</Text>
-            <Text fontWeight="bold" marginLeft="105px">
+          <HStack w="full" display="flex" justifyContent="space-between">
+            <Text fontSize="12px" fontWeight="medium" color="#8491A5">
+              Customers
+            </Text>
+            <Text
+              fontWeight="bold"
+              fontSize="12px"
+              color="#09244B"
+              textAlign="right"
+            >
               23
             </Text>
           </HStack>
         </VStack>
-      </Flex>
+      </Box>
     </Box>
   );
 };

@@ -4,7 +4,6 @@ import { Image, Flex, VStack, Box, HStack, Text } from "@chakra-ui/react";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 
-
 function SalesByCountry({
   logo,
   totalSales,
@@ -13,17 +12,23 @@ function SalesByCountry({
   isIncrease,
 }) {
   return (
-    <Flex px="2" mb="4" alignItems={"center"} justifyContent={"space-between"}>
+    <Flex
+      px="2"
+      mb="4"
+      alignItems={"center"}
+      justifyContent="space-between"
+      gap="16px"
+    >
       <Image src={logo} rounded={"full"} w="4" h="4" />
 
       <VStack
+        w="83px"
         color="gray.800"
         fontSize="2xs"
         gap="-10"
-        width={'16'}
         alignItems={"flex-start"}
       >
-        <Text fontWeight='bold'>{totalSales}</Text>
+        <Text fontWeight="bold">{totalSales}</Text>
         <p>{country}</p>
       </VStack>
 
@@ -51,10 +56,11 @@ function SalesByCountry({
 
 SalesByCountry.propTypes = {
   logo: PropTypes.string.isRequired,
-  totalSales: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  totalSales: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   country: PropTypes.string.isRequired,
   salesPercentage: PropTypes.number.isRequired,
-  isIncrease: PropTypes.bool.isRequired, 
+  isIncrease: PropTypes.bool.isRequired,
 };
 
-export default SalesByCountry
+export default SalesByCountry;

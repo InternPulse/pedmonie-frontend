@@ -46,7 +46,7 @@ const displaySalesByCountry = data.map((item) => (
 function SalesByCountryData() {
   return (
     <>
-      <Box bg="white" width="96" pb="2">
+      <Box bg="white" w="full" pb="2">
         <Flex justify={"space-between"} py="4" px="2" fontWeight={"medium"}>
           <Box color="gray.800">Sales by Country</Box>
           <Box color={"gray.800"}>Sales</Box>

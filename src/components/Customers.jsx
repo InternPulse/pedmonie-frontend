@@ -1,7 +1,7 @@
 // import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Box } from "@chakra-ui/react";
+import { Box, Span } from "@chakra-ui/react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -42,7 +42,10 @@ const Customers = () => {
       {/* Custom Legend */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         {legendItems.map((item, index) => (
-          <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            key={index}
+            style={{ display: "flex", alignItems: "center", gap: "8px" }}
+          >
             <div
               style={{
                 width: "20px",
@@ -51,11 +54,17 @@ const Customers = () => {
                 borderRadius: "5px",
               }}
             ></div>
-            <span style={{ fontSize: "14px", color: "#333" }}>{item.label}</span>
+            <Span
+              w="80px"
+              css={{ fontSize: "10px", color: "#333" }}
+              fontWeight="medium"
+            >
+              {item.label}
+            </Span>
           </div>
         ))}
       </div>
-       {/* Doughnut Chart */}
+      {/* Doughnut Chart */}
       <Box style={{ width: "100px", height: "100px" }}>
         <Doughnut data={data} options={options} />
       </Box>

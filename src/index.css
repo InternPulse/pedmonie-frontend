@@ -1,0 +1,18 @@
+
+@media  (max-width: 480px) {
+  .or-bx{
+ flex-wrap: wrap;
+}
+    /* CSS */
+    
+  }
+
+  .hline {
+     width:70%; 
+     height:1px; 
+     background: #efeaea;
+      content:"";
+      position: absolute;
+      top: 40%;
+      left: 60%;
+     }

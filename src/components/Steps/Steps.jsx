@@ -1,4 +1,5 @@
-import { Flex, Text, Box } from "@chakra-ui/react"
+import { Flex, Text, Box, Button } from "@chakra-ui/react"
+import img1 from '../../assets/images/arrow-down.png'
 
 const data=[
     {'id': 1,
@@ -23,31 +24,31 @@ const data=[
 const Steps = () => {
     
   return (
-    <div style={{backgroundColor:'#2E5C38', color:'#FFFFFF'}}>
+    <Flex style={{backgroundColor:'#2E5C38', color:'#FFFFFF'}} direction='column' alignItems='center' padding={10}>
         <Text fontWeight='600' textAlign='center' fontSize='3rem'>Seamless Payments in Just a Few Steps</Text> 
         
-        <Flex border='solid orange' className="or-bx" justifyContent='center' gap='10px' margin='120px' width='auto'>
+        <Flex  className="or-bx" justifyContent='center' gap='10px' margin='70px' width='auto'>
          
-      {data.map(item =>{
-        return  <Flex direction='column' border='solid blue' flex='0 1 400px' alignItems='center' gap='10px' padding='7px'>
-            <Flex border='solid pink' width='100%' position='relative'>
-            {/* <div className="hline"></div> */}
-              <Box fontSize='3rem' border='solid  #FFFFFF99 2px' borderRadius='50%' width='100px' textAlign='center' style={{color:'rgba(255, 255, 255, 0.6'}}>{item.id}</Box>
+        {data.map(item =>{
+        return  <Flex direction='column' flex='0 1 400px'  position='relative' alignItems='center' gap='10px' padding='7px'>
+            
+              <Box fontSize='3rem' border='solid  #FFFFFF99 2px' borderRadius='50%' width='80px' textAlign='center' className="numBox" >{item.id}</Box>
               <div className="hline"></div>
-              </Flex>
+              
             
           
             <Text fontSize='1.87rem' textAlign='center'>{item.heading}</Text>
            
-            <Text fontSize='1.5rem'  textAlign='center'>{item.text}</Text>
+            <Text fontSize='1.3rem'  textAlign='center' fontWeight='200'>{item.text}</Text>
         </Flex> 
        
       })}
+            
       </Flex>
-       
+       <Button className="btn" fontSize='15px' >Create a Free Account <img src={img1} alt="" /></Button>
     
      
-    </div>
+    </Flex>
   )
 }
 

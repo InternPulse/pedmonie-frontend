@@ -4,7 +4,7 @@ const App = () => {
   return (
     <>
       <Box>
-        <Text>Hello</Text>
+        
         <Steps/>
       </Box>
     </>

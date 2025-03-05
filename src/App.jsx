@@ -1,10 +1,12 @@
 import { Box, Text } from '@chakra-ui/react'
+import ApiDocs from './components/PreFooter/ApiDocs'
 
 const App = () => {
   return (
     <>
       <Box>
-        <Text>Hello</Text>
+        
+        <ApiDocs />
       </Box>
     </>
   )

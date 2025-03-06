@@ -8,7 +8,7 @@ import {
 import { headerRoutes } from "../sections/header-section/route";
 import { Link as ReactRouter, useNavigate } from "react-router";
 import CustomButton from "./CustomButton";
-import Drawer from "./Drawer";
+import Drawer from "./Navbar/Drawer";
 import pedmonieLogo from "../assets/images/pedmonieLogo.svg?url";
 
 function Header() {

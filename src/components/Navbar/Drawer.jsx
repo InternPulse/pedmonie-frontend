@@ -9,13 +9,13 @@ import {
   DrawerRoot,
   DrawerTitle,
   DrawerTrigger,
-} from "./ui/drawer";
+} from "../ui/drawer";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouter, useNavigate } from "react-router";
-import hamburgerIcon from "../assets/images/hamburger.svg?url";
-import pedmonieLogo from "../assets/images/pedmonieLogo.svg?url";
-import CustomButton from "./CustomButton";
-import { headerRoutes } from "../sections/header-section/route";
+import hamburgerIcon from "../../assets/images/hamburger.svg?url";
+import pedmonieLogo from "../../assets/images/pedmonieLogo.svg?url";
+import CustomButton from "../CustomButton";
+import { headerRoutes } from "../../sections/header-section/route";
 function Drawer() {
   const navigate = useNavigate();
   return (

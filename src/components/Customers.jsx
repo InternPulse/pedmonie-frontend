@@ -1,7 +1,6 @@
-// import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, VStack, HStack, Text } from "@chakra-ui/react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -24,12 +23,11 @@ const options = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
-    legend: {
-      display: false, // Hide default legend
-    },
+    legend: { display: false }, // Hide default legend
   },
 };
 
+// Custom Legend Data
 const legendItems = [
   { label: "62% New", color: "#497AF9" },
   { label: "13% Returning", color: "#789DFB" },
@@ -38,28 +36,28 @@ const legendItems = [
 
 const Customers = () => {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+    <Flex 
+      align="center"
+      justify="space-between"
+      w="full"
+    >
       {/* Custom Legend */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <VStack align="start" spacing={3}>
         {legendItems.map((item, index) => (
-          <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div
-              style={{
-                width: "20px",
-                height: "12px",
-                backgroundColor: item.color,
-                borderRadius: "5px",
-              }}
-            ></div>
-            <span style={{ fontSize: "14px", color: "#333" }}>{item.label}</span>
-          </div>
+          <HStack key={index} spacing={2} align="center">
+            <Box w="20px" h="12px" bg={item.color} borderRadius="5px" />
+            <Text fontSize="9.75px" color="#333">
+              {item.label}
+            </Text>
+          </HStack>
         ))}
-      </div>
-       {/* Doughnut Chart */}
-      <Box style={{ width: "100px", height: "100px" }}>
+      </VStack>
+
+      {/* Doughnut Chart */}
+      <Box w="118px" h="118px">
         <Doughnut data={data} options={options} />
       </Box>
-    </div>
+    </Flex>
   );
 };
 

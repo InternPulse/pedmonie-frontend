@@ -14,13 +14,13 @@ function SalesByCountry({
 }) {
   return (
     <Flex px="2" mb="4" alignItems={"center"} justifyContent={"space-between"}>
-      <Image src={logo} rounded={"full"} w="4" h="4" />
+      <Image src={logo} rounded={"full"} w="4"  h="4" />
 
       <VStack
         color="gray.800"
         fontSize="2xs"
         gap="-10"
-        width={'16'}
+        width={'16px'}
         alignItems={"flex-start"}
       >
         <Text fontWeight='bold'>{totalSales}</Text>
@@ -40,7 +40,6 @@ function SalesByCountry({
         color={isIncrease ? "green" : "red"}
         fontSize="xs"
         fontWeight={"bold"}
-        gap="1"
       >
         {isIncrease ? <FaAngleUp /> : <FaAngleDown />}
         <p>{salesPercentage}%</p>

@@ -1,61 +1,58 @@
-import { Box, Heading, Flex, Button, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Flex, Button, Text } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
 import Cards from "./Cards";
 import { FaFileExport } from "react-icons/fa";
 
 const AnalyticsCards = () => {
   return (
-    <Box>
-      <Heading mb={4}>Analytics</Heading>
-
-      {/* Date Range & Buttons */}
-      <Flex justify="space-between" align="center" mb={6}>
-        <Button backgroundColor="#F5F5F5" color="#737375">
+    <Box pt="50px" w="100%">
+      <Heading fontWeight="bold" fontSize={["25px", "30px", "35px", "40px"]}>Analytics</Heading>
+      <Flex direction={{ base: "column", md: "row" }} justify="space-between" mt="40px" gap="30px">
+        <Button backgroundColor="#F5F5F5" color="#737375" h="48px" w="262px">
           Sep 9, 2024 - Sep 15, 2024
         </Button>
-        <Flex gap={2}>
-          <Button backgroundColor="#F5F5F5" color="#737375">
+        <Flex h="48px" w={{ base: "250px", sm: "300px"}} justify="space-between">
+          <Button backgroundColor="#F5F5F5" color="#737375" h="48px" w={{base: "122px", sm: "142px"}}>
             Export CSV <FaFileExport />
           </Button>
-          <Button backgroundColor="#F5F5F5" color="#737375">
+          <Button backgroundColor="#F5F5F5" color="#737375" h="48px" w={{base: "122px", sm: "142px"}}>
             Download <FaDownload />
           </Button>
         </Flex>
-       
       </Flex>
-      <Box height='2px'borderBottom="2px solid" borderColor='#8491A5' mb='30px'></Box> {/*horiontal rule*/}
-      {/* Analytics Cards */}
-      <Flex gap='100px'>
-        <Flex width='716px' height='271px' justify='space-between'>
-            <Box display="flex" flexDirection="column" gap={4}>
-            <Cards title="Available" subtitle="$46,000" dividerColor='#34C759'/>
-            <Cards title="Money In" subtitle="$46,000" dividerColor='#007AFF'/>
-            </Box>
-            <Box display="flex" flexDirection="column" gap={4}>
+      <Box height='15px' borderBottom="2px solid" borderColor='#8491A5' mb='30px'></Box>
+      <Flex direction={{ base: "column", xl: "row" }} gap={{ base: "50px", xl: "150px" }}>
+        <Flex gap={{ base: "20px", md: "100px" }} direction={{ base: "column", md: "row" }}>
+          <Flex direction="column" gap="20px">
+            <Cards title="Available" subtitle="$46,000" dividerColor='#34C759' />
+            <Cards title="Money In" subtitle="$46,000" dividerColor='#007AFF' />
+          </Flex>
+          <Flex direction="column" gap="20px">
             <Cards title="Total Sales" subtitle="$46,000" dividerColor='#00C7BE' />
             <Cards title="Money Out" subtitle="$46,000" dividerColor='#AF52DE' />
-            </Box>
+          </Flex>
         </Flex>
-        <VStack align="start" spacing={3}>
-                <Heading>Details</Heading>
-                <HStack align="start" spacing="20px" w="full">
-                    <Text color='#8491A5'>Available Bal</Text>
-                    <Text fontWeight="bold" marginLeft='50px'>4,324.32</Text>
-                </HStack>
-                <HStack align="start" spacing='14px'>
-                    <Text color='#8491A5'>Money In</Text>
-                    <Text fontWeight="bold" marginLeft='70px'>4,834.32</Text>
-                </HStack>
-                <HStack align="start" spacing='14px'>
-                    <Text color='#8491A5'>Money Out</Text>
-                    <Text fontWeight="bold" marginLeft='58px'>2,623.28</Text>
-                </HStack>
-                <HStack align="start" spacing='14px'>
-                    <Text color='#8491A5'>Customers</Text>
-                    <Text fontWeight="bold" marginLeft='105px'>23</Text>
-                </HStack>
-            </VStack>
+        <Box w={{base: "250px", sm: "300px"}}>
+          <Heading>Details</Heading>
+          <Flex w="full" gap="50px">
+            <Text color='#8491A5'>Available Bal</Text>
+            <Text fontWeight="bold" marginLeft='50px'>4,324.32</Text>
+          </Flex>
+          <Flex w="full" gap="50px">
+            <Text color='#8491A5'>Money In</Text>
+            <Text fontWeight="bold" marginLeft='70px'>4,834.32</Text>
+          </Flex>
+          <Flex w="full" gap="50px">
+            <Text color='#8491A5'>Money Out</Text>
+            <Text fontWeight="bold" marginLeft='58px'>2,623.28</Text>
+          </Flex>
+          <Flex w="full" gap="50px">
+            <Text color='#8491A5'>Customers</Text>
+            <Text fontWeight="bold" marginLeft='105px'>23</Text>
+          </Flex>
+        </Box>
       </Flex>
+
     </Box>
   );
 };

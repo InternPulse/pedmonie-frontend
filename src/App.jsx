@@ -5,8 +5,7 @@ function App() {
 
   return (
     <>
-      
-      <Analytics/>
+     <Analytics/>
     </>
   )
 }

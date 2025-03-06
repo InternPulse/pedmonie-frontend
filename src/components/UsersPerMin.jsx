@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+import { Box, Text } from "@chakra-ui/react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -19,21 +20,32 @@ const UsersPerMin = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Prevents height from shrinking
     plugins: {
       legend: { display: false },
-      title: {
-        display: true,
-        text: "Users per Minute",
-        align: "start",
-      },
+      title: { display: false },
     },
     scales: {
-      x: { display: false },
+      x: {
+        display: false,
+        categoryPercentage: 0.8, // Increases width per category
+        barPercentage: 1.5, // Makes bars wider
+      },
       y: { display: false },
+    },
+    elements: {
+      bar: {
+        barThickness: 40, // Ensures bars are wide
+      },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <Box h="35px" w={{base: "280px", sm: "404px"}}>
+      <Text color="#8B909A" fontSize="14px">Users per minute</Text>
+      <Bar data={data} options={options} />
+    </Box>
+  );
 };
 
 export default UsersPerMin;

@@ -68,12 +68,11 @@ const TotalRevenue = () => {
   }, []);
 
   return (
-    <Box bg="#FFFF" w="300px">
+    <Box bg="#FFFF" w={{base: "250px", sm:"300px"}}>
       <Text as="h2" size="md" color="#475569">
         Total Revenue
       </Text>
       <Heading as="h1" fontSize="32px" mt="10px" color="#1E293B">
-        {" "}
         $9,542.00
       </Heading>
       <Text as="p" fontSize="12.5px" mt="10px" color="#475569">
@@ -82,7 +81,7 @@ const TotalRevenue = () => {
       <Flex
         mt="20px"
         w="100%"
-        h="200px"
+        h="120px"
         alignItems="center"
         justifyContent="center"
         gap="5px"

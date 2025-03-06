@@ -58,7 +58,7 @@ const TotalRevenueBarChart = () => {
   }, []);
 
   return (
-    <Box w="757px" h="300px" bg="#FFFF">    
+    <Box w={{base: "90%", lg: "778px"}} h="300px" bg="#FFFF" mt={{ base:"40px", xl: "0px"}}>    
       <canvas ref={chartRef}></canvas>
     </Box>
   );

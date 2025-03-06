@@ -16,7 +16,7 @@ const TransactionStatus = () => {
     }
   };
   return (
-    <Flex justify="center" align="center" minH="100vh">
+    <Flex justify="center" align="center" display={{base: "none", xl: "flex"}}>
     <Box w="1133px" h="477px">
       <Flex justify="space-between" bg="white" color="#737375" h="56.07px" pt="20px" fontSize="13.89px" px="20px">
         <Flex gap="40px">

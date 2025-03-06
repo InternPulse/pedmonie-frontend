@@ -1,12 +1,12 @@
-import { Box, Text } from '@chakra-ui/react'
+import React from "react";
+import Faqs from "./components/Faqs/Faqs";
 
-const App = () => {
+function App() {
   return (
-    <>
-      <Box>
-        <Text>Hello</Text>
-      </Box>
-    </>
-  )
+    <div>
+      <Faqs />
+    </div>
+  );
 }
-export default App
+
+export default App;

@@ -50,19 +50,11 @@ export const SelectContent = React.forwardRef(
 
 export const SelectItem = React.forwardRef(function SelectItem(props, ref) {
   const { item, children, ...rest } = props
-<<<<<<< HEAD
   return (
     <ChakraSelect.Item key={item.value} item={item} {...rest} ref={ref}>
       {children}
       <ChakraSelect.ItemIndicator />
     </ChakraSelect.Item>
-=======
-  
-  return (
-    <li ref={ref} {...props} onClick={() => context.onChange(value)} style={{ cursor: "pointer" }}>
-      {children}
-    </li>
->>>>>>> 46a74e25a2937f33edccd68a311cfa0c85941aeb
   )
 })
 

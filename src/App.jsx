@@ -1,10 +1,14 @@
-import SelectPayment from "./page/SelectPayment"
+import PaymentPage from "./page/PaymentPage"
 
 const App = () => {
   return (
     <>
-      <SelectPayment />
+      <PaymentPage />
     </>
   )
 }
 export default App
+
+
+
+

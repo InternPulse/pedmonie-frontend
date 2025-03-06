@@ -1,23 +1,34 @@
-import { Button, Card, Image, Text, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { Button, Card, Image, Flex, Box } from "@chakra-ui/react";
 import createLinkIcon from "../assets/payment-section/linkOkMsgIcon.svg";
+import { useNavigate } from "react-router-dom";
 
 const LinkSuccessMsg = () => {
+  const navigate = useNavigate();
+  const toPath = "/payment-link"
+
+  const handleProceed = (toPath) => {
+    if (!toPath) {
+      throw new Error("Path to get payment-link is missing.");
+    } else {
+      navigate(toPath);
+    }
+  }
+
   return (
     <Card.Root
       maxW={{ base: "100%", sm: "400px", md: "450px" }}
       w="full"
       overflow="hidden"
       borderRadius="xl"
-     // boxShadow="lg"
-      bg="white"
+      bg="transparent"
+      border="none"
     >
       {/* Icon */}
       <Flex justify="center" mt={8}>
         <Image
           src={createLinkIcon}
           alt="Get payment link"
-          boxSize={{ base: "50px", md: "60px" }}
+          boxSize={{ base: "90px", md: "130px" }}
         />
       </Flex>
 
@@ -45,13 +56,14 @@ const LinkSuccessMsg = () => {
 
       {/* Card Footer */}
       <Card.Footer w="full" p={{ base: 4, md: 6 }}>
-        <Flex align="center" justify="center">
+        <Flex w="full" align="center" justify="center">
           <Button
             bgColor="green.800"
             color="white"
             size={{ base: "md", md: "lg" }}
             _hover={{ bgColor: "green.900" }}
             _active={{ bgColor: "green.700" }}
+            onClick={() => handleProceed(toPath)}
           >
             Get payment link
           </Button>

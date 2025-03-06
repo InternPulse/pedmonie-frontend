@@ -27,10 +27,6 @@ export const countriesData = (() => {
                 phoneCode = `+${getCountryCallingCode(country.cca2)}`;
             }
         } catch (err) {
-            if (
-                import.meta.env.DEV) {
-                console.warn(`No calling code found for country: ${country.cca2}`, err);
-            }
             phoneCode = "";
         }
 

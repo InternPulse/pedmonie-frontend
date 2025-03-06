@@ -8,6 +8,9 @@ import SelectPayment from './payment-components/SelectPayment';
 import CreatePaymentLink from './payment-components/CreatePaymentLink';
 import PaymentLink from './payment-components/PaymentLink';
 import Payments from './pages/Payments';
+import BankVerification from "./auth-components/BankVerification";
+import IdVerification from "./auth-components/IdVerification";
+import BusinessRegNum from "./auth-components/BusinessRegNum";
 // import "./index.css";
 
 function App() {
@@ -16,7 +19,14 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path="sign-up" element={<Signup />} />
+        {/* Authentication Routing */}
+        <Route path="/verification" element={ <AuthPage /> } />
+        <Route path="/bank-verification" element={ <BankVerification /> } />
+        <Route path="/id-verification" element={ <IdVerification /> } />
+        <Route path="/business-verification" element={ <BusinessRegNum /> } />
+
+        {/* Registration routing */}
+        <Route path="/sign-up" element={<Signup />} />
 
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

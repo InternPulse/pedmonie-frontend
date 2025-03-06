@@ -12,14 +12,21 @@ import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import { RiErrorWarningLine as WarningIcon} from "react-icons/ri";
 import { CiMail as EmailIcon } from "react-icons/ci";
 import { InputGroup } from "../components/ui/input-group";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const EmailVerification = ({paths, getPathDataById}) => {
+const EmailVerification = () => {
 
+  const {paths, getPathDataById} = useAuth();
+
+  const navigate = useNavigate();
   const { path: bankVerPath } = getPathDataById(2);
   const { pageIndex: emailVerIndex } = getPathDataById(1);
-  
 
+  const handleNextPage = () => {
+      navigate(bankVerPath);
+  }
+  
   const floatingStyles = defineStyle({
     pos: "absolute",
     bg: "bg",
@@ -123,13 +130,15 @@ return (
              <Box display="flex" flexDir="column" alignItems="end" color="gray.500" pt={4} pb={4}>
                  <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "green.800"}}>
                    
-                <Link to={`${bankVerPath}`}>
-                  <Flex 
+                  <Button 
                     as="span"  
                     align="center" 
                     gap={{ base: 1, md: 2 }} 
                     color="inherit" 
+                    bg="transparent"
+                    border="none"
                     _hover={{ color: "green.800" }} 
+                    onClick={handleNextPage}
                   >
                     <Text 
                       fontWeight="600" 
@@ -142,8 +151,7 @@ return (
                       as={SkipArrowIcon} 
                       boxSize={{ base: "4", md: "5", lg: "6" }}
                     />
-                  </Flex>
-                </Link>
+                  </Button>
 
                  </Flex>
              </Box>
@@ -157,11 +165,7 @@ return (
                         
                 {/* CAC number verification*/}                
                 <Box as="div" display="flex" alignItems="center" gap={4} w="full">
-                <InputGroup flex="1" startElement={
-                  <Icon size={3} ml={3}>
-                    <EmailIcon />
-                  </Icon>
-                }>
+                <InputGroup flex="1" startElement={ <EmailIcon /> }>
                 <Field.Root>
                     <Box pos="relative" w="full">
                     <Input 
@@ -211,7 +215,6 @@ return (
                       Resend Email
                       </Button>
 
-                     <Link to={`${bankVerPath}`}>
                      <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -220,10 +223,11 @@ return (
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }}
                       fontSize={{base: "2xs", lg: "sm"}}
+                      onClick={handleNextPage}
                       >
                       Next
                       </Button>
-                      </Link>
+                     
                   </Box>
               </Box>
 

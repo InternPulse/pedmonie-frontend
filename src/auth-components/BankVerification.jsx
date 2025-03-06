@@ -10,13 +10,20 @@ import {
 } from "@chakra-ui/react";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import { RiErrorWarningLine as WarningIcon} from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router";
 
-const BankVerification = ({paths, getPathDataById}) => {
+const BankVerification = () => {
+  const {paths, getPathDataById} = useAuth();
   const { path: idVerPath } = getPathDataById(3);
   const { path: emailVerPath } = getPathDataById(1);
   const { pageIndex: bankVerIndex } = getPathDataById(2);
-  
+
+  const navigate = useNavigate();
+
+  const handleNextPage = () => {
+    navigate(idVerPath);
+}
 
   const floatingStyles = defineStyle({
     pos: "absolute",
@@ -121,13 +128,15 @@ return (
              <Box display="flex" flexDir="column" alignItems="end" color="gray.500" pt={4} pb={4}>
                  <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "green.800"}}>
                     
-                 <Link to={`${idVerPath}`}>
-                  <Flex 
+                 <Button 
                     as="span"  
                     align="center" 
                     gap={{ base: 1, md: 2 }} 
                     color="inherit" 
+                    bg="transparent"
+                    border="none"
                     _hover={{ color: "green.800" }} 
+                    onClick={handleNextPage}
                   >
                     <Text 
                       fontWeight="600" 
@@ -140,8 +149,7 @@ return (
                       as={SkipArrowIcon} 
                       boxSize={{ base: "4", md: "5", lg: "6" }}
                     />
-                  </Flex>
-                </Link>
+                  </Button>
 
                  </Flex>
              </Box>
@@ -186,7 +194,6 @@ return (
                 {/* previous and next button */}     
               <Box textAlign="center">
                   <Box display="inline-block">
-                      <Link to={`${emailVerPath}`}>
                       <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -195,12 +202,11 @@ return (
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }} 
                       mr={4}
+                      onClick={() => navigate(emailVerPath)}
                       >
                       Previous
                       </Button>
-                      </Link>
 
-                     <Link to={`${idVerPath}`}>
                      <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -209,10 +215,11 @@ return (
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }}
                       fontSize={{base: "2xs", lg: "sm"}}
+                      onClick={handleNextPage}
+
                       >
                       Next
                       </Button>
-                      </Link>
                   </Box>
               </Box>
 

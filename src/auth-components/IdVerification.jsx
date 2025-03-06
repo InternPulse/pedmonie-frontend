@@ -24,13 +24,20 @@ import { LuCircleCheck as ListIcon } from "react-icons/lu";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import {users} from "../../fake-data/user-data";
 import countriesData from "world-countries";
-// import { countries } from "../../fake-data/countries";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const IdVerification = ({ paths, getPathDataById }) => {
+const IdVerification = () => {
+    const {paths, getPathDataById} = useAuth();
     const { path: bussVerPath } = getPathDataById(4);
     const { path: bankVerPath } = getPathDataById(2);
     const { pageIndex: idVerIndex } = getPathDataById(3);
+
+    const navigate = useNavigate();
+
+    const handleNextPage = () => {
+        navigate(bussVerPath);
+    }
     
    /* Items for select array id section */
    const docTypes = createListCollection({
@@ -144,27 +151,28 @@ const IdVerification = ({ paths, getPathDataById }) => {
                <Box display="flex" flexDir="column" alignItems="end" color="gray.500" pt={4} pb={4}>
                    <Flex alignItems="center" gap={2} cursor="pointer" _hover={{color: "green.800"}}>
                                  
-                    <Link to={`${bussVerPath}`}>
-                    <Flex 
-                        as="span"  
-                        align="center" 
-                        gap={{ base: 1, md: 2 }} 
-                        color="inherit" 
-                        _hover={{ color: "green.800" }} 
-                        >
-                        <Text 
-                        fontWeight="600" 
-                        fontSize={{ base: "sm", md: "md", lg: "lg" }} 
-                        lineHeight="sm" 
-                        >
-                        Skip process for now
-                        </Text>
-                        <Icon 
-                        as={SkipArrowIcon} 
-                        boxSize={{ base: "4", md: "5", lg: "6" }}
-                        />
-                    </Flex>
-                    </Link>
+                   <Button 
+                    as="span"  
+                    align="center" 
+                    gap={{ base: 1, md: 2 }} 
+                    color="inherit" 
+                    bg="transparent"
+                    border="none"
+                    _hover={{ color: "green.800" }} 
+                    onClick={handleNextPage}
+                  >
+                    <Text 
+                      fontWeight="600" 
+                      fontSize={{ base: "sm", md: "md", lg: "lg" }} 
+                      lineHeight="sm" 
+                    >
+                      Skip process for now
+                    </Text>
+                    <Icon 
+                      as={SkipArrowIcon} 
+                      boxSize={{ base: "4", md: "5", lg: "6" }}
+                    />
+                  </Button>
 
                    </Flex>
                </Box>
@@ -196,19 +204,6 @@ const IdVerification = ({ paths, getPathDataById }) => {
                                        ))}
                                    </SelectContent>
                                </SelectRoot>
-
-                               {/* ID issued countries */}
-                               {/* < Flex direction='column' fontSize='14px' gap={1} mt={0}> 
-                               <label htmlFor="" style={{fontWeight:'500'}}>Select ID Issued Country</label>
-                               <select name="" id="" style={{height:'35px', color:'gray',  backgroundColor:'#f7f7f7', borderRadius:'5px', outline:'0px', padding:'5px'}}>
-                               {/* <option value="">Select country</option> */}
-                                {/* {countries.map((value, index) =>{
-                                    return <option value="" key={index}>{value}</option>
-                                })}
-                                
-                                
-                               </select>
-                               </Flex> */} 
                              
                               <SelectRoot 
                                collection={countryList} 
@@ -246,7 +241,7 @@ const IdVerification = ({ paths, getPathDataById }) => {
                    {/* previous and next button */}     
               <Box textAlign="center">
                   <Box display="inline-block">
-                      <Link to={`${bankVerPath}`}>
+                     
                       <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -255,12 +250,11 @@ const IdVerification = ({ paths, getPathDataById }) => {
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }} 
                       mr={4}
+                      onClick={()=>navigate(bankVerPath)}
                       >
                       Previous
                       </Button>
-                      </Link>
 
-                     <Link to={`${bussVerPath}`}>
                      <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -269,16 +263,17 @@ const IdVerification = ({ paths, getPathDataById }) => {
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }}
                       fontSize={{base: "2xs", lg: "sm"}}
+                      onClick={handleNextPage}
                       >
                       Next
                       </Button>
-                      </Link>
+
                   </Box>
               </Box>
 
           </Flex>
 
-               </Flex>
+        </Flex>
        </Flex>
      </Flex>
    </Flex>

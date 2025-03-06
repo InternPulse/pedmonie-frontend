@@ -9,11 +9,15 @@ import {
   defineStyle
 } from "@chakra-ui/react";
 import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const BusinessRegNum = ({ paths, getPathDataById }) => {
+const BusinessRegNum = () => {
+    const {paths, getPathDataById} = useAuth();
     const { path: idVerPath } = getPathDataById(3);
     const { pageIndex: bussVerIndex } = getPathDataById(4);
+
+    const navigate = useNavigate();
 
   const floatingStyles = defineStyle({
     pos: "absolute",
@@ -101,11 +105,14 @@ return (
              <Box display="flex" flexDir="column" alignItems="end" color="gray.400" pt={4} pb={4}>
                  <Flex alignItems="center" gap={2} _hover={{color: "gray.400", cursor: "not-allowed"}}>
                      
+                                 
+              {/* skip button here */}
+              <Box display="flex" flexDir="column" alignItems="end" color="gray.400" pt={4} pb={4}>
+                 <Flex alignItems="center" gap={2} _hover={{color: "gray.400", cursor: "not-allowed"}}>          
                   <Flex 
                     as="span"  
                     align="center" 
                     gap={{ base: 1, md: 2 }} 
-                    //color="inherit" 
                   >
                     <Text 
                       fontWeight="600" 
@@ -119,6 +126,9 @@ return (
                       boxSize={{ base: "4", md: "5", lg: "6" }}
                     />
                   </Flex>
+
+                 </Flex>
+             </Box>
 
                  </Flex>
              </Box>
@@ -162,7 +172,6 @@ return (
                  {/* previous and next button */}     
               <Box textAlign="center">
                   <Box display="inline-block">
-                      <Link to={`${idVerPath}`}>
                       <Button 
                       w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
                       bgColor="white" 
@@ -171,12 +180,11 @@ return (
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }} 
                       mr={4}
+                      onClick={()=>navigate(idVerPath)}
                       >
                       Previous
                       </Button>
-                      </Link>
 
-                <Link to={""} onClick={(e) => e.preventDefault()}>
                     <Button 
                         isDisabled={true} 
                         w={{ base: "4rem", sm: "7rem", md: "9.5rem", lg: "11rem" }} 
@@ -193,7 +201,6 @@ return (
                     >
                         Next
                     </Button>
-                    </Link>
 
                   </Box>
               </Box>

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("/src/assets/fonts/Satoshi-Regular.ttf") format("ttf"),
+    url("/src/assets/fonts/Satoshi-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/src/assets/fonts/Satoshi-Bold.ttf") format("ttf"),
+    url("/src/assets/fonts/Satoshi-Bold.ttf") format("ttf");
+  font-weight: bold;
+  font-style: bold;
+}

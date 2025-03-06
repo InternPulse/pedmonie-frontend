@@ -1,10 +1,14 @@
-import Nav from './components/Navbar/Nav'
+import { Route, Routes } from "react-router";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <>
-      <Nav />
-    </>
-  )
-}
-export default App
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </MainLayout>
+  );
+};
+export default App;

@@ -7,12 +7,12 @@ import Signup from "./SignUp/SignUp";
 import SelectPayment from './payment-components/SelectPayment';
 import CreatePaymentLink from './payment-components/CreatePaymentLink';
 import PaymentLink from './payment-components/PaymentLink';
-import Payment from './payment-components/Payment';
+import Payments from './pages/Payments';
 // import "./index.css";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
-  const Analytics = lazy(() => import("./pages/analytics"));
+  const Analytics = lazy(() => import("./pages/Analytics"));
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -26,7 +26,8 @@ function App() {
           <Route path="/select-payment-type" element={ <SelectPayment /> } />
           <Route path="/create-payment-link" element={ <CreatePaymentLink /> } />
           <Route path="/payment-link" element={ <PaymentLink /> } />
-          <Route path="/payments" element={ <Payment /> } />
+          <Route path="/payments" element={ <Payments /> } />
+
 
         </Route>
 

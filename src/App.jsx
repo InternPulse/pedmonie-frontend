@@ -1,10 +1,9 @@
-import { Box, Text } from '@chakra-ui/react'
-import SecondComp from './components/Navbar/SecondComp'
+import Nav from './components/Navbar/Nav'
 
 const App = () => {
   return (
     <>
-      <SecondComp />
+      <Nav />
     </>
   )
 }

@@ -4,15 +4,15 @@ import {
   Image,
   Link as ChakraLink,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { headerRoutes } from "../sections/header-section/route";
-import { Link as ReactRouter } from "react-router";
+import { Link as ReactRouter, useNavigate } from "react-router";
 import CustomButton from "./CustomButton";
+import Drawer from "./Drawer";
 import pedmonieLogo from "../assets/images/pedmonieLogo.svg?url";
-import hamburgerIcon from "../assets/images/hamburger.svg?url";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <Box
       w="full"
@@ -33,6 +33,7 @@ function Header() {
           h="40px"
           alt="pedmonie-logo"
           cursor="pointer"
+          onClick={() => navigate("/")}
         />
 
         <Heading as="h4" color="black" fontSize="20px" fontWeight="bold">
@@ -102,14 +103,7 @@ function Header() {
         </CustomButton>
       </Stack>
 
-      <Image
-        src={hamburgerIcon}
-        w="32px"
-        h="32px"
-        alt="hamburger-icon"
-        cursor="pointer"
-        hideFrom="lg"
-      />
+      <Drawer />
     </Box>
   );
 }

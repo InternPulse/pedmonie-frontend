@@ -6,55 +6,55 @@ import {
   Input,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { InputGroup } from "../components/ui/input-group";
-import { LuLock, LuMail, LuUser, LuPhone } from "react-icons/lu";
-import React, { useState } from "react";
-import { PasswordInput } from "../components/ui/password-input";
-import { Checkbox } from "../components/ui/checkbox";
-import google from "../svgs/google.svg";
-import { useNavigate } from "react-router-dom"; 
+} from '@chakra-ui/react'
+import { InputGroup } from '../components/ui/input-group'
+import { LuLock, LuMail, LuUser, LuPhone } from 'react-icons/lu'
+import React, { useState } from 'react'
+import { PasswordInput } from '../components/ui/password-input'
+import { Checkbox } from '../components/ui/checkbox'
+import google from '../svgs/google.svg'
+import { useNavigate } from 'react-router-dom'
 
 const Demos = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    middleName: "",
-    email: "",
-    phone: "",
-    dob: "",
-    password: "",
-    confirmPassword: "",
+    firstName: '',
+    lastName: '',
+    middleName: '',
+    email: '',
+    phone: '',
+    dob: '',
+    password: '',
+    confirmPassword: '',
     agreed: false,
-  });
+  })
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+      [name]: type === 'checkbox' ? checked : value,
+    })
+  }
 
   const handleCreateAccount = () => {
     if (!formData.agreed) {
-      alert("You must agree to the terms and conditions.");
-      return;
+      alert('You must agree to the terms and conditions.')
+      return
     }
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
-      return;
+      alert('Passwords do not match.')
+      return
     }
 
     // Store in localStorage
-    localStorage.setItem("userData", JSON.stringify(formData));
+    localStorage.setItem('userData', JSON.stringify(formData))
 
-    // Navigate to the next page (example: /AuthPage)
-    navigate("/Auth");
-  };
+    // Navigate to the authentication page
+    navigate('/verification')
+  }
 
   return (
     <Stack gap="16px">
@@ -68,7 +68,7 @@ const Demos = () => {
             placeholder="Enter Your First Name"
             variant="subtle"
             bg="#EEEEEE"
-            _placeholder={{ color: "#292D32" }}
+            _placeholder={{ color: '#292D32' }}
             color="#292D32"
           />
         </InputGroup>
@@ -82,7 +82,7 @@ const Demos = () => {
             placeholder="Enter Your Last Name"
             variant="subtle"
             bg="#EEEEEE"
-            _placeholder={{ color: "#292D32" }}
+            _placeholder={{ color: '#292D32' }}
             color="#292D32"
           />
         </InputGroup>
@@ -97,7 +97,7 @@ const Demos = () => {
           placeholder="Enter Your Middle Name (optional)"
           variant="subtle"
           bg="#EEEEEE"
-          _placeholder={{ color: "#292D32" }}
+          _placeholder={{ color: '#292D32' }}
           color="#292D32"
         />
       </InputGroup>
@@ -111,7 +111,7 @@ const Demos = () => {
           placeholder="Enter Your Email Address"
           variant="subtle"
           bg="#EEEEEE"
-          _placeholder={{ color: "#292D32" }}
+          _placeholder={{ color: '#292D32' }}
           color="#292D32"
         />
       </InputGroup>
@@ -125,7 +125,7 @@ const Demos = () => {
           placeholder="Enter Your Phone Number"
           variant="subtle"
           bg="#EEEEEE"
-          _placeholder={{ color: "#292D32" }}
+          _placeholder={{ color: '#292D32' }}
           color="#292D32"
         />
       </InputGroup>
@@ -140,7 +140,7 @@ const Demos = () => {
         variant="subtle"
         color="#292D32"
         bg="#EEEEEE"
-        _placeholder={{ color: "#292D32" }}
+        _placeholder={{ color: '#292D32' }}
       />
 
       {/* Password */}
@@ -153,7 +153,7 @@ const Demos = () => {
             placeholder="Enter Password"
             variant="subtle"
             bg="#EEEEEE"
-            _placeholder={{ color: "#292D32" }}
+            _placeholder={{ color: '#292D32' }}
             color="#292D32"
           />
         </InputGroup>
@@ -169,7 +169,7 @@ const Demos = () => {
             placeholder="Confirm Password"
             variant="subtle"
             bg="#EEEEEE"
-            _placeholder={{ color: "#292D32" }}
+            _placeholder={{ color: '#292D32' }}
             color="#292D32"
           />
         </InputGroup>
@@ -189,12 +189,12 @@ const Demos = () => {
       <ButtonGroup variant="subtle" gap="6%">
         <Button
           onClick={handleCreateAccount}
-          bg={formData.agreed ? "#2E5C38" : "#CBCBCB"}
-          color={formData.agreed ? "white" : "#8E8E8E"}
+          bg={formData.agreed ? '#2E5C38' : '#CBCBCB'}
+          color={formData.agreed ? 'white' : '#8E8E8E'}
           w="47%"
           h="49px"
-          cursor={formData.agreed ? "pointer" : "not-allowed"}
-          isDisabled={!formData.agreed}  
+          cursor={formData.agreed ? 'pointer' : 'not-allowed'}
+          isDisabled={!formData.agreed}
         >
           Create Account
         </Button>
@@ -222,7 +222,7 @@ const Demos = () => {
         </HStack>
       </Stack>
     </Stack>
-  );
-};
+  )
+}
 
-export default Demos;
+export default Demos

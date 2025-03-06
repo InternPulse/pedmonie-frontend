@@ -8,47 +8,43 @@ import Img3 from '../../assets/images/Img3.png'
 
 const ApiDocs = () => {
   return (
-    <Box w='100%' h='auto'>
+    <Box w={{ lg: "90%", md: "90%", sm: "100%" }} margin={'0 auto'} mt={'10'}>
 
         {/*Desktop View */}
        <Box
-         display={{base: 'none', md: 'none' , lg: 'block'}}
+         display={{base: 'none', md: 'none' , lg: 'block'}} 
        >
        <Flex 
         direction={'row'}
         alignItems={'start'}
-        gap={'60px'}
-       
+        gap={'50px'}
+  
         >
-            <Box position={'relative'} w='748px' h='590px'>
+            <Box w='100%' h='auto'>
                 <Image 
                 src={Img1} 
-                position={'absolute'}
-                top='0'
-                left='0'
-                right='0'
-                bottom='0'
-                
+                w='100%'
+                h='auto'
                 />
             </Box>
 
-            <VStack w='625px' h='520px' alignItems={'start'} justifyContent={'start'} gapY={'50px'}>
+            <VStack w='100%' h='auto' alignItems={'start'} justifyContent={'start'} gapY={'80px'}>
                 
                 <VStack
                 gapY={'20px'}
                 >
-                    <Text fontWeight={'semibold'} fontSize={'48px'} letterSpacing={'3%'} textAlign={'left'} lineHeight={'72px'} fontFamily={''}>Well documented and ready-to-use APIs for developers</Text>
+                    <Text fontWeight={'semibold'} fontSize={'38px'} letterSpacing={'3%'} textAlign={'left'} lineHeight={'50px'} fontFamily={''}>Well documented and ready-to-use APIs for developers</Text>
 
-                    <Text fontWeight={'normal'} fontSize={'24px'} lineHeight={'28px'} letterSpacing={'-2%'} opacity={'60%'} textAlign={'left'} w='589px' h='84px'>We have done the core payment integrations and abstractions so your team can easily integrate with our APIs and access multiple payment functionlities</Text>
+                    <Text fontWeight={'normal'} fontSize={'20px'} lineHeight={'28px'} letterSpacing={'-2%'} opacity={'60%'} textAlign={'left'} w='589px' h='84px'>We have done the core payment integrations and abstractions so your team can easily integrate with our APIs and access multiple payment functionlities</Text>
                 </VStack>
                 
 
                 <Button
-                   borderRadius={'80px'}
+                   borderRadius={'70px'}
                     bg={'#2E5C38'}
                     alignContent={'center'}
-                    w='360px'
-                    h='80px'
+                    w='350px'
+                    h='70px'
                 >
                     <Text
                     color={'#FFFFFF'}
@@ -73,6 +69,7 @@ const ApiDocs = () => {
                         objectFit={'cover'}
                         w='100%'
                         h='auto'
+                        borderRadius={'12px'}
                     /> 
                 </Box>
                 
@@ -82,7 +79,7 @@ const ApiDocs = () => {
                     <VStack  gapY={'20px'}>
                         <Text fontWeight={'semibold'} fontSize={'32px'} letterSpacing={'3%'} textAlign={'center'} lineHeight={'50px'} fontFamily={''}>Well documented and ready-to-use APIs for developers</Text>
 
-                        <Text fontWeight={'semibold'} fontSize={'24px'} letterSpacing={'-2%'} textAlign={'center'} lineHeight={'28px'} opacity={'60%'} fontFamily={''}>We have done the core payment integrations and abstractions so your team can easily integrate with our APIs and access multiple payment functionlities</Text>
+                        <Text fontWeight={'semibold'} fontSize={'22px'} letterSpacing={'-2%'} textAlign={'center'} lineHeight={'28px'} opacity={'60%'} fontFamily={''}>We have done the core payment integrations and abstractions so your team can easily integrate with our APIs and access multiple payment functionlities</Text>
                     </VStack>
 
                     <Button 
@@ -128,7 +125,7 @@ const ApiDocs = () => {
                 </Box>
 
                 <Box>
-                    <Text fontWeight={'semibold'} fontSize={'20px'} letterSpacing={'-2%'} textAlign={'center'} lineHeight={'24px'} opacity={'60%'} fontFamily={''}>
+                    <Text fontWeight={'semibold'} fontSize={'19px'} letterSpacing={'-2%'} textAlign={'center'} lineHeight={'24px'} opacity={'60%'} fontFamily={''}>
                     We have done the core payment integrations and abstractions so your team can easily integrate with our APIs and access multiple payment functionlities
                     </Text>
                 </Box>

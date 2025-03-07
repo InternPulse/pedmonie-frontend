@@ -16,9 +16,25 @@ import { Checkbox } from "@/components/ui/checkbox";
 import google from "../svgs/google.svg";
 
 const Demos = () => {
+  // State to track input values
   const [visible, setVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [date, setDate] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  // Function to check if all fields are filled
+  const allFieldsFilled =
+    name && email && password && confirmPassword && phoneNumber && isChecked;
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <Stack gap="16px">
+    <Stack gap="16px" onSubmit={handleSubmit}>
       {/* First Name */}
       <HStack gap="6" width="full">
         <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
@@ -28,6 +44,9 @@ const Demos = () => {
             bg="#EEEEEE"
             _placeholder={{ color: "#292D32" }}
             color="#292D32"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
           />
         </InputGroup>
 
@@ -39,6 +58,9 @@ const Demos = () => {
             bg="#EEEEEE"
             _placeholder={{ color: "#292D32" }}
             color="#292D32"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
           />
         </InputGroup>
       </HStack>
@@ -51,6 +73,9 @@ const Demos = () => {
           bg="#EEEEEE"
           _placeholder={{ color: "#292D32" }}
           color="#292D32"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
       </InputGroup>
 
@@ -62,6 +87,9 @@ const Demos = () => {
           bg="#EEEEEE"
           _placeholder={{ color: "#292D32" }}
           color="#292D32"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </InputGroup>
 
@@ -73,6 +101,9 @@ const Demos = () => {
           bg="#EEEEEE"
           _placeholder={{ color: "#292D32" }}
           color="#292D32"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          required
         />
       </InputGroup>
 
@@ -84,6 +115,9 @@ const Demos = () => {
         type="date"
         bg="#EEEEEE"
         _placeholder={{ color: "#292D32" }}
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        required
       />
 
       {/* Password */}
@@ -98,6 +132,9 @@ const Demos = () => {
             _placeholder={{ color: "#292D32" }}
             _visible={{ bg: "#292D32" }}
             color="#292D32"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </InputGroup>
       </Stack>
@@ -111,18 +148,35 @@ const Demos = () => {
             bg="#EEEEEE"
             _placeholder={{ color: "#292D32" }}
             color="#292D32"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
         </InputGroup>
+        {/* CheckBox */}
+        <Checkbox
+          color="#2D3748"
+          value={isChecked}
+          onChange={(e) => setIsChecked(e.target.value)}
+          required
+        >
+          I agree to all the Terms and Privacy policy
+        </Checkbox>
       </Stack>
-
-      {/* CheckBox */}
-      <Checkbox color="#2D3748">
-        I agree to all the Terms and Privacy policy
-      </Checkbox>
 
       {/* Buttons */}
       <ButtonGroup variant="subtle" gap="6%">
-        <Button bg="#CBCBCB" color="#8E8E8E" w="47%" h="49px">
+        <Button
+          bg="#CBCBCB"
+          color="#8E8E8E"
+          w="47%"
+          h="49px"
+          style={{
+            backgroundColor: allFieldsFilled ? "green" : "gray",
+            cursor: allFieldsFilled ? "pointer" : "not-allowed",
+          }}
+          disabled={!allFieldsFilled}
+        >
           Create Account
         </Button>
         <Button bg="#737375" color="white" w="47%" h="49px">

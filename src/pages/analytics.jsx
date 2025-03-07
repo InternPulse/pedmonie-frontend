@@ -6,7 +6,6 @@ import TotalRevenueBarChart from "../components/TotalRevenueBarChart";
 import SalesByCountryData from "../components/SalesByCountryData";
 import TransactionStatus from "../components/TransactionStatus";
 import AnalyticsCards from "../components/AnalyticsCards";
-
 const Analytics = () => {
   return (
     <VStack bg="white" spacing={8} align="stretch" p={6}>

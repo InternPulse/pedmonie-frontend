@@ -66,7 +66,7 @@ const Features = () => {
 
         <Link
           textAlign={["left", "left", "center"]}
-          pl={["8", "8", undefined]}
+          // pl={["8", "8", undefined]}
           textDecoration={"underline"}
           display="block"
           pb={["8", "8", "4"]}
@@ -75,8 +75,6 @@ const Features = () => {
           fontSize={"1.25rem"}
           letterSpacing={"-0.07rem"}
           href={item.link_adress}
-          _focus={{ outline: "none", boxShadow: "none" }}
-          _focusVisible={{ outline: "none", boxShadow: "none" }}
         >
           Learn more
         </Link>

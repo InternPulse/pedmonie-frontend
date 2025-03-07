@@ -10,23 +10,25 @@ function Hero() {
       w="full"
       display="flex"
       flexDirection={{ base: "column-reverse", xl: "row" }}
-      py="50px"
+      pt={20}
       gapX="84px"
       px={{ base: "15px", md: "43px", xl: "95px" }}
-      border="1px solid #000"
+      // bgImage={{ base: "none", md: "none", xl: `url(${smallCircles})` }}
+      // bgRepeat="no-repeat"
+      // backgroundPosition="right"
+      // bgSize="55%"
     >
       <Box
+        w={{ base: "full", xl: "650px" }}
         display="flex"
         flexDirection="column"
-        w={{ base: "full", xl: "650px" }}
         gapY="20px"
-        border="1px solid red"
       >
         <Box
           display="flex"
           flexDirection="column"
           gapY="20px"
-          border="1px solid red"
+          // border="1px solid red"
         >
           <Box
             w="211px"
@@ -46,17 +48,16 @@ function Hero() {
           </Box>
 
           <Text
-            w={{ base: "318px", md: "full", xl: "434px" }}
-            px={{ base: "50px", md: "0", xl: "0" }}
+            w={{ base: "250px", md: "full", xl: "450px" }}
+            px={{ base: "22px", md: "0", xl: "0" }}
             fontWeight={{ base: "normal", xl: "semibold" }}
             fontFamily="Satoshi, sans-serif"
-            fontSize={{ base: "40px", md: "48px", xl: "40px" }}
+            fontSize={{ base: "32px", md: "48px", xl: "40px" }}
             textAlign={{ base: "center", md: "center", xl: "left" }}
             alignSelf={{ base: "center", xl: "self-start" }}
             color="black"
-            border="1px solid #000"
           >
-            Effortless Payment for Your <Span color="#4E995E">Business</Span>
+            Effortless Payments for Your <Span color="#4E995E">Business</Span>
           </Text>
 
           <Text
@@ -65,9 +66,9 @@ function Hero() {
             fontWeight="medium"
             fontSize={{ sm: "24px", md: "24px", xl: "20px" }}
             color="blackAlpha.600"
-            border="1px solid #000"
+            // border="1px solid #000"
           >
-            Accept all forms of payments seamlessly—online, in-store, and
+            Accept all forms of payments seamlessly&ndash;online, in-store, and
             on-the-go
           </Text>
         </Box>
@@ -78,12 +79,13 @@ function Hero() {
           flexDirection="row"
           gap="20px"
           alignSelf={{ base: "center", md: "center", xl: "self-start" }}
-          border="1px solid #000"
+          // border="1px solid #000"
         >
-          <CustomButton bg="#2E5C38" color="white" px="2" rounded="full">
+          <CustomButton bg="#2E5C38" color="white" px="4" rounded="full">
             Get Started Today
           </CustomButton>
           <CustomButton
+            px={8}
             color="#2E5C38"
             rounded="full"
             border="1px solid #2E5C38"
@@ -96,9 +98,9 @@ function Hero() {
       <Box
         w="full"
         maxW={{ xl: "730px" }}
-        px={{ base: "", md: "40px" }}
+        ml={{ base: "", md: "", xl: "40px" }}
+        px={{ base: "", md: "40px", xl: "0" }}
         pb={{ md: "40px" }}
-        border="1px solid #000"
         display={{ base: "none", md: "block", xl: "block" }}
       >
         <Image

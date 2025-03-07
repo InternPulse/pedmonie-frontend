@@ -16,7 +16,10 @@ import Payment from "./components/transactionConfirmationUI/Payment";
 
 function App() {
   const Home = lazy(() => import("./pages/Home"));
-  const Analytics = lazy(() => import("./pages/Analytics"));
+  const Analytics = lazy(() => import("./pages/analytics"));
+  const Payment = lazy(() =>
+    import("./components/transactionConfirmationUI/Payment")
+  );
   return (
     <Suspense fallback={<Loading />}>
       <Routes>

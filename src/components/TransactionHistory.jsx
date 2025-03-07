@@ -3,57 +3,85 @@ import {
   Box,
   Flex,
   Text,
-  Button,
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Select,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   HStack,
+  Select,
+  IconButton,
 } from "@chakra-ui/react";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 
-import { MoreVertical,   ChevronDownIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    SearchIcon } from "lucide-react";
+import { Search, ChevronDown, ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
 
 // Sample transaction data
 const transactions = [
-  { id: "456789356", date: "Sep 9, 2024, 04:30pm", from: "Darrell Steward", type: "Transfer", amount: 5670, status: "Pending" },
-  { id: "456789356", date: "Sep 8, 2024, 03:13pm", from: "Arlene McCoy", type: "Transfer", amount: 15000, status: "Completed" },
-  { id: "456789356", date: "Sep 7, 2024, 1:00pm", from: "Bessie Cooper", type: "Card", amount: -3456, status: "Cancelled" },
-  { id: "456789356", date: "Sep 6, 2024, 07:00am", from: "kikikarishma@email.com", type: "Income", amount: 30000, status: "Pending" },
-  { id: "456789356", date: "Sep 8, 2024, 03:13pm", from: "Wise - 5466xxxx", type: "Savings", amount: 8000, status: "Completed" },
-  // ... add more data as needed
+  {
+    id: "456789356",
+    date: "Sep 9, 2024, 04:30pm",
+    from: "Darrell Steward",
+    type: "Transfer",
+    amount: 5670,
+    status: "Pending"
+  },
+  {
+    id: "456789356",
+    date: "Sep 8, 2024, 03:13pm",
+    from: "Arlene McCoy",
+    type: "Transfer",
+    amount: 15000,
+    status: "Completed"
+  },
+  {
+    id: "456789356",
+    date: "Sep 7, 2024, 1:00pm",
+    from: "Bessie Cooper",
+    type: "Card",
+    amount: -3456,
+    status: "Cancelled"
+  },
+  {
+    id: "456789356",
+    date: "Sep 6, 2024, 07:00am",
+    from: "kikikarishma@email.com",
+    type: "Income",
+    amount: 30000,
+    status: "Pending"
+  },
+  {
+    id: "456789356",
+    date: "Sep 8, 2024, 03:13pm",
+    from: "Wise - 5466xxxx",
+    type: "Savings",
+    amount: 8000,
+    status: "Completed"
+  }
 ];
 
 const TransactionHistory = () => {
-  // Local state
+  // Track which top tab is active: "Profile" or "Transaction History"
+  const [activeTopTab, setActiveTopTab] = useState("Transaction History");
+
+  // Track which sub-tab is active: "All", "Money In", "Money Out"
+  const [activeSubTab, setActiveSubTab] = useState("All");
+
+  // Track sort, status filter, and pagination
   const [sortBy, setSortBy] = useState("Newest");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [statusFilter, setStatusFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  // Filter transactions based on active tab
-  const filteredTransactions = transactions.filter((txn) => {
-    if (activeTabIndex === 1) return txn.amount > 0;
-    if (activeTabIndex === 2) return txn.amount < 0;
-    return true;
+  // Filter transactions based on active sub-tab
+  let filteredTransactions = transactions.filter((txn) => {
+    // Sub-tab filtering
+    if (activeSubTab === "Money In") return txn.amount > 0;
+    if (activeSubTab === "Money Out") return txn.amount < 0;
+    return true; // "All"
   });
 
+  // Status filter
+  if (statusFilter !== "All") {
+    filteredTransactions = filteredTransactions.filter((txn) => txn.status === statusFilter);
+  }
+
+  // Simple pagination
   const totalEntries = filteredTransactions.length;
   const totalPages = Math.ceil(totalEntries / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -64,217 +92,290 @@ const TransactionHistory = () => {
     setCurrentPage(pageNumber);
   };
 
-  const renderPaginationButtons = () => {
-    const buttons = [];
-    const maxButtonsToShow = 5;
-    // Always show first page
-    buttons.push(
-      <Button
-        key={1}
-        size="sm"
-        variant={currentPage === 1 ? "solid" : "outline"}
-        colorScheme={currentPage === 1 ? "blue" : "gray"}
-        mx={1}
-        onClick={() => handlePageChange(1)}
-      >
-        1
-      </Button>
-    );
-    let startPage = Math.max(2, currentPage - Math.floor(maxButtonsToShow / 2));
-    let endPage = Math.min(totalPages - 1, startPage + maxButtonsToShow - 3);
-    if (endPage === totalPages - 1) {
-      startPage = Math.max(2, endPage - (maxButtonsToShow - 3));
-    }
-    if (startPage > 2) {
-      buttons.push(<Text key="ellipsis-1" mx={1}>...</Text>);
-    }
-    for (let i = startPage; i <= endPage; i++) {
-      buttons.push(
-        <Button
-          key={i}
-          size="sm"
-          variant={currentPage === i ? "solid" : "outline"}
-          colorScheme={currentPage === i ? "blue" : "gray"}
-          mx={1}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </Button>
-      );
-    }
-    if (endPage < totalPages - 1) {
-      buttons.push(<Text key="ellipsis-2" mx={1}>...</Text>);
-    }
-    if (totalPages > 1) {
-      buttons.push(
-        <Button
-          key={totalPages}
-          size="sm"
-          variant={currentPage === totalPages ? "solid" : "outline"}
-          colorScheme={currentPage === totalPages ? "blue" : "gray"}
-          mx={1}
-          onClick={() => handlePageChange(totalPages)}
-        >
-          {totalPages}
-        </Button>
-      );
-    }
-    return buttons;
-  };
-
+  // Status color
   const getStatusColor = (status) => {
     switch (status) {
       case "Completed":
-        return "green";
+        return "green.500";
       case "Pending":
-        return "yellow";
+        return "yellow.500";
       case "Cancelled":
-        return "red";
+        return "red.500";
       default:
-        return "gray";
+        return "gray.500";
     }
   };
 
   return (
-    <Box p={5} bg="white" borderRadius="lg" shadow="sm" w="full">
-      {/* Header Section */}
-      <Flex justify="space-between" align="center" mb={4}>
-        <Text fontSize="xl" fontWeight="medium">Transaction</Text>
-        <Flex align="center" gap={2}>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <SearchIcon color="#718096" />
+    <Box bg="white" p={5} borderRadius="lg" shadow="sm" w="full" maxW="1200px" mx="auto">
+      {/* Top-level header */}
+      <Flex justify="space-between" align="center" mb={4} px={4}>
+        <Text fontSize="xl" fontWeight="medium" color="gray.800">
+          Transaction
+        </Text>
+        <HStack spacing={4}>
+          {/* Search Bar */}
+          <InputGroup color="gray.800" bg="gray.800" border="1px solid" borderColor="gray.300" borderRadius="md" _focusVisible={{ outline: "none", borderColor: "blue.400" }}>
+            <InputLeftElement>
+              <Search size={16} color="#718096" />
             </InputLeftElement>
-            <Input placeholder="Search" w={{ base: "150px", md: "200px" }} border="none" _focusVisible={{ outline: "none" }} />
+            <Input
+              placeholder="Search"
+              w={{ base: "150px", md: "200px" }}
+              border="1px solid"
+              borderColor="gray.300"
+              _focusVisible={{ outline: "none", borderColor: "blue.400" }}
+              borderRadius="md"
+              
+            />
           </InputGroup>
-          <Select
-            w={{ base: "120px", md: "150px" }}
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            borderRadius="md"
-            icon={<ChevronDownIcon boxSize={4} />}
-          >
-            <option value="Newest">Newest</option>
-            <option value="Oldest">Oldest</option>
-          </Select>
-        </Flex>
+          {/* Sort Select */}
+          <Box position="relative" width={{ base: "120px", md: "150px" }}>
+            {/* <Select
+              pl="2rem"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              border="1px solid"
+              borderColor="gray.300"
+              borderRadius="md"
+            >
+              <option value="Newest">Newest</option>
+              <option value="Oldest">Oldest</option>
+            </Select> */}
+            {/* Sort Icon */}
+            <Box
+              position="absolute"
+              right="0.5rem"
+              top="50%"
+              transform="translateY(-50%)"
+              pointerEvents="none"
+            >
+              <ChevronDown size={16} color="#718096" />
+            </Box>
+          </Box>
+        </HStack>
       </Flex>
 
-      {/* Main Navigation Tabs */}
-      <Box border="1px solid #E2E8F0" borderRadius="lg" w="full" mb={4}>
-        <Tabs variant="unstyled" onChange={(index) => { setActiveTabIndex(index); setCurrentPage(1); }}>
-          <TabList borderBottom="1px solid #E2E8F0" px={4}>
-            {["All", "Money In", "Money Out"].map((tab) => (
-              <Tab
-                key={tab}
-                fontWeight="medium"
-                color="gray.500"
-                mx={4}
-                pb={2}
-                _selected={{ color: "black", borderBottom: "3px solid #F0BC2B", fontWeight: "semibold" }}
-              >
-                {tab}
-              </Tab>
-            ))}
-          </TabList>
-          <TabPanels>
-            <TabPanel p={4}>
-              {/* Desktop Table */}
-              <TableContainer display={{ base: "none", md: "block" }}>
-                <Table variant="simple">
-                  <Thead>
-                    <Tr>
-                      <Th>Ref ID</Th>
-                      <Th>Transaction Date</Th>
-                      <Th>From</Th>
-                      <Th>Type</Th>
-                      <Th isNumeric>Amount</Th>
-                      <Th>Status</Th>
-                      <Th>Actions</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {currentItems.map((txn, index) => (
-                      <Tr key={index}>
-                        <Td>{txn.id}</Td>
-                        <Td>{txn.date}</Td>
-                        <Td>{txn.from}</Td>
-                        <Td>{txn.type}</Td>
-                        <Td isNumeric color={txn.amount < 0 ? "red.500" : "green.500"}>
-                          {txn.amount < 0 ? "-" : "+"}${Math.abs(txn.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </Td>
-                        <Td>
-                          <Text color={`${getStatusColor(txn.status)}.500`}>{txn.status}</Text>
-                        </Td>
-                        <Td>
-                          <IconButton aria-label="More options" icon={<MoreVertical size={16} />} variant="ghost" size="sm" />
-                        </Td>
-                      </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
-              </TableContainer>
+      {/* Top Navigation (Manual Tabs for "Profile" / "Transaction History") */}
+      <Flex borderBottom="1px solid #E2E8F0" mb={5} px={4}>
+        {["Profile", "Transaction History"].map((tab) => (
+          <Box
+            key={tab}
+            mx={4}
+            pb={2}
+            cursor="pointer"
+            fontWeight={activeTopTab === tab ? "semibold" : "normal"}
+            color={activeTopTab === tab ? "black" : "gray.500"}
+            borderBottom={activeTopTab === tab ? "3px solid #F0BC2B" : "none"}
+            onClick={() => {
+              setActiveTopTab(tab);
+              setCurrentPage(1);
+            }}
+          >
+            {tab}
+          </Box>
+        ))}
+      </Flex>
 
-              {/* Mobile View */}
-              <Box display={{ base: "block", md: "none" }}>
+      {/* Conditional Rendering Based on Top Tab */}
+      {activeTopTab === "Profile" && (
+        <Box p={4}>
+          <Text>Profile view (to be implemented)</Text>
+        </Box>
+      )}
+
+      {activeTopTab === "Transaction History" && (
+        <Box>
+          {/* Sub-tabs: All, Money In, Money Out */}
+          <Flex
+            justify="space-between"
+            align="center"
+            px={4}
+            py={2}
+            borderBottom="1px solid #E2E8F0"
+          >
+            <HStack spacing={6}>
+              {["All", "Money In", "Money Out"].map((subTab) => (
+                <Box
+                  key={subTab}
+                  position="relative"
+                  cursor="pointer"
+                  fontWeight={activeSubTab === subTab ? "semibold" : "normal"}
+                  color={activeSubTab === subTab ? "black" : "gray.500"}
+                  pb={2}
+                  onClick={() => {
+                    setActiveSubTab(subTab);
+                    setCurrentPage(1);
+                  }}
+                >
+                  {subTab}
+                  {activeSubTab === subTab && (
+                    <Box
+                      position="absolute"
+                      bottom="-2px"
+                      left="0"
+                      right="0"
+                      height="3px"
+                      bg="#F0BC2B"
+                      borderRadius="2px"
+                    />
+                  )}
+                </Box>
+              ))}
+            </HStack>
+
+            {/* Status Filter */}
+            <HStack spacing={2}>
+              <Text fontSize="sm" color="gray.500">
+                Status:
+              </Text>
+              {/* <Box position="relative" width="120px">
+                <Select
+                  pl="2rem"
+                  value={statusFilter}
+                  onChange={(e) => {
+                    setStatusFilter(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                  border="1px solid"
+                  borderColor="gray.300"
+                  borderRadius="md"
+                >
+                  <option value="All">All</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </Select>
+                <Box
+                  position="absolute"
+                  right="0.5rem"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  pointerEvents="none"
+                >
+                  <ChevronDown size={16} color="#718096" />
+                </Box>
+              </Box> */}
+            </HStack>
+          </Flex>
+
+          {/* Table Section */}
+          <Box overflowX="auto" p={4} bg="white">
+            <Box as="table" width="100%" borderCollapse="collapse">
+              <Box as="thead" bg="gray.50">
+                <Box as="tr">
+                  <Box as="th" py={2} px={2} textAlign="left" color="gray.800" fontSize="sm">
+                    Ref ID
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="left" color="gray.800" fontSize="sm">
+                    Transaction Date
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="left" color="gray.800" fontSize="sm">
+                    From
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="left" color="gray.800" fontSize="sm">
+                    Type
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="right" color="gray.800" fontSize="sm">
+                    Amount
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="left" color="gray.800" fontSize="sm">
+                    Status
+                  </Box>
+                  <Box as="th" py={2} px={2} textAlign="center" color="gray.800" fontSize="sm">
+                    Actions
+                  </Box>
+                </Box>
+              </Box>
+              <Box as="tbody">
                 {currentItems.map((txn, index) => (
-                  <Box key={index} py={3} borderBottom="1px solid" borderColor="gray.200">
-                    <Flex justify="space-between">
-                      <Box>
-                        <Text fontWeight="medium">{txn.from}</Text>
-                        <Text fontSize="sm" color="gray.500">{txn.type}</Text>
-                        <Text fontSize="sm" color="gray.500">{txn.date}</Text>
-                      </Box>
-                      <Box textAlign="right">
-                        <Text fontWeight="medium" color={txn.amount < 0 ? "red.500" : "green.500"}>
-                          {txn.amount < 0 ? "-" : "+"}${Math.abs(txn.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </Text>
-                        <Text fontSize="sm" color={`${getStatusColor(txn.status)}.500`}>{txn.status}</Text>
-                      </Box>
-                    </Flex>
+                  <Box
+                    as="tr"
+                    key={index}
+                    borderBottom="1px solid"
+                    borderColor="gray.100"
+                    _hover={{ bg: "gray.50" }}
+                    color="gray.600"
+                  >
+                    <Box as="td" py={3} px={2} fontSize="sm">
+                      {txn.id}
+                    </Box>
+                    <Box as="td" py={3} px={2} fontSize="sm">
+                      {txn.date}
+                    </Box>
+                    <Box as="td" py={3} px={2} fontSize="sm">
+                      {txn.from}
+                    </Box>
+                    <Box as="td" py={3} px={2} fontSize="sm">
+                      {txn.type}
+                    </Box>
+                    <Box
+                      as="td"
+                      py={3}
+                      px={2}
+                      fontSize="sm"
+                      textAlign="right"
+                      color={txn.amount < 0 ? "red.500" : "green.500"}
+                      fontWeight="medium"
+                      
+                    >
+                      {txn.amount < 0 ? "-" : "+"}$
+                      {Math.abs(txn.amount).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                      })}
+                    </Box>
+                    <Box as="td" py={3} px={2} fontSize="sm">
+                      <Text color={getStatusColor(txn.status)}>
+                        {txn.status}
+                      </Text>
+                    </Box>
+                    <Box as="td" py={3} px={2} textAlign="center">
+                      <IconButton
+                        icon={<MoreVertical size={16} />}
+                        variant="ghost"
+                        size="sm"
+                        aria-label="More options"
+                      />
+                    </Box>
                   </Box>
                 ))}
               </Box>
-            </TabPanel>
-            <TabPanel p={4}>
-              {/* Repeat table/grid for "Money In" transactions */}
-              <Text>Money In transactions view (to be implemented)</Text>
-            </TabPanel>
-            <TabPanel p={4}>
-              {/* Repeat table/grid for "Money Out" transactions */}
-              <Text>Money Out transactions view (to be implemented)</Text>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </Box>
+            </Box>
+          </Box>
 
-      {/* Pagination */}
-      <Flex justify="space-between" align="center" p={4}>
-        <Text fontSize="sm" color="gray.500">
-          Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, totalEntries)} of {totalEntries} entries
-        </Text>
-        <Flex align="center">
-          <IconButton
-            icon={<ChevronLeftIcon boxSize={4} />}
-            variant="outline"
-            size="sm"
-            mr={2}
-            isDisabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
-            aria-label="Previous page"
-          />
-          {renderPaginationButtons()}
-          <IconButton
-            icon={<ChevronRightIcon boxSize={4} />}
-            variant="outline"
-            size="sm"
-            ml={2}
-            isDisabled={currentPage === totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
-            aria-label="Next page"
-          />
-        </Flex>
-      </Flex>
+          {/* Pagination */}
+          <Flex justify="space-between" align="center" p={4} color="gray.800">
+            <Text fontSize="sm" color="gray.800">
+              Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, totalEntries)} of {totalEntries} entries
+            </Text>
+            <Flex align="center" >
+              <IconButton
+                icon={<ChevronLeft color="gray.800" size={16} />}
+                variant="outline"
+                size="sm"
+                mr={2}
+                isDisabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+                aria-label="Previous page"
+                
+              />
+              <Text mx={2} fontSize="sm"  color="gray.800">
+                Page {currentPage} of {totalPages}
+              </Text>
+              <IconButton
+                icon={<ChevronRight color="gray.800" size={16} />}
+                variant="outline"
+                size="sm"
+                ml={2}
+                isDisabled={currentPage === totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+                aria-label="Next page"
+              />
+            </Flex>
+          </Flex>
+        </Box>
+      )}
     </Box>
   );
 };

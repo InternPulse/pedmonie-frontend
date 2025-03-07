@@ -1,7 +1,14 @@
+
+
 import TransactionHistory from "./components/TransactionHistory"
 
+
 function App() {
- <TransactionHistory />
+    return (
+    <>
+         <TransactionHistory />
+        </>
+    )
 }
 
 export default App

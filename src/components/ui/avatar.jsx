@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 'use client'
 
 import { Avatar as ChakraAvatar, Group } from '@chakra-ui/react'
+=======
+import {
+  Avatar as ChakraAvatar,
+  AvatarGroup as ChakraAvatarGroup,
+} from '@chakra-ui/react'
+>>>>>>> origin/(frontend)---Transaction-confirmation-UI-
 import * as React from 'react'
 
 export const Avatar = React.forwardRef(function Avatar(props, ref) {
@@ -8,15 +15,22 @@ export const Avatar = React.forwardRef(function Avatar(props, ref) {
     props
   return (
     <ChakraAvatar.Root ref={ref} {...rest}>
+<<<<<<< HEAD
       <AvatarFallback name={name} icon={icon}>
         {fallback}
       </AvatarFallback>
+=======
+      <ChakraAvatar.Fallback name={name}>
+        {icon || fallback}
+      </ChakraAvatar.Fallback>
+>>>>>>> origin/(frontend)---Transaction-confirmation-UI-
       <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />
       {children}
     </ChakraAvatar.Root>
   )
 })
 
+<<<<<<< HEAD
 const AvatarFallback = React.forwardRef(function AvatarFallback(props, ref) {
   const { name, icon, children, ...rest } = props
   return (
@@ -47,3 +61,6 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     </ChakraAvatar.PropsProvider>
   )
 })
+=======
+export const AvatarGroup = ChakraAvatarGroup
+>>>>>>> origin/(frontend)---Transaction-confirmation-UI-

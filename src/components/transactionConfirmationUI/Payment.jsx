@@ -8,26 +8,17 @@ import {
   Input,
   Table,
 } from "@chakra-ui/react";
-import {
-  ChevronDownIcon,
-  DownloadIcon,
-  AddIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  SearchIcon,
-  CopyIcon,
-} from "@chakra-ui/icons";
 import { InputGroup } from "../ui/input-group";
 import {
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
 } from "../ui/select";
+import { LuCopy, LuSearch } from "react-icons/lu";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import PaymentOverlay from "./PaymentOverlay";
-import { LuSearch } from "react-icons/lu";
 
 const Payment = () => {
   // const [searchTerm, setSearchTerm] = useState("");
@@ -191,7 +182,32 @@ const Payment = () => {
         {/* <Sidebar /> */}
 
         {/* Main Content */}
-        <Box flex={1} p={4} overflow="auto">
+        <Box
+          flex={1}
+          p={4}
+          overflowY="auto"
+          css={{
+            scrollbarWidth: "2px",
+            "&::-webkit-scrollbar": {
+              width: "2px",
+              display: "block",
+            }, // Chrome, Safari
+            "&::-webkit-scrollbar-track": {
+              width: "2px",
+              background: "gray.200",
+              borderRadius: "8px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: "green",
+              borderRadius: "8px",
+              width: "2px",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: "green.700",
+              width: "2px",
+            },
+          }}
+        >
           <Flex
             direction={{ base: "column", md: "row" }}
             justify="space-between"
@@ -260,7 +276,7 @@ const Payment = () => {
                   fontSize="12px"
                   fontWeight="600"
                   color="#3D3D3D"
-                  icon={<ChevronDownIcon />}
+                  // icon={<ChevronDownIcon />}
                   _focus={{ boxShadow: "none" }}
                 >
                   <SelectTrigger>
@@ -328,7 +344,7 @@ const Payment = () => {
                             navigator.clipboard.writeText(item.linkType); // Copy linkType as a placeholder
                           }}
                         >
-                          <CopyIcon />
+                          <LuCopy />
                         </IconButton>
                       </Flex>
                     </Table.Cell>
@@ -363,7 +379,7 @@ const Payment = () => {
                 isDisabled={currentPage === 1}
                 color="#292D32"
               >
-                <ChevronLeftIcon />
+                <FaChevronLeft />
               </IconButton>
               <Flex gap={2}>
                 {[...Array(totalPages)].map((_, index) => (
@@ -411,7 +427,7 @@ const Payment = () => {
                 _hover={{ bg: "green" }}
                 _
               >
-                <ChevronRightIcon />
+                <FaChevronRight />
               </IconButton>
             </Flex>
           </Flex>

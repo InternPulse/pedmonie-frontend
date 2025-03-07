@@ -11,8 +11,7 @@ import {
   Container,
   Stack,
 } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import { FaArrowLeft, FaCloudUploadAlt } from "react-icons/fa";
 import {
   SelectContent,
   SelectItem,
@@ -71,7 +70,7 @@ const CreatePaymentLink = ({ step, setStep }) => {
             _hover={{ bg: "white" }}
             onClick={() => setStep(step - 1)}
           >
-            <ArrowBackIcon boxSize={6} color="black" aria-label="Back" />
+            <FaArrowLeft boxSize={6} color="black" aria-label="Back" />
           </IconButton>
           <Text
             fontSize={headerFontSize}

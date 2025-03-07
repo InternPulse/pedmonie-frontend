@@ -7,11 +7,12 @@ import {
   DialogRoot,
   DialogTrigger,
 } from "../ui/dialog";
-import { AddIcon, ChevronDownIcon, DownloadIcon } from "@chakra-ui/icons";
 import PaymentType from "./PaymentType";
 import CreatePaymentLink from "./CreatePaymentLink";
 import PaymentSuccessMessage from "./PaymentSuccessMessage";
 import PaymentLinkPage from "./PaymentLinkPage";
+import { FaChevronDown, FaDownload } from "react-icons/fa";
+import { RiAddLargeFill } from "react-icons/ri";
 function PaymentOverlay() {
   const [step, setStep] = useState(1);
   return (
@@ -34,9 +35,9 @@ function PaymentOverlay() {
               borderRadius="0"
             >
               {value}
-              {value === "All Payment Link" && <ChevronDownIcon />}
-              {value === "Download Link" && <DownloadIcon />}
-              {value === "New Payment Link" && <AddIcon />}
+              {value === "All Payment Link" && <FaChevronDown />}
+              {value === "Download Link" && <FaDownload />}
+              {value === "New Payment Link" && <RiAddLargeFill />}
             </Button>
           </DialogTrigger>
           <DialogContent>

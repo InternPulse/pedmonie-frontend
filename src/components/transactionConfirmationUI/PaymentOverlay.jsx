@@ -32,7 +32,7 @@ function PaymentOverlay() {
               color="white"
               px={4}
               py={2}
-              borderRadius="0"
+              disabled={value !== "New Payment Link" ? true : false}
             >
               {value}
               {value === "All Payment Link" && <FaChevronDown />}

@@ -1,68 +1,63 @@
+"use client"
+
 import React, { useState } from "react";
 import {
   Box,
   Flex,
   Text,
   HStack,
-  Select,
-  IconButton,
+  ButtonGroup,
+  IconButton
 } from "@chakra-ui/react";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
+import { Search, ChevronLeft, ChevronRight, ChevronDown, MoreVertical } from "lucide-react";
 
-import { Search, ChevronDown, ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
+// Import your custom select components
+import {
+  SelectRoot,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValueText,
+  SelectLabel
+} from "@/components/ui/select";
+
+// Import createListCollection from Chakra UI (or your helper module)
+import { createListCollection } from "@chakra-ui/react";
 
 // Sample transaction data
 const transactions = [
-  {
-    id: "456789356",
-    date: "Sep 9, 2024, 04:30pm",
-    from: "Darrell Steward",
-    type: "Transfer",
-    amount: 5670,
-    status: "Pending"
-  },
-  {
-    id: "456789356",
-    date: "Sep 8, 2024, 03:13pm",
-    from: "Arlene McCoy",
-    type: "Transfer",
-    amount: 15000,
-    status: "Completed"
-  },
-  {
-    id: "456789356",
-    date: "Sep 7, 2024, 1:00pm",
-    from: "Bessie Cooper",
-    type: "Card",
-    amount: -3456,
-    status: "Cancelled"
-  },
-  {
-    id: "456789356",
-    date: "Sep 6, 2024, 07:00am",
-    from: "kikikarishma@email.com",
-    type: "Income",
-    amount: 30000,
-    status: "Pending"
-  },
-  {
-    id: "456789356",
-    date: "Sep 8, 2024, 03:13pm",
-    from: "Wise - 5466xxxx",
-    type: "Savings",
-    amount: 8000,
-    status: "Completed"
-  }
+  { id: "456789356", date: "Sep 9, 2024, 04:30pm", from: "Darrell Steward", type: "Transfer", amount: 5670, status: "Pending" },
+  { id: "456789356", date: "Sep 8, 2024, 03:13pm", from: "Arlene McCoy", type: "Transfer", amount: 15000, status: "Completed" },
+  { id: "456789356", date: "Sep 7, 2024, 1:00pm", from: "Bessie Cooper", type: "Card", amount: -3456, status: "Cancelled" },
+  { id: "456789356", date: "Sep 6, 2024, 07:00am", from: "kikikarishma@email.com", type: "Income", amount: 30000, status: "Pending" },
+  { id: "456789356", date: "Sep 8, 2024, 03:13pm", from: "Wise - 5466xxxx", type: "Savings", amount: 8000, status: "Completed" }
 ];
 
-const TransactionHistory = () => {
-  // Track which top tab is active: "Profile" or "Transaction History"
-  const [activeTopTab, setActiveTopTab] = useState("Transaction History");
+// Create a collection for sort options
+const sortCollection = createListCollection({
+  items: [
+    { label: "Newest", value: "Newest" },
+    { label: "Oldest", value: "Oldest" }
+  ]
+});
 
-  // Track which sub-tab is active: "All", "Money In", "Money Out"
+// Create a collection for status filter options
+const statusCollection = createListCollection({
+  items: [
+    { label: "All", value: "All" },
+    { label: "Pending", value: "Pending" },
+    { label: "Completed", value: "Completed" },
+    { label: "Cancelled", value: "Cancelled" }
+  ]
+});
+
+const TransactionHistory = () => {
+  // Top-level tabs and sub-tabs
+  const [activeTopTab, setActiveTopTab] = useState("Transaction History");
   const [activeSubTab, setActiveSubTab] = useState("All");
 
-  // Track sort, status filter, and pagination
+  // Sort and filter state
   const [sortBy, setSortBy] = useState("Newest");
   const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,18 +65,16 @@ const TransactionHistory = () => {
 
   // Filter transactions based on active sub-tab
   let filteredTransactions = transactions.filter((txn) => {
-    // Sub-tab filtering
     if (activeSubTab === "Money In") return txn.amount > 0;
     if (activeSubTab === "Money Out") return txn.amount < 0;
-    return true; // "All"
+    return true;
   });
 
-  // Status filter
+  // Apply status filter
   if (statusFilter !== "All") {
     filteredTransactions = filteredTransactions.filter((txn) => txn.status === statusFilter);
   }
 
-  // Simple pagination
   const totalEntries = filteredTransactions.length;
   const totalPages = Math.ceil(totalEntries / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -92,7 +85,6 @@ const TransactionHistory = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Status color
   const getStatusColor = (status) => {
     switch (status) {
       case "Completed":
@@ -108,14 +100,13 @@ const TransactionHistory = () => {
 
   return (
     <Box bg="white" p={5} borderRadius="lg" shadow="sm" w="full" maxW="1200px" mx="auto">
-      {/* Top-level header */}
+      {/* Header Section */}
       <Flex justify="space-between" align="center" mb={4} px={4}>
         <Text fontSize="xl" fontWeight="medium" color="gray.800">
           Transaction
         </Text>
         <HStack spacing={4}>
-          {/* Search Bar */}
-          <InputGroup color="gray.800" bg="gray.800" border="1px solid" borderColor="gray.300" borderRadius="md" _focusVisible={{ outline: "none", borderColor: "blue.400" }}>
+          <InputGroup>
             <InputLeftElement>
               <Search size={16} color="#718096" />
             </InputLeftElement>
@@ -126,32 +117,33 @@ const TransactionHistory = () => {
               borderColor="gray.300"
               _focusVisible={{ outline: "none", borderColor: "blue.400" }}
               borderRadius="md"
-              
             />
           </InputGroup>
+
           {/* Sort Select */}
           <Box position="relative" width={{ base: "120px", md: "150px" }}>
-            {/* <Select
-              pl="2rem"
+            <SelectRoot
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              border="1px solid"
-              borderColor="gray.300"
-              borderRadius="md"
+              onValueChange={(val) => setSortBy(val)}
+              collection={sortCollection}
             >
-              <option value="Newest">Newest</option>
-              <option value="Oldest">Oldest</option>
-            </Select> */}
-            {/* Sort Icon */}
-            <Box
-              position="absolute"
-              right="0.5rem"
-              top="50%"
-              transform="translateY(-50%)"
-              pointerEvents="none"
-            >
-              <ChevronDown size={16} color="#718096" />
-            </Box>
+              <SelectTrigger
+                border="1px solid"
+                borderColor="gray.300"
+                borderRadius="md"
+                pl="2rem"
+                width="100%"
+              >
+                <SelectValueText placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                {sortCollection.items.map((item) => (
+                  <SelectItem item={item} key={item.value}>
+                    <SelectValueText>{item.label}</SelectValueText>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectRoot>
           </Box>
         </HStack>
       </Flex>
@@ -163,6 +155,7 @@ const TransactionHistory = () => {
             key={tab}
             mx={4}
             pb={2}
+            px={20}
             cursor="pointer"
             fontWeight={activeTopTab === tab ? "semibold" : "normal"}
             color={activeTopTab === tab ? "black" : "gray.500"}
@@ -177,7 +170,7 @@ const TransactionHistory = () => {
         ))}
       </Flex>
 
-      {/* Conditional Rendering Based on Top Tab */}
+      {/* Conditional Rendering for Tabs */}
       {activeTopTab === "Profile" && (
         <Box p={4}>
           <Text>Profile view (to be implemented)</Text>
@@ -186,7 +179,7 @@ const TransactionHistory = () => {
 
       {activeTopTab === "Transaction History" && (
         <Box>
-          {/* Sub-tabs: All, Money In, Money Out */}
+          {/* Sub-tabs */}
           <Flex
             justify="space-between"
             align="center"
@@ -203,6 +196,7 @@ const TransactionHistory = () => {
                   fontWeight={activeSubTab === subTab ? "semibold" : "normal"}
                   color={activeSubTab === subTab ? "black" : "gray.500"}
                   pb={2}
+                  px={4}
                   onClick={() => {
                     setActiveSubTab(subTab);
                     setCurrentPage(1);
@@ -211,6 +205,7 @@ const TransactionHistory = () => {
                   {subTab}
                   {activeSubTab === subTab && (
                     <Box
+
                       position="absolute"
                       bottom="-2px"
                       left="0"
@@ -224,38 +219,38 @@ const TransactionHistory = () => {
               ))}
             </HStack>
 
-            {/* Status Filter */}
+            {/* Status Filter using custom select */}
             <HStack spacing={2}>
               <Text fontSize="sm" color="gray.500">
                 Status:
               </Text>
-              {/* <Box position="relative" width="120px">
-                <Select
-                  pl="2rem"
+              <Box position="relative" width="120px">
+                <SelectRoot
                   value={statusFilter}
-                  onChange={(e) => {
-                    setStatusFilter(e.target.value);
+                  onValueChange={(val) => {
+                    setStatusFilter(val);
                     setCurrentPage(1);
                   }}
-                  border="1px solid"
-                  borderColor="gray.300"
-                  borderRadius="md"
+                  collection={statusCollection}
                 >
-                  <option value="All">All</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Completed">Completed</option>
-                  <option value="Cancelled">Cancelled</option>
-                </Select>
-                <Box
-                  position="absolute"
-                  right="0.5rem"
-                  top="50%"
-                  transform="translateY(-50%)"
-                  pointerEvents="none"
-                >
-                  <ChevronDown size={16} color="#718096" />
-                </Box>
-              </Box> */}
+                  <SelectTrigger
+                    border="1px solid"
+                    borderColor="gray.300"
+                    borderRadius="md"
+                    pl="2rem"
+                    width="100%"
+                  >
+                    <SelectValueText placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {statusCollection.items.map((item) => (
+                      <SelectItem item={item} key={item.value}>
+                        <SelectValueText>{item.label}</SelectValueText>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </SelectRoot>
+              </Box>
             </HStack>
           </Flex>
 
@@ -317,7 +312,6 @@ const TransactionHistory = () => {
                       textAlign="right"
                       color={txn.amount < 0 ? "red.500" : "green.500"}
                       fontWeight="medium"
-                      
                     >
                       {txn.amount < 0 ? "-" : "+"}$
                       {Math.abs(txn.amount).toLocaleString(undefined, {
@@ -326,7 +320,15 @@ const TransactionHistory = () => {
                       })}
                     </Box>
                     <Box as="td" py={3} px={2} fontSize="sm">
-                      <Text color={getStatusColor(txn.status)}>
+                      <Text color={
+                        txn.status === "Completed"
+                          ? "green.500"
+                          : txn.status === "Pending"
+                            ? "yellow.500"
+                            : txn.status === "Cancelled"
+                              ? "red.500"
+                              : "gray.500"
+                      }>
                         {txn.status}
                       </Text>
                     </Box>
@@ -349,7 +351,7 @@ const TransactionHistory = () => {
             <Text fontSize="sm" color="gray.800">
               Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, totalEntries)} of {totalEntries} entries
             </Text>
-            <Flex align="center" >
+            <Flex align="center">
               <IconButton
                 icon={<ChevronLeft color="gray.800" size={16} />}
                 variant="outline"
@@ -358,13 +360,12 @@ const TransactionHistory = () => {
                 isDisabled={currentPage === 1}
                 onClick={() => handlePageChange(currentPage - 1)}
                 aria-label="Previous page"
-                
               />
-              <Text mx={2} fontSize="sm"  color="gray.800">
+              <Text mx={2} fontSize="sm" color="gray.800">
                 Page {currentPage} of {totalPages}
               </Text>
               <IconButton
-                icon={<ChevronRight color="gray.800" size={16} />}
+                icon={<ChevronRight size={16} color="gray.800" />}
                 variant="outline"
                 size="sm"
                 ml={2}

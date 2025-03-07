@@ -1,6 +1,5 @@
 import {
   Box,
-  Divider,
   Text,
   Stack,
   CloseButton,
@@ -9,7 +8,7 @@ import {
   CheckboxGroup,
   Image,
   Button,
-  useBreakpointValue
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { CheckboxCard } from "../ui/checkbox-card";
 
@@ -42,48 +41,62 @@ const items = [
   },
 ];
 
-const PaymentType = () => {
+const PaymentType = ({ step, setStep }) => {
   // Responsive values for different screen sizes
-  const headerFontSize = useBreakpointValue({ base: "24px", md: "28px", lg: "32px" });
+  const headerFontSize = useBreakpointValue({
+    base: "24px",
+    md: "28px",
+    lg: "32px",
+  });
   const cardWidth = useBreakpointValue({ base: "100%", sm: "270px" });
   const cardHeight = useBreakpointValue({ base: "auto", sm: "319px" });
   const buttonWidth = useBreakpointValue({ base: "90%", sm: "282px" });
-  const closeButtonPosition = useBreakpointValue({ base: "20px", md: "41.54px" });
+  const closeButtonPosition = useBreakpointValue({
+    base: "20px",
+    md: "41.54px",
+  });
   const containerPadding = useBreakpointValue({ base: "4", md: "6" });
   const cardDirection = useBreakpointValue({ base: "column", md: "row" });
   const headerMargin = useBreakpointValue({ base: "80px", md: "100px" });
   const cardSpacing = useBreakpointValue({ base: "3", md: "4" });
 
   return (
-    <Box 
-      w="100%" 
-      minH="100vh" 
-      bg="gray.100" 
-      color="gray.600" 
+    <Box
+      w="100%"
+      bg="gray.100"
+      color="gray.600"
       position="relative"
       px={containerPadding}
-      pb={6}
       overflowX="hidden"
     >
       <Stack spacing={0} w="100%">
         {/* Close Button */}
-        <Box position="absolute" left={closeButtonPosition} top="20px" zIndex="1">
-          <CloseButton size="lg" />
-        </Box>
+        {/* <Box
+          position="absolute"
+          left={closeButtonPosition}
+          top="20px"
+          zIndex="1"
+        >
+          <CloseButton size="lg" color="black" _hover={{ bg: "white" }} />
+        </Box> */}
 
         {/* Divider */}
         <Box w="100%">
-          <Divider
+          {/* <Divider
             width="100%"
             position="relative"
             top="55px"
             borderColor="#DDDDDD"
             borderWidth="1px"
-          />
+          /> */}
         </Box>
 
         {/* Payment Text */}
-        <Box mt={headerMargin} textAlign="center" px={2}>
+        <Box
+          // mt={headerMargin}
+          textAlign="center"
+          px={2}
+        >
           <Text
             color="#333333"
             fontSize={headerFontSize}
@@ -97,10 +110,10 @@ const PaymentType = () => {
 
         {/* Checkbox Group Centered */}
         <CheckboxGroup defaultValue={["next"]}>
-          <Flex 
-            gap={cardSpacing} 
-            flexWrap="wrap" 
-            justify="center" 
+          <Flex
+            gap={cardSpacing}
+            flexWrap="wrap"
+            justify="center"
             mt="30px"
             direction={cardDirection}
             w="100%"
@@ -133,17 +146,24 @@ const PaymentType = () => {
 
                 {/* Card Content with Image */}
                 <VStack spacing={3} mt={6} mb={2} align="center" w="100%">
-                  <Image 
-                    src={item.imgSrc} 
-                    alt={item.title} 
-                    w="80px" 
+                  <Image
+                    src={item.imgSrc}
+                    alt={item.title}
+                    w="80px"
                     h="80px"
-                    objectFit="contain" 
+                    objectFit="contain"
                   />
-                  <Text fontSize={{ base: "18px", md: "20px" }} fontWeight="bold">
+                  <Text
+                    fontSize={{ base: "18px", md: "20px" }}
+                    fontWeight="bold"
+                  >
                     {item.title}
                   </Text>
-                  <Text fontSize={{ base: "13px", md: "14px" }} color="gray.600" textAlign="center">
+                  <Text
+                    fontSize={{ base: "13px", md: "14px" }}
+                    color="gray.600"
+                    textAlign="center"
+                  >
                     {item.description}
                   </Text>
                 </VStack>
@@ -172,6 +192,7 @@ const PaymentType = () => {
             textTransform="capitalize"
             _hover={{ bg: "#25662C" }}
             _active={{ bg: "#1E4429" }}
+            onClick={() => setStep(step + 1)}
           >
             Proceed to generate link
           </Button>

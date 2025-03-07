@@ -1,5 +1,3 @@
-
-
 const countries = [
   {
     code: "NG",

@@ -7,18 +7,25 @@ import {
   Button,
   Flex,
   Image,
-  Select,
   Grid,
-  Divider,
   IconButton,
+  createListCollection,
 } from "@chakra-ui/react";
+import {
+  SelectRoot,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValueText,
+} from "../ui/select";
 import { CheckCircle, X } from "lucide-react";
 import countries from "./countries";
-
 import FlutterwaveLogo from "./makePaymentAssets/flutterwave_logo.png";
 import MonifyLogo from "./makePaymentAssets/monnify_logo.png";
 import PaypalLogo from "./makePaymentAssets/paypal_logo.png";
 import QuicktellerLogo from "./makePaymentAssets/quickteller_logo.png";
+import { Avatar } from "../ui/avatar";
 import Check from "./makePaymentAssets/check.png";
 
 const MakePaymentPage = ({ onClose }) => {
@@ -30,12 +37,14 @@ const MakePaymentPage = ({ onClose }) => {
     setSelectedPaymentMethod(method);
   };
 
-   const paymentMethods = [
-     { src: FlutterwaveLogo, name: "Flutterwave" },
-     { src: PaypalLogo, name: "PayPal" },
-     { src: QuicktellerLogo, name: "Quickteller" },
-     { src: MonifyLogo, name: "Monify" },
-   ];
+  const paymentMethods = [
+    { src: FlutterwaveLogo, name: "Flutterwave" },
+    { src: PaypalLogo, name: "PayPal" },
+    { src: QuicktellerLogo, name: "Quickteller" },
+    { src: MonifyLogo, name: "Monify" },
+  ];
+
+  const countryList = createListCollection({ items: countries });
 
   return (
     <Box w="100vw" h="100vh" bg="gray.50">
@@ -59,7 +68,7 @@ const MakePaymentPage = ({ onClose }) => {
           bg="white"
           color="black"
           _hover={{ bg: "gray.100" }}
-          onClick={onClose}
+          // onClick={onClose}
           aria-label="Close modal"
           border="3px solid black"
         />
@@ -119,23 +128,42 @@ const MakePaymentPage = ({ onClose }) => {
                 Amount
               </Text>
               <Grid templateColumns="repeat(4, 1fr)" gap={2}>
-                <Select defaultValue="NGN" size="sm" bg="gray.50">
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.currency}>
-                      {country.currency}{" "}
-                      <Image
-                        src={country.flag}
-                        alt={country.name}
-                        width="16px"
-                        height="12px"
-                      />
-                    </option>
-                  ))}
-                </Select>
+                <SelectRoot
+                  collection={countryList}
+                  defaultValue="NGN"
+                  size="sm"
+                  bg="gray.50"
+                >
+                  <SelectTrigger>
+                    <SelectValueText placeholder="NGN" />
+                  </SelectTrigger>
+                  <SelectContent bg="white" color="#575757">
+                    {countryList.items.map((country) => (
+                      <SelectItem
+                        item={country}
+                        key={country.code}
+                        value={country.currency}
+                      >
+                        {country.currency}
+                        <Image
+                          src={country.flag}
+                          alt={country.name}
+                          width="16px"
+                          height="12px"
+                        />
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </SelectRoot>
                 <Input placeholder="0.00" size="sm" bg="gray.50" />
-                <Select defaultValue="NG" size="sm" bg="gray.50">
-                  <option value="NG">NG</option>
-                </Select>
+                <SelectRoot defaultValue="NG" size="sm" bg="gray.50">
+                  <SelectTrigger>
+                    <SelectValueText placeholder="NG" />
+                  </SelectTrigger>
+                  <SelectContent bg="white" color="#575757">
+                    <SelectItem item="NG">NG</SelectItem>
+                  </SelectContent>
+                </SelectRoot>
                 <Input placeholder="0.00" size="sm" bg="gray.50" />
               </Grid>
             </Box>
@@ -188,7 +216,7 @@ const MakePaymentPage = ({ onClose }) => {
               Pay NGN 25,000
             </Button>
 
-            <Divider />
+            {/* <Divider /> */}
           </VStack>
         </Box>
       </Flex>

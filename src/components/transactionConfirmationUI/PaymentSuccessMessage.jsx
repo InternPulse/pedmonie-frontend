@@ -1,22 +1,22 @@
 import React from "react";
-import { 
-  Box, 
-  VStack, 
-  Text, 
-  Button, 
-  Flex, 
+import {
+  Box,
+  VStack,
+  Text,
+  Button,
+  Flex,
   IconButton,
   useBreakpointValue,
-  Container
+  Container,
 } from "@chakra-ui/react";
 import { X } from "lucide-react";
 import successImage from "./successMessageAssets/success.jpg";
 
-const PaymentSuccessMessage = ({ onClose }) => {
+const PaymentSuccessMessage = ({ onClose, step, setStep }) => {
   // Responsive values
-  const closeButtonPosition = useBreakpointValue({ 
-    base: { right: "120px", top: "200px" }, 
-    md: { right: "calc(50% - 200px)", top: "160px" } 
+  const closeButtonPosition = useBreakpointValue({
+    base: { right: "120px", top: "200px" },
+    md: { right: "calc(50% - 200px)", top: "160px" },
   });
   const closeButtonSize = useBreakpointValue({ base: 12, md: 20 });
   const containerWidth = useBreakpointValue({ base: "95%", md: "md" });
@@ -24,25 +24,19 @@ const PaymentSuccessMessage = ({ onClose }) => {
   const buttonWidth = useBreakpointValue({ base: "100%", md: "200px" });
 
   return (
-    <Box 
-      w="100%" 
-      minH="100vh" 
-      bg="white" 
-      overflow="hidden" 
+    <Box
+      w="100%"
+      p={4}
+      mt={12}
+      bg="gray.100"
+      overflow="hidden"
       position="relative"
       display="flex"
-      alignItems="center"
-      justifyContent="center"
-      p={4}
     >
-    
-
-      <Container maxW={containerWidth} p={0}>
-
-          {/* Close button */}
-      <IconButton
+      {/* Close button */}
+      {/* <IconButton
+        top={0}
         size={closeButtonSize}
-        icon={<X size={closeButtonSize} />}
         position="absolute"
         zIndex={2}
         rounded="full"
@@ -53,32 +47,25 @@ const PaymentSuccessMessage = ({ onClose }) => {
         aria-label="Close modal"
         border="2px solid black"
         {...closeButtonPosition}
-      />
-
-        <Flex 
-          direction="column" 
-          align="center" 
-          justify="center" 
-          w="100%"
-        >
-          <Box 
-            w="100%" 
-            maxW="md" 
+      >
+        <X size={closeButtonSize} />
+      </IconButton> */}
+      <Container maxW={containerWidth}>
+        <Flex direction="column" align="center" justify="center" w="100%">
+          <Box
+            w="100%"
+            maxW="md"
             bg="white"
             borderRadius="xl"
             boxShadow="md"
             p={{ base: 4, md: 6 }}
           >
-            <VStack
-              spacing={6}
-              align="center"
-              w="100%"
-            >
+            <VStack spacing={6} align="center" w="100%">
               {/* Success Image */}
-              <Box 
-                w={imageSize} 
-                h={imageSize} 
-                borderRadius="full" 
+              <Box
+                w={imageSize}
+                h={imageSize}
+                borderRadius="full"
                 overflow="hidden"
               >
                 <img
@@ -101,10 +88,10 @@ const PaymentSuccessMessage = ({ onClose }) => {
                 >
                   Payment link created!
                 </Text>
-                <Text 
-                  fontSize={{ base: "xs", md: "sm" }} 
-                  color="#666" 
-                  maxW="sm" 
+                <Text
+                  fontSize={{ base: "xs", md: "sm" }}
+                  color="#666"
+                  maxW="sm"
                   lineHeight="1.5"
                   px={2}
                 >
@@ -123,6 +110,7 @@ const PaymentSuccessMessage = ({ onClose }) => {
                 fontSize={{ base: "xs", md: "sm" }}
                 fontWeight="500"
                 mt={2}
+                onClick={() => setStep(step + 1)}
               >
                 Get Payment Link
               </Button>

@@ -4,18 +4,9 @@ import {
   Flex,
   Text,
   Button,
-  VStack,
   IconButton,
   Input,
-  InputGroup,
-  InputLeftElement,
   Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Select,
 } from "@chakra-ui/react";
 import {
   ChevronDownIcon,
@@ -26,9 +17,20 @@ import {
   SearchIcon,
   CopyIcon,
 } from "@chakra-ui/icons";
+import { InputGroup } from "../ui/input-group";
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValueText,
+} from "../ui/select";
+import PaymentOverlay from "./PaymentOverlay";
+import { LuSearch } from "react-icons/lu";
 
 const Payment = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("Newest");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -215,31 +217,27 @@ const Payment = () => {
             >
               <Box
                 w={{ base: "100%", md: "216px" }}
-                h="50px"
+                h="40px"
                 bg="white"
                 border="1px solid #CCCCCC"
                 borderRadius="8px"
                 px="4"
-                py="2"
                 overflow="hidden"
               >
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none">
-                    <SearchIcon color="#292D32" />
-                  </InputLeftElement>
+                <InputGroup startElement={<LuSearch color="#292D32" />}>
                   <Input
                     placeholder="Search"
-                    fontSize="12px"
+                    fontSize="14px"
                     fontWeight="400"
                     fontFamily="Inter"
                     color="#A7A7A7"
                     border="none"
-                    _focus={{ boxShadow: "none" }}
+                    // _focus={{ boxShadow: "none" }}
                   />
                 </InputGroup>
               </Box>
               <Flex
-                h="50px"
+                h="40px"
                 w={{ base: "100%", md: "180px" }}
                 bg="white"
                 border="1px solid #CCCCCC"
@@ -258,21 +256,24 @@ const Payment = () => {
                 >
                   Sort by:
                 </Text>
-                <Select
+                <SelectRoot
                   fontSize="12px"
                   fontWeight="600"
                   color="#3D3D3D"
                   icon={<ChevronDownIcon />}
-                  border="none"
                   _focus={{ boxShadow: "none" }}
                 >
-                  <option value="newest">Newest</option>
-                  <option value="oldest">Oldest</option>
-                </Select>
+                  <SelectTrigger>
+                    <SelectValueText color="#3D3D3D" placeholder="Newest" />
+                  </SelectTrigger>
+                  <SelectContent bg="white" color="#575757">
+                    <SelectItem item="Newest">Newest</SelectItem>
+                    <SelectItem item="Oldest">Oldest</SelectItem>
+                  </SelectContent>
+                </SelectRoot>
               </Flex>
             </Flex>
           </Flex>
-
           <Box borderRadius="md" overflow="hidden" width="100%" align="center">
             {/* Top buttons */}
             <Box align="right">
@@ -280,87 +281,63 @@ const Payment = () => {
                 <Text fontSize="14px" color="#637381">
                   {paymentData.length} Payment links
                 </Text>
-
                 <Flex gap={4}>
-                  <Button
-                    size="sm"
-                    rightIcon={<ChevronDownIcon />}
-                    variant="outline"
-                    bg="#919191"
-                    color="white"
-                    px={4}
-                    py={2}
-                    borderRadius="0"
-                  >
-                    All Payment Link
-                  </Button>
-                  <Button
-                    size="sm"
-                    rightIcon={<DownloadIcon />}
-                    variant="outline"
-                    bg="#919191"
-                    color="white"
-                    px={4}
-                    py={2}
-                    borderRadius="0"
-                  >
-                    Download Link
-                  </Button>
-                  <Button
-                    size="sm"
-                    rightIcon={<AddIcon />}
-                    colorScheme="green"
-                    px={4}
-                    py={2}
-                    borderRadius="0"
-                  >
-                    New Payment Link
-                  </Button>
+                  <PaymentOverlay />
                 </Flex>
               </Flex>
             </Box>
-
             {/* Table */}
-            <Table variant="simple" size="sm">
-              <Thead bg="#EAEFEB">
-                <Tr>
-                  <Th color="#424141">Page name</Th>
-                  <Th color="#424141">Amount</Th>
-                  <Th color="#424141">Link type</Th>
-                  <Th color="#424141">Payment link</Th>
-                  <Th color="#424141">Date created</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
+            <Table.Root variant="simple" size="sm">
+              <Table.Header bg="#EAEFEB">
+                <Table.Row>
+                  <Table.ColumnHeader color="#424141">
+                    Page name
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader color="#424141">
+                    Amount
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader color="#424141">
+                    Link type
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader color="#424141">
+                    Payment link
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader color="#424141">
+                    Date created
+                  </Table.ColumnHeader>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
                 {currentItems.map((item, index) => (
-                  <Tr key={index}>
-                    <Td color="#424141">{item.pageName}</Td>
-                    <Td color="#424141">{item.amount}</Td>
-                    <Td color="#424141">{item.linkType}</Td>
-                    <Td color="#424141">
+                  <Table.Row key={index}>
+                    <Table.Cell color="#424141">{item.pageName}</Table.Cell>
+                    <Table.Cell color="#424141">{item.amount}</Table.Cell>
+                    <Table.Cell color="#424141">{item.linkType}</Table.Cell>
+                    <Table.Cell color="#424141">
                       <Flex align="center">
                         <Button variant="link" color="#F5C724" size="sm">
                           Copy link
                         </Button>
                         <IconButton
-                          icon={<CopyIcon />}
                           size="sm"
                           variant="outline"
                           color="#424141"
                           aria-label="Copy link"
+                          border="none"
                           onClick={() => {
                             navigator.clipboard.writeText(item.linkType); // Copy linkType as a placeholder
                           }}
-                        />
+                        >
+                          <CopyIcon />
+                        </IconButton>
                       </Flex>
-                    </Td>
-                    <Td color="#424141">{item.dateCreated}</Td>
-                  </Tr>
+                    </Table.Cell>
+                    <Table.Cell color="#424141">{item.dateCreated}</Table.Cell>
+                  </Table.Row>
                 ))}
-              </Tbody>
-            </Table>
+              </Table.Body>
+            </Table.Root>
           </Box>
-
           {/* Pagination Carousel */}
           <Flex align="right" justify="space-between" mt={4} gap={1}>
             <Box>
@@ -375,18 +352,19 @@ const Payment = () => {
                 Showing {startItem} to {endItem} of {paymentData.length} entries
               </Text>
             </Box>
-            <Flex>
+            <Flex alignItems="center" gap={2}>
               <IconButton
                 size="sm"
                 bg="#F5F5F5"
                 border="1px solid #EEEEEE"
                 borderRadius="4px"
-                icon={<ChevronLeftIcon />}
                 variant="outline"
                 onClick={() => setCurrentPage(1)} // Navigate to first page
                 isDisabled={currentPage === 1}
                 color="#292D32"
-              />
+              >
+                <ChevronLeftIcon />
+              </IconButton>
               <Flex gap={2}>
                 {[...Array(totalPages)].map((_, index) => (
                   <Button
@@ -399,7 +377,7 @@ const Payment = () => {
                     fontSize="12px"
                     fontWeight="500"
                     variant={currentPage === index + 1 ? "solid" : "outline"}
-                    colorScheme={currentPage === index + 1 ? "green" : "gray"}
+                    bg={currentPage === index + 1 ? "green" : "white"}
                     onClick={() => setCurrentPage(index + 1)}
                     color="#424141"
                   >
@@ -424,14 +402,17 @@ const Payment = () => {
               </Button>
               <IconButton
                 size="sm"
-                icon={<ChevronRightIcon />}
                 variant="outline"
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 isDisabled={currentPage === totalPages}
                 color="#292D32"
-              />
+                _hover={{ bg: "green" }}
+                _
+              >
+                <ChevronRightIcon />
+              </IconButton>
             </Flex>
           </Flex>
         </Box>

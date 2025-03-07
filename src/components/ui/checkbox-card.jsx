@@ -14,7 +14,12 @@ export const CheckboxCard = React.forwardRef(function CheckboxCard(props, ref) {
       _hover={{ bg: "gray.50" }}
       {...rest}
     >
-      <Checkbox ref={ref} {...inputProps} />
+      <Checkbox.Root ref={ref} {...inputProps}>
+        <Checkbox.HiddenInput />
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+      </Checkbox.Root>
       <VStack align="start" ml={3}>
         {label && <Text fontWeight="bold">{label}</Text>}
         {description && <Text fontSize="sm">{description}</Text>}

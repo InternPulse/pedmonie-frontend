@@ -13,7 +13,7 @@ import {
 import { CheckboxCard } from "../ui/checkbox-card";
 
 // Import images directly
-import singlePaymentImg from "../transactionConfirmationUI/paymentAssets/payment4.png";
+import singlePaymentImg from "../transactionConfirmationUI/paymentAssets/Payment4.png";
 import recurringPaymentImg from "../transactionConfirmationUI/paymentAssets/Link4.png";
 import paymentLinkImg from "../transactionConfirmationUI/paymentAssets/Link5.png";
 

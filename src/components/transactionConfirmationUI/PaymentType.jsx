@@ -13,9 +13,9 @@ import {
 import { CheckboxCard } from "../ui/checkbox-card";
 
 // Import images directly
-import singlePaymentImg from "../transactionConfirmationUi/paymentAssets/payment4.png";
-import recurringPaymentImg from "../transactionConfirmationUi/paymentAssets/Link4.png";
-import paymentLinkImg from "../transactionConfirmationUi/paymentAssets/Link5.png";
+import singlePaymentImg from "../transactionConfirmationUI/paymentAssets/payment4.png";
+import recurringPaymentImg from "../transactionConfirmationUI/paymentAssets/Link4.png";
+import paymentLinkImg from "../transactionConfirmationUI/paymentAssets/Link5.png";
 
 const items = [
   {

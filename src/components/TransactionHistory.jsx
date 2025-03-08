@@ -166,26 +166,27 @@ const TransactionHistory = () => {
         </Text>
 
         <HStack spacing={4}>
-          <InputGroup>
-            <InputLeftElement pointerEvents='none' h='full' p="14px">
-              <Search size={16} color="#718096" />
-            </InputLeftElement>
-            <Input
-              type="search"
-              placeholder="Search transactions"
-              borderRadius="lg"
-              _focus={{ borderColor: "blue.500" }}
-              bg="gray.300"
-              color="gray.800"
-              pl="40px"
-              pr="10px"
-              py="10px"
-              _placeholder={{ color: 'gray.500' }}
-              borderColor="gray.300"
-            />
-          </InputGroup>
-          {/* Sort Select */}
+        <InputGroup bg="gray.300" border="1px solid" borderColor="black" width="full">
+  <InputLeftElement pointerEvents='none' h='full' p="12px">
+    <Search size={16} color="#718096" />
+  </InputLeftElement>
+  <Input
+    type="search"
+    placeholder="Search transactions"
+    borderRadius="lg"
+    _focus={{ borderColor: "blue.500" }}
+    bg="inherit"  
+    color="black"
+    pl="40px"
+    pr="10px"
+    py="7px"
+    _placeholder={{ color: 'gray.500' }}
+    borderColor="blue.500"
+  />
+</InputGroup>
 
+
+          {/* Sort Select */}
           <Box position="relative" width="120px">
             <SelectRoot
               value={statusFilter}

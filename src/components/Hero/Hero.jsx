@@ -10,7 +10,7 @@ function Hero() {
       w="full"
       display="flex"
       flexDirection={{ base: "column-reverse", xl: "row" }}
-      pt={20}
+      pt={{ base: "40px", xl: "80px" }}
       gapX="84px"
       px={{ base: "15px", md: "43px", xl: "95px" }}
       // bgImage={{ base: "none", md: "none", xl: `url(${smallCircles})` }}
@@ -40,6 +40,7 @@ function Hero() {
             spaceX="20px"
             alignItems="center"
             rounded="full"
+            hideBelow="md"
           >
             <Image src={globe} alt="globe-icon" w="24px" />
             <Text color="#292D32" fontWeight="semibold">

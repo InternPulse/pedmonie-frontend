@@ -1,11 +1,15 @@
 import { Box, Text } from '@chakra-ui/react'
-import Customers from './components/Customers/Customers'
+// import Customers from './components/Customers/Customers'
+import TestimonialCarousel from './components/Customers/TestimonialCarousel'
+// import Cards from './components/Customers/Cards'
 const App = () => {
   return (
     <>
       <Box>
         <Text>Hello</Text>
-        <Customers/>
+        {/* <Customers/> */}
+        {/* <Cards/> */}
+        <TestimonialCarousel/>
       </Box>
     </>
   )

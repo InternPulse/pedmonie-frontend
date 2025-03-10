@@ -5,7 +5,7 @@ import Ellipse from '../../assets/images/Ellipse 2046.svg'
 
 function Cards() {
   return (
-    <Box width='517px' height='400px'  boxShadow="0px 10px 10px -5px rgba(0, 0, 0, 0.2)" backgroundColor='white' borderRadius='12px' pt='10' pl='7'>
+    <Box width='517px' height='400px'  boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)" backgroundColor='white' borderRadius='12px' pt='10' pl='7'>
         <VStack spacing={3} align="start">
         <Icon as={FaQuoteLeft} color="green.400" boxSize={6} />
         <Text fontSize="24px" color="black" pt='2' fontWeight='medium'>Pedmonie made it easier to collect</Text>

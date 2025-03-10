@@ -10,7 +10,7 @@ import AnalyticsCards from "../components/AnalyticsCards";
 const AnalyticsCard2 = () => {
   return (
     <Box bg="white" minW="300px">
-      {/* <Flex justify="space-between" wrap="wrap" mt="100px" direction={{ base: "column", xl: "row" }} gap={{ base: "30px", md: "50px" }}>
+      <Flex justify="space-between" wrap="wrap" mt="100px" direction={{ base: "column", xl: "row" }} gap={{ base: "30px", md: "50px" }}>
         <TotalRevenue />
         <TotalRevenueBarChart />
       </Flex>
@@ -28,7 +28,7 @@ const AnalyticsCard2 = () => {
           </Text>
           <Text fontSize="2xl" fontWeight="bold">16.5k</Text>
           <UsersPerMin />
-          <SalesByCountryData />
+          {/* <SalesByCountryData /> */}
         </Container>
         <Box
           border="1px solid #EFF0F6"
@@ -50,7 +50,7 @@ const AnalyticsCard2 = () => {
             <Text>Kathryn Murphy</Text>
           </VStack>
         </Box>
-      </Flex> */}
+      </Flex>
 
       <TransactionStatus/>
     </Box>

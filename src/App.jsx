@@ -12,6 +12,7 @@ import BankVerification from "./auth-components/BankVerification";
 import IdVerification from "./auth-components/IdVerification";
 import BusinessRegNum from "./auth-components/BusinessRegNum";
 import Payment from "./components/transactionConfirmationUI/Payment";
+import LogoutDialog from "./components/logout";
 // import "./index.css";
 
 function App() {
@@ -41,6 +42,10 @@ function App() {
           <Route path="/create-payment-link" element={<CreatePaymentLink />} />
           <Route path="/payment-link" element={<PaymentLink />} /> */}
           <Route path="/payments" element={<Payment />} />
+
+
+          {/* Logout Dialog */}
+          <Route path="/logout" element={<LogoutDialog />} />
         </Route>
       </Routes>
     </Suspense>

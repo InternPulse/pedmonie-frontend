@@ -7,7 +7,7 @@ function CustomLink({ children, to, icon, navGreen, navGrey, ...props }) {
   return (
     <ChakraLink
       w="full"
-      as={ReactRouter}
+      as={children !== "Logout" && ReactRouter}
       to={to}
       bg={isActive === to ? navGreen : ""}
       textDecoration="none"

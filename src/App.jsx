@@ -1,27 +1,26 @@
-import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router'
-import MainLayout from './components/Layout/MainLayout'
-import Loading from './components/Loading'
-import AuthPage from './pages/AuthPage'
-import Signup from './SignUp/SignUp'
-import SelectPayment from './payment-components/SelectPayment'
-import CreatePaymentLink from './payment-components/CreatePaymentLink'
-import PaymentLink from './payment-components/PaymentLink'
-import Payments from './pages/Payments'
-import BankVerification from './auth-components/BankVerification'
-import IdVerification from './auth-components/IdVerification'
-import BusinessRegNum from './auth-components/BusinessRegNum'
-import Payment from './components/transactionConfirmationUI/Payment'
-import Login from './LoginUser/Login'
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router";
+import MainLayout from "./components/Layout/MainLayout";
+import Loading from "./components/Loading";
+import AuthPage from "./pages/AuthPage";
+import Signup from "./SignUp/SignUp";
+import SelectPayment from "./payment-components/SelectPayment";
+import CreatePaymentLink from "./payment-components/CreatePaymentLink";
+import PaymentLink from "./payment-components/PaymentLink";
+import Payments from "./pages/Payments";
+import BankVerification from "./auth-components/BankVerification";
+import IdVerification from "./auth-components/IdVerification";
+import BusinessRegNum from "./auth-components/BusinessRegNum";
+import Login from "./LoginUser/Login";
 // import "./index.css";
 
 function App() {
-  const Home = lazy(() => import('./pages/Home'))
-  const Analytics = lazy(() => import('./pages/analytics'))
+  const Home = lazy(() => import("./pages/Home"));
+  const Analytics = lazy(() => import("./pages/analytics"));
   const Payment = lazy(() =>
-    import('./components/transactionConfirmationUI/Payment')
-  )
-  const Support = lazy(() => import('./pages/support/Support'))
+    import("./components/transactionConfirmationUI/Payment")
+  );
+  const Support = lazy(() => import("./pages/support/Support"));
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -49,6 +48,6 @@ function App() {
         </Route>
       </Routes>
     </Suspense>
-  )
+  );
 }
-export default App
+export default App;

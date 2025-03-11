@@ -2,9 +2,9 @@ import { Box, Heading, HStack, Icon, Text } from "@chakra-ui/react";
 import CustomLink from "./CustomLink";
 import pedmonieLogo from "/src/assets/pedmonieLogo.svg?react";
 import SettingsIcon from "/src/assets/setting-2.svg?react";
-import LogoutIcon from "/src/assets/logout.svg?react";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Nav from "./Nav";
+import LogoutDialog from "../Logout";
 
 function Sidebar({ closeSidebar }) {
   return (
@@ -96,17 +96,7 @@ function Sidebar({ closeSidebar }) {
               Settings
             </CustomLink>
           </Box>
-          <CustomLink
-            to="/logout"
-            px="5"
-            py="3"
-            borderRadius="8px"
-            navGreen="#2E5C38"
-            navGrey="#5F5C5C"
-            icon={LogoutIcon}
-          >
-            Logout
-          </CustomLink>
+          <LogoutDialog />
         </Box>
       </Box>
     </Box>

@@ -1,10 +1,14 @@
-import { Flex, Heading } from "@chakra-ui/react"
+import OverviewSectionOne from "../../components/superadmin-components/main/overview/OverviewSectionOne"
+import OverviewSectionThree from "../../components/superadmin-components/main/overview/OverviewSectionThree"
+import OverviewSectionTwo from "../../components/superadmin-components/main/overview/OverviewSectionTwo"
 
 const Overview = () => {
   return (
-    <Flex bg="red.300">
-      <Heading> I guess it's overview page</Heading>
-    </Flex>
+    <>
+       <OverviewSectionOne />
+       <OverviewSectionTwo />
+       <OverviewSectionThree />
+    </>
   )
 }
 

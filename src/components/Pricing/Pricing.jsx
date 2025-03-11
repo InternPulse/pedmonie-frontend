@@ -58,13 +58,15 @@ const Pricing = () => {
             </Switch.Root>
           </Box>
           <Box
+            px="12px"
+            py="12px"
             borderWidth="5px"
             bgColor="#e5f3e8"
-            rounded={10}
+            rounded="20px"
             w={{ base: "65%", xl: "45%", md: "50%", sm: "40%" }}
           >
             <Text
-              color="#00000"
+              color="#000"
               fontSize={{ base: "16px", lg: "xs", md: "10px", sm: "2px" }}
               bgColor="#e5f3e8"
               textAlign={{ base: "center" }}

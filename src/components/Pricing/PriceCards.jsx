@@ -99,6 +99,7 @@ const Cards = () => {
       <Card.Root
         size="lg"
         borderTopColor="rgba(141, 239, 136, 1)"
+        bgColor=" rgba(255, 255, 255, 1)"
         display="flex"
         flexDirection={{ base: "column", md: "row", lg: "row" }}
         gap="5%"
@@ -182,6 +183,7 @@ const Cards = () => {
       <Card.Root
         size="lg"
         borderTopColor="blue"
+        bgColor=" rgba(255, 255, 255, 1)"
         display="flex"
         flexDirection={{ base: "column", md: "row", lg: "row" }}
         gap="5%"

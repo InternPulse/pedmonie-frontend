@@ -14,7 +14,6 @@ import { PasswordInput } from '../components/ui/password-input'
 import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const Demos = () => {

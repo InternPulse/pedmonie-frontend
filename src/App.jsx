@@ -6,6 +6,11 @@ import Transaction from './pages/superadmin/Transaction';
 import Payouts from './pages/superadmin/Payouts';
 import Support from './pages/superadmin/Support';
 import FraudDetection from './pages/superadmin/FraudDetection';
+import Settings from './pages/superadmin/Settings';
+import UserManagement from './components/superadmin-components/main/settings/UserManagement';
+import SystemLogsAndManagement from './components/superadmin-components/main/settings/SystemLogsAndManagement';
+import FraudDetectionSet from './components/superadmin-components/main/settings/FraudDetection';
+import PlatformsConfig from './components/superadmin-components/main/settings/PlatformsConfig';
 
 const App = () => {
  
@@ -20,6 +25,12 @@ const App = () => {
         <Route path='/payouts' element={ <Payouts /> }/>
         <Route path='/support' element={ <Support /> }/>
         <Route path='/fraud-detection' element={ <FraudDetection /> }/>
+
+        <Route path='/settings' element={ <Settings /> }>
+          <Route path='user-management' element={ <UserManagement /> }/>
+          <Route path='system-logs' element={ <SystemLogsAndManagement /> }/>
+          <Route path='fraud-detection-set' element={ <FraudDetectionSet /> }/>
+        </Route>
       </Routes>
     </>
   )

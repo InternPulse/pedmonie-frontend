@@ -6,7 +6,7 @@ import LogoutIcon from "/src/assets/logout.svg?react";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Nav from "./Nav";
 
-function Sidebar({ closeSidebar, setCloseSidebar }) {
+function Sidebar({ closeSidebar }) {
   return (
     <Box
       as="aside"
@@ -57,13 +57,6 @@ function Sidebar({ closeSidebar, setCloseSidebar }) {
                   PEDMONIE
                 </Heading>
               </HStack>
-
-              <Icon
-                as={SidebarLeft}
-                w="32px"
-                cursor="pointer"
-                onClick={() => setCloseSidebar(!closeSidebar)}
-              />
             </Box>
           </HStack>
         </Box>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router";
-import { Box } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 import Sidebar from "../SidebarSection/Sidebar";
+import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Main from "../Main";
 
 export default function MainLayout({ children }) {
@@ -10,6 +11,7 @@ export default function MainLayout({ children }) {
   return (
     <Box
       as="main"
+      position="relative"
       display="flex"
       direction="row"
       bg="#F8F8F8"
@@ -23,6 +25,16 @@ export default function MainLayout({ children }) {
           setCloseSidebar={setCloseSidebar}
         />
       )}
+      <Icon
+        as={SidebarLeft}
+        w="32px"
+        top={closeSidebar ? "34px" : "15px"}
+        left={closeSidebar ? "225px" : "45px"}
+        cursor="pointer"
+        position="fixed"
+        onClick={() => setCloseSidebar(!closeSidebar)}
+        // display={}
+      />
 
       <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>
         <Outlet />

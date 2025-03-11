@@ -4,7 +4,7 @@ import SupportTab from "./Tab";
 
 const Support = () => {
   return (
-    <Box width="full">
+    <Box w="full">
       <Box pt={3} pl={4} pb={3}>
         <FaAlignJustify />
       </Box>

@@ -1,5 +1,5 @@
 import { LuRefreshCw, LuSend } from "react-icons/lu";
-import { InputGroup } from "../components/ui/input-group";
+import { InputGroup } from "../../components/ui/input-group";
 import { Avatar, Box, Flex, Input } from "@chakra-ui/react";
 const SupportChat = () => {
   return (

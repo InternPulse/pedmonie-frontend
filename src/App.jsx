@@ -12,7 +12,6 @@ import BankVerification from "./auth-components/BankVerification";
 import IdVerification from "./auth-components/IdVerification";
 import BusinessRegNum from "./auth-components/BusinessRegNum";
 import Payment from "./components/transactionConfirmationUI/Payment";
-import Support from "./support/Support";
 // import "./index.css";
 
 function App() {
@@ -21,6 +20,7 @@ function App() {
   const Payment = lazy(() =>
     import("./components/transactionConfirmationUI/Payment")
   );
+  const Support = lazy(() => import("./pages/support/Support"));
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -33,9 +33,6 @@ function App() {
         {/* Registration routing */}
         <Route path="/sign-up" element={<Signup />} />
 
-        {/* Support routing */}
-        <Route path="/support" element={<Support />} />
-
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="/analytics" element={<Analytics />} />
@@ -45,6 +42,7 @@ function App() {
           <Route path="/create-payment-link" element={<CreatePaymentLink />} />
           <Route path="/payment-link" element={<PaymentLink />} /> */}
           <Route path="/payments" element={<Payment />} />
+          <Route path="/support" element={<Support />} />
         </Route>
       </Routes>
     </Suspense>

@@ -191,7 +191,7 @@ const Payment = () => {
             "&::-webkit-scrollbar": {
               width: "2px",
               display: "block",
-            }, // Chrome, Safari
+            },
             "&::-webkit-scrollbar-track": {
               width: "2px",
               background: "gray.200",

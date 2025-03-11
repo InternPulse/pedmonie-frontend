@@ -14,7 +14,7 @@ function Home() {
       <Hero />
       <PartnersStat />
       <Features />
-      <Steps />
+      {/* <Steps /> */}
       <Customers />
       <Pricing />
       <ApiDocs />

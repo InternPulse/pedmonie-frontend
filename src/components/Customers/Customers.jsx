@@ -6,9 +6,14 @@ const Customers = () => {
     <>
       <Box>
         <Steps />
-        <VStack alignItems="center" mt="36px">
-          <Text textStyle="3xl">Words of praises from others</Text>
-          <Text textStyle="3xl">about our presence</Text>
+        <VStack
+          alignItems="center"
+          mt="36px"
+          color="black"
+          fontWeight="semibold"
+        >
+          <Text fontSize="48px">Words of praises from others</Text>
+          <Text fontSize="48px">about our presence</Text>
         </VStack>
         {/* <Customers/> */}
         {/* <Cards/> */}

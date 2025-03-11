@@ -9,11 +9,13 @@ import {
 } from '@chakra-ui/react'
 import { InputGroup } from '../components/ui/input-group'
 import { LuLock, LuMail, LuUser, LuPhone } from 'react-icons/lu'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { PasswordInput } from '../components/ui/password-input'
 import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Demos = () => {
   const navigate = useNavigate()
@@ -31,14 +33,14 @@ const Demos = () => {
   })
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setFormData({
-      ...formData,
+    const { name, value, type, checked } = e.target.value
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: type === 'checkbox' ? checked : value,
-    })
+    }))
   }
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = useCallback(async () => {
     if (!formData.agreed) {
       alert('You must agree to the terms and conditions.')
       return
@@ -49,12 +51,34 @@ const Demos = () => {
       return
     }
 
-    // Store in localStorage
-    localStorage.setItem('userData', JSON.stringify(formData))
+    try {
+      const response = await django.post('/login', {
+        email,
+        password,
+      })
+      console.log(response.data)
 
-    // Navigate to the authentication page
-    navigate('/verification')
-  }
+      const { access_token } = response.data.access_token
+
+      console.log(response.data.access_token)
+
+      if (access_token) {
+        localStorage.setItem('token', access_token)
+
+        django.default.headers.common[
+          'Authorization'
+        ] = `Bearer ${access_token}`
+
+        alert('login successful.')
+        window.location.href = '/dashboard'
+        // setTimeout(() => navigate('/login'), 1500)
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || 'Login failed. Try again.')
+    } finally {
+      setLoading(false)
+    }
+  })
 
   return (
     <Stack gap="16px">
@@ -216,6 +240,9 @@ const Demos = () => {
             color="#2E5C38"
             fontWeight="bold"
             fontSize="sm"
+            as={Link}
+            to="/login"
+            _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Log in
           </Text>

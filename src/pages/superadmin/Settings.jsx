@@ -1,8 +1,10 @@
-
+import { Outlet } from "react-router"
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <div>
+      <Outlet />
+    </div>
   )
 }
 

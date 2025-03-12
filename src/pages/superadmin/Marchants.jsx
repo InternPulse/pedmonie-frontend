@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+import Profile from "../../components/superadmin-components/main/marchants/Profile"
+import TransactionHistory from "../../components/superadmin-components/main/marchants/TransactionHistory"
+import NavigationBar from "../../components/superadmin-components/main/marchants/NavigationBar" 
+=======
 import { useState } from 'react'
 import { Box, Flex, Text, Input, Table, NativeSelect, Image } from '@chakra-ui/react'
 import GreenCheck from './../../assets/GreenCheck.svg'
 import RedCheck from './../../assets/RedCheck.svg'
+>>>>>>> 681ebd1efd0e7f5b9724bbfe375c29a27ba4dbb3
 
 const Marchants = () => {
   const [statusFilter, setStatusFilter] = useState('Approved')
@@ -29,6 +35,9 @@ const Marchants = () => {
     : items.filter(item => item.status === statusFilter)
 
   return (
+<<<<<<< HEAD
+    <NavigationBar /> 
+=======
     <Box bg="#F5F5F5" w="100vw" minH="100vh" p={["20px", "40px"]}>
       <Flex gap='20px' flexDirection={['column', 'column', 'row']} justifyContent="space-between">
         <Box>
@@ -81,6 +90,7 @@ const Marchants = () => {
         </Table.Body>
       </Table.Root>
     </Box>
+>>>>>>> 681ebd1efd0e7f5b9724bbfe375c29a27ba4dbb3
   )
 }
 

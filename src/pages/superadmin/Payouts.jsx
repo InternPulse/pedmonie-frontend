@@ -21,7 +21,7 @@ const Payouts = () => {
 
   return (
     <div>
-      <Flex padding={{base: 5, lg:10}} margin={6}  direction='column' backgroundColor='#F9FAFB'>
+      <Flex padding={{base: 5, lg:10}} margin={6}  direction='column' backgroundColor='#F9FAFB' color='#373D4D'>
         <Flex justifyContent='space-between' width='100%'>
         <Box>
             <Heading fontSize='24px'>Payout</Heading>
@@ -44,7 +44,8 @@ const Payouts = () => {
           {/* <div style={{width:'10%', height:'5px', backgroundColor: btnClick? '#5EB070' : 'null', marginLeft:'20%'}}></div>
           <div style={{width:'10%', height:'5px', backgroundColor: btnClick? '#5EB070' : 'null', marginLeft:'34%'}}></div> */}
           <div style={{width:'100%', height:'3px', backgroundColor: '#979EAC'}}></div>
-          <Box  padding={{base:'3', md:'15', lg:'20'}} backgroundColor='#FFFFFF' borderRadius='16px'>
+
+          <Box  padding={{base:'3', md:'15', lg:'10'}} backgroundColor='#FFFFFF' borderRadius='16px'>
             {btnClick && <PayoutsDetails/> }
             {hBtn && <PayoutHistory />}
            

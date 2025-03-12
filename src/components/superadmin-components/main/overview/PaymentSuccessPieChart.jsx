@@ -43,7 +43,7 @@ const PaymentSuccessPieChart = () => {
   };
 
   return (
-    <Box bg="white" p={5} borderRadius="lg" boxShadow="lg" maxW="900px" mx="auto" mt={5}>
+    <Box bg="white" p={5} borderRadius="lg" mx="auto" mt={5} >
       <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
         Payment Success Distribution
       </Heading>
@@ -54,14 +54,13 @@ const PaymentSuccessPieChart = () => {
               {/* Pie Chart */}
             <Box 
             w={{ base: "100%", md: "50%" }} 
-            h="320px" 
+            h="full" 
             pr={{ base: 2, md: 5 }} 
             display="flex" 
             justifyContent="center" 
             alignItems="center"
             bg="white" 
             borderRadius="lg" 
-            boxShadow="lg"
             p={4}
             >
             <Pie data={data} options={options} />
@@ -89,7 +88,7 @@ const PaymentSuccessPieChart = () => {
                     borderRadius="full"
                     display="inline-block"
                     mr={3}
-                    boxShadow="md"
+                   // boxShadow="md"
                 />
                 <Text fontSize="md" fontWeight="semibold" color="gray.700">
                     {item.label}: <Text as="span" color={item.color}>{item.value}%</Text>

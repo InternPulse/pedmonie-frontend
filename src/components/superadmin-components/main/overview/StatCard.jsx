@@ -11,7 +11,6 @@ const StatCard = ({ title, value, badge, rateIcon, rateValue, rateText }) => {
       p={4} 
       bg="white" 
       borderRadius="md" 
-      boxShadow="md" 
       width="100%" 
       maxWidth="350px" 
     >

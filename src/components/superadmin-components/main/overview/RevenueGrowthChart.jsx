@@ -7,9 +7,9 @@ const RevenueGrowthChart = () => {
       bg="white" 
       p={6} 
       borderRadius="lg" 
-      boxShadow="xl" 
       width="100%" 
-      maxW="900px" 
+     // maxW="900px" 
+      h="full"
       mx="auto" 
       mt={5} 
       textAlign="center"

@@ -5,8 +5,7 @@ import Marchants from './pages/superadmin/Marchants';
 import Transaction from './pages/superadmin/Transaction';
 import Payouts from './pages/superadmin/Payouts';
 import Support from './pages/superadmin/Support';
-import FraudDetection from './pages/superadmin/FraudDetection';
-import TicketOverview from './pages/superadmin/TicketOverview';
+import RealTimeAlert from './pages/superadmin/RealTimeAlert';
 import PlatformsConfig from './pages/superadmin/PlatformsConfig';
 
 const App = () => {
@@ -20,10 +19,9 @@ const App = () => {
         <Route path='/marchants' element={ <Marchants /> }/>
         <Route path='/transaction' element={ <Transaction /> }/>
         <Route path='/payouts' element={ <Payouts /> }/>
-        <Route path='/support' element={ <Support /> }/>
-        <Route path='/fraud-detection' element={<FraudDetection />} />
-        <Route path='/ticket-overview' element={<TicketOverview />} />
-        <Route path='/platformsconfig' element={<PlatformsConfig />} />
+        <Route path='/support' element={<Support />} />
+        <Route path='/realtime-alert' element={<RealTimeAlert />} />
+        <Route path='/platforms-config' element={<PlatformsConfig />} />
       </Routes>
     </>
   )

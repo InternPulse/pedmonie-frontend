@@ -1,0 +1,15 @@
+{
+    "business": {
+        "name": "Tech Innovators Inc.",
+        "id": "BIZ123456",
+        "type": "Software Development",
+        "email": "contact@techinnovators.com",
+        "address": {
+            "street": "123 Innovation Drive",
+            "city": "Techville",
+            "state": "CA",
+            "zip": "94043",
+            "country": "USA"
+        }
+    }
+}

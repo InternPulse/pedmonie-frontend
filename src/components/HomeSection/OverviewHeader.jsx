@@ -1,5 +1,5 @@
 import { Box, Heading, Icon } from "@chakra-ui/react";
-import Header from "../Header";
+import Header from "../merchant-header/Header";
 import SearchInput from "../SearchInput";
 import UserProfile from "../UserProfile";
 import CardIcon from "/src/assets/card.svg?react";

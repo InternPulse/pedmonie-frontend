@@ -2,7 +2,7 @@ import {
   FileUploadList,
   FileUploadRoot,
   FileUploadTrigger,
-} from "../../components/ui/file-upload";
+} from "../../../components/ui/file-upload";
 
 import {
   Box,

@@ -7,32 +7,32 @@ import SupportIcon from "/src/assets/messages.svg?react";
 
 export const navRoutes = [
   {
-    path: "/",
+    path: "/merchant",
     name: "Overview",
     icon: MenuIcon,
   },
   {
-    path: "/analytics",
+    path: "/merchant/analytics",
     name: "Analytics",
     icon: AnalyticsIcon,
   },
   {
-    path: "/transactions",
+    path: "/merchant/transactions",
     name: "Transactions",
     icon: TransactionIcon,
   },
   {
-    path: "/payments",
+    path: "/merchant/payments",
     name: "Payments",
     icon: PaymentIcon,
   },
   {
-    path: "/subscriptions",
+    path: "/merchant/subscriptions",
     name: "Subscriptions",
     icon: SubscriptionIcon,
   },
   {
-    path: "/support",
+    path: "/merchant/support",
     name: "Support",
     icon: SupportIcon,
   },

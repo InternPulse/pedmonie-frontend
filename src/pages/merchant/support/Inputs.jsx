@@ -1,4 +1,4 @@
-import { InputGroup } from "../../components/ui/input-group";
+import { InputGroup } from "../../../components/ui/input-group";
 import { Box, Field, Input } from "@chakra-ui/react";
 import { LuSearch } from "react-icons/lu";
 import SupportFaq from "./Faq";

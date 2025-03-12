@@ -1,11 +1,11 @@
 import { Container, Box, Flex, Text, VStack } from "@chakra-ui/react";
-import Customers from "../components/Customers";
-import UsersPerMin from "../components/UsersPerMin";
-import TotalRevenue from "../components/TotalRevenue";
-import TotalRevenueBarChart from "../components/TotalRevenueBarChart";
-import SalesByCountryData from "../components/SalesByCountryData";
-import TransactionStatus from "../components/TransactionStatus";
-import AnalyticsCards from "../components/AnalyticsCards";
+import Customers from "../../components/Customers";
+import UsersPerMin from "../../components/UsersPerMin";
+import TotalRevenue from "../../components/TotalRevenue";
+import TotalRevenueBarChart from "../../components/TotalRevenueBarChart";
+import SalesByCountryData from "../../components/SalesByCountryData";
+import TransactionStatus from "../../components/TransactionStatus";
+import AnalyticsCards from "../../components/AnalyticsCards";
 const Analytics = () => {
   return (
     <VStack bg="white" spacing={8} align="stretch" p={6}>

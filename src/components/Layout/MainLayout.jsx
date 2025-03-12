@@ -5,7 +5,7 @@ import Sidebar from "../SidebarSection/Sidebar";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Main from "../Main";
 
-export default function MainLayout({ children }) {
+export default function MainLayout() {
   const [closeSidebar, setCloseSidebar] = useState(true);
 
   return (

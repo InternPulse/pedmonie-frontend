@@ -1,0 +1,13 @@
+.carousel-slider .slick-slide {
+    margin: 0 15px; /* Adds gap between cards */
+  }
+  
+  .slick-list {
+    margin: 0 -15px; /* Prevents cutting off content */
+  }
+  
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+  }
+  

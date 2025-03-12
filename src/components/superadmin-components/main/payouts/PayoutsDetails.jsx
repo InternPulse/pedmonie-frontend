@@ -26,7 +26,7 @@ const PayoutsDetails = () => {
                  <form action="">
                    <Flex justifyContent='space-between' flexWrap={{base:'wrap', md:'nowrap'}}>
                      {/* first stack */}
-                        <Stack gap={5}  width={{base:'fit-content', md:'fit-content', lg:'27rem'}} padding={{base:0, md:5, lg:5}}>
+                        <Stack gap={5} marginBottom={{base:'20px'}} width={{base:'fit-content', md:'fit-content', lg:'27rem'}} padding={{base:0, md:5, lg:5}}>
                    <Stack>
                  <SelectRoot collection={frameworks} size="sm" width={{base:'15rem', md:'15.6rem', lg:'20rem'}}>
          <SelectLabel>Business Name</SelectLabel>
@@ -94,7 +94,7 @@ const PayoutsDetails = () => {
        </Stack>
                          </Stack>
                          {/* second stack */}
-                         <Stack gap={5}  width={{base: '16rem', md:'fit-content', lg:'27rem'}} padding={{base:0, md:5, lg:5}}>
+                         <Stack gap={5}  width={{base: '16rem', md:'fit-content', lg:'27rem'}} padding={{base:0, md:5, lg:5}} marginBottom={{base:'20px'}}>
                          <SelectRoot collection={frameworks} size="sm"  width={{base:'15rem', md:'15.6rem', lg:'20rem'}}>
          <SelectLabel>Business Type</SelectLabel>
          <SelectTrigger>

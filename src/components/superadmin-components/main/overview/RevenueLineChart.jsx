@@ -112,12 +112,12 @@ const RevenueLineChart = () => {
       bg="white" 
       p={5} 
       borderRadius="lg"
-      boxShadow="lg" 
+     // boxShadow="lg" 
       width="100%" 
       maxW="100%" 
       h="400px"
       mx="auto" 
-      mt={5}
+      mt={3}
     >
       <Line data={revenueData} options={options} />
     </Box>

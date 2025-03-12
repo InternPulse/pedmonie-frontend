@@ -73,20 +73,23 @@ const PaymentMethodDistributionBarChart = () => {
 
   return (
     <Box
-      bg="bg.default" 
+      bg="white" 
       p={5}
       borderRadius="lg"
-      boxShadow="lg"
       w={{ base: "100%", md: "600px" }}
       h="350px"
       mx="auto"
-      mt={5}
+      mt={1}
     >
-      <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
+    {/*   <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
         Payment Method Distribution
       </Heading>
-      <Separator mb={5} borderColor="teal.300" />
+      <Separator mb={5} borderColor="teal.300" /> */}
       <Box h="250px">
+      <Heading size="sm" color="grey.200" mb={4} fontWeight="bold" textAlign="start">
+        Payment Method Distribution
+      </Heading>
+
         <Bar data={data} options={options} />
       </Box>
     </Box>

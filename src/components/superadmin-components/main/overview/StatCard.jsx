@@ -2,19 +2,12 @@ import { Grid, Box, Heading, Text, CardRoot, Image, Flex } from "@chakra-ui/reac
 
 const StatCard = ({ title, value, badge, rateIcon, rateValue, rateText }) => {
   return (
-  <Flex
-  alignItems="center"
-  justifyContent="center"
-  >
     <CardRoot 
-      m={2} 
       p={4} 
-      bg="white" 
-      borderRadius="md" 
-      width="100%" 
-      maxWidth="350px" 
+      bg="white"  
+      width="100%"  
     >
-      <Flex gap={3} align="center" justify="space-between"> 
+      <Flex gap={3} align="center" justify="center"> 
         <Box>
           <Heading size={{ base: "sm", md: "md" }}>{title}</Heading>
           <Text color="gray.500" fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>
@@ -30,8 +23,6 @@ const StatCard = ({ title, value, badge, rateIcon, rateValue, rateText }) => {
         <Text color="gray.500">{rateText}</Text>
       </Flex>
     </CardRoot>
-
-  </Flex>  
   );
 };
 

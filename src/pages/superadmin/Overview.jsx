@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react"
 import OverviewHeader from "../../components/OverviewHeader"
 import OverviewSectionOne from "../../components/superadmin-components/main/overview/OverviewSectionOne"
 import OverviewSectionThree from "../../components/superadmin-components/main/overview/OverviewSectionThree"
@@ -7,9 +8,18 @@ const Overview = () => {
   return (
     <>
         <OverviewHeader />
-       <OverviewSectionOne />
-       <OverviewSectionTwo />
-       <OverviewSectionThree />
+        <Flex>
+           <OverviewSectionOne />
+        </Flex>
+
+        <Flex>
+            <OverviewSectionTwo />
+        </Flex>
+
+        <Flex>
+            <OverviewSectionThree />
+        </Flex>
+  
     </>
   )
 }

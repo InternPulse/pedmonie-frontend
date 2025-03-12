@@ -37,29 +37,34 @@ const PaymentSuccessPieChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: { 
+        display: false,
+        labels: {
+          font: {
+            size: 10, 
+          },
+        },
+      },
       tooltip: { enabled: true },
     },
   };
 
   return (
-    <Box bg="white" p={5} borderRadius="lg" mx="auto" mt={5} >
-      <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
+    <Box bg="white" p={5} borderRadius="lg" w="full" h="400px" >
+      <Heading size="md" color="green.800" mb={4} fontWeight="bold" textAlign="start" >
         Payment Success Distribution
       </Heading>
-
-      <Separator mb={5} borderColor="teal.300" /> 
 
       <Flex justify="space-between" align="center" flexWrap="wrap">
               {/* Pie Chart */}
             <Box 
             w={{ base: "100%", md: "50%" }} 
-            h="full" 
+            h="full"
             pr={{ base: 2, md: 5 }} 
             display="flex" 
-            justifyContent="center" 
+            justifyContent="center"
             alignItems="center"
-            bg="white" 
+            bg="white"
             borderRadius="lg" 
             p={4}
             >
@@ -80,7 +85,7 @@ const PaymentSuccessPieChart = () => {
                 justifyContent={{ base: "center", md: "flex-start" }} 
                 py={1.5}
                 >
-                {/* Bullet with matching Pie Chart color */}
+                  {/* Bullet with matching Pie Chart color */}
                 <Box
                     w={3.5}
                     h={3.5}
@@ -90,7 +95,7 @@ const PaymentSuccessPieChart = () => {
                     mr={3}
                    // boxShadow="md"
                 />
-                <Text fontSize="md" fontWeight="semibold" color="gray.700">
+                <Text fontSize="xs" fontWeight="semibold" color="gray.700">
                     {item.label}: <Text as="span" color={item.color}>{item.value}%</Text>
                 </Text>
                 </List.Item>

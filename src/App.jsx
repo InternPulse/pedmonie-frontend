@@ -40,9 +40,9 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
 
           {/* payment routing */}
-          {/* <Route path="/select-payment-type" element={<SelectPayment />} />
+      <Route path="/select-payment-type" element={<SelectPayment />} />
           <Route path="/create-payment-link" element={<CreatePaymentLink />} />
-          <Route path="/payment-link" element={<PaymentLink />} /> */}
+          <Route path="/payment-link" element={<PaymentLink />} />
           <Route path="/payments" element={<Payment />} />
           <Route path="/support" element={<Support />} />
         </Route>

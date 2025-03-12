@@ -1,29 +1,29 @@
 import { useState } from "react";
 import { Box, Button, Input, Heading, VStack, Text } from "@chakra-ui/react";
-import { djangoAPI } from "../../config/apiConfig"; 
+import { djangoAPI } from "../../config/apiConfig";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
 
     try {
       const response = await djangoAPI.post("/api/v1/token/", { email, password });
 
-      if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token); 
-        djangoAPI.defaults.headers["Authorization"] = `Bearer ${response.data.token}`; 
+      if (response.data.access) { 
+        localStorage.setItem("authToken", response.data.access);
+        djangoAPI.defaults.headers["Authorization"] = `Bearer ${response.data.access}`;
 
-        navigate("/dashboard"); 
+        navigate("/"); 
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed. Try again.");
+      setError(err.response?.data?.message || err.response?.data?.detail || "Login failed. Try again.");
     }
   };
 

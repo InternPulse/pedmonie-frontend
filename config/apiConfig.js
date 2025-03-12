@@ -1,7 +1,7 @@
 import axios from 'axios';
 import API_URLS from "./apiUrls";
 
-const createAPI = (backend = "node_api") => {
+const createAPI = (backend = "django_api") => {
     const baseURL = API_URLS[backend];
 
     if (!baseURL) {
@@ -18,6 +18,7 @@ const createAPI = (backend = "node_api") => {
 
     // this automatically attaches token if available
     const token = localStorage.getItem("authToken");
+
     if (token) {
         apiInstance.defaults.headers["Authorization"] = `Bearer ${token}`;
     }

@@ -22,7 +22,7 @@ const App = () => {
       <Routes>   
         <Route path='/' element={ <MainLayout /> }>
           <Route index element={ <Overview /> }/>
-          <Route path='/analytics' element={ <Analytics /> }/>
+          <Route path='/analytics' element={ <Overview /> }/>
           <Route path='/marchants' element={ <Marchants /> }/>
           <Route path='/transactions' element={ <Transaction /> }/>
           <Route path='/payouts' element={ <Payouts /> }/>

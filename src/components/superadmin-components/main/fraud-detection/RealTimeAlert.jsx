@@ -21,7 +21,7 @@ import {
   SelectRoot,
   SelectTrigger,
   SelectValueText,
-} from "@/components/ui/select";
+} from "../../../ui/select";
 
 // Create collections for each select field
 const systemLanguageOptions = createListCollection({
@@ -78,7 +78,7 @@ const dateTimeFormatOptions = createListCollection({
   ],
 });
 
-const App = () => {
+const ReaclTimeAlert = () => {
   return (
     <Container maxW="container.xl" py={8} css={{ bg: "#F5F6F6" }}>
       {/* Title and Search */}
@@ -381,4 +381,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ReaclTimeAlert;

@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react";
 import {
   Box,
@@ -11,9 +9,9 @@ import {
   VStack,
   Text,
   createListCollection,
+  Switch
 } from "@chakra-ui/react";
 
-import { Switch } from "@chakra-ui/react";
 // Import the new custom select components
 import {
   SelectContent,
@@ -21,7 +19,7 @@ import {
   SelectRoot,
   SelectTrigger,
   SelectValueText,
-} from "@/components/ui/select";
+} from "../../../ui/select";
 
 // Create collections for each select field
 const systemLanguageOptions = createListCollection({

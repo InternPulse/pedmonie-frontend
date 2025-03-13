@@ -1,7 +1,7 @@
 // import Profile from "../../components/superadmin-components/main/marchants/Profile"
 // import TransactionHistory from "../../components/superadmin-components/main/marchants/TransactionHistory"
 // import NavigationBar from "../../components/superadmin-components/main/marchants/NavigationBar"
-import { useState } from "react";
+import { useState } from "react"
 import {
   Box,
   Flex,
@@ -10,9 +10,7 @@ import {
   Table,
   NativeSelect,
   Image,
-} from "@chakra-ui/react";
-import GreenCheck from "./../../assets/GreenCheck.svg";
-import RedCheck from "./../../assets/RedCheck.svg";
+} from "@chakra-ui/react"
 import GreenCheck from './../../assets/GreenCheck.svg'
 import RedCheck from './../../assets/RedCheck.svg'
 

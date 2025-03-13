@@ -23,6 +23,7 @@ import Settings from "./pages/superadmin/Settings";
 import UserManagement from "./components/superadmin-components/main/settings/UserManagement";
 import SystemLogsAndManagement from "./components/superadmin-components/main/settings/SystemLogsAndManagement";
 import FraudDetectionSet from "./components/superadmin-components/main/settings/FraudDetection";
+import NotFound from "./pages/NotFound";
 // import "./index.css";
 
 function App() {
@@ -42,11 +43,13 @@ function App() {
         <Route path="/" element={<LandingPageLayout />}>
           <Route index element={<LandingHome />} />
         </Route>
+
         {/* Authentication Routing */}
         <Route path="/verification" element={<AuthPage />} />
         <Route path="/bank-verification" element={<BankVerification />} />
         <Route path="/id-verification" element={<IdVerification />} />
         <Route path="/business-verification" element={<BusinessRegNum />} />
+        <Route path="*" element={<NotFound />} />
 
         {/* Registration routing */}
         <Route path="/signin" element={<Signup />} />
@@ -54,7 +57,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Merchant Routing */}
-        <Route path="merchant" element={<MainLayout />}>
+        <Route path="/merchant" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="analytics" element={<Analytics />} />
 
@@ -79,7 +82,7 @@ function App() {
           <Route path="user-management" element={<UserManagement />} />
           <Route path="system-logs" element={<SystemLogsAndManagement />} />
           <Route path="fraud-detection-set" element={<FraudDetectionSet />} />
-          //{" "}
+          {" "}
         </Route>
       </Routes>
     </Suspense>

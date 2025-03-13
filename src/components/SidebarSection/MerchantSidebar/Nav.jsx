@@ -10,7 +10,6 @@ function Nav() {
     <Stack as="nav" direction="column" mt="4" gap="1.5">
       {navRoutes.map((route) => {
         const isActive = location.pathname === route.path;
-        console.log(route.path);
 
         return (
           <ChakraLink

@@ -1,10 +1,11 @@
-import { Outlet } from "react-router"
+import { Flex } from "@chakra-ui/react"
+import UserManagement from "../../components/superadmin-components/main/settings/UserManagement"
 
 const Settings = () => {
   return (
-    <div>
-      <Outlet />
-    </div>
+    <Flex>
+      <UserManagement />
+    </Flex>
   )
 }
 

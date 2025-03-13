@@ -13,6 +13,9 @@ import {
 } from "@chakra-ui/react";
 import GreenCheck from "./../../assets/GreenCheck.svg";
 import RedCheck from "./../../assets/RedCheck.svg";
+import GreenCheck from './../../assets/GreenCheck.svg'
+import RedCheck from './../../assets/RedCheck.svg'
+
 
 const Marchants = () => {
   const [statusFilter, setStatusFilter] = useState("Approved");
@@ -176,9 +179,6 @@ const Marchants = () => {
       : items.filter((item) => item.status === statusFilter);
 
   return (
-    // <<<<<<< HEAD
-    //     <NavigationBar />
-    // =======
     <Box bg="#F5F5F5" w="100vw" minH="100vh" p={["20px", "40px"]}>
       <Flex
         gap="20px"

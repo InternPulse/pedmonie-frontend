@@ -1,8 +1,12 @@
+import { Flex } from "@chakra-ui/react"
+import TransactionHistory from "../../components/superadmin-components/main/marchants/TransactionHistory"
 
 
 const Transaction = () => {
   return (
-    <div>Transaction</div>
+    <Flex>
+      <TransactionHistory />
+    </Flex>
   )
 }
 

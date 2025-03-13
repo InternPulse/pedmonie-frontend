@@ -1,8 +1,10 @@
 import { Dialog, Button, Box, Text, Flex } from "@chakra-ui/react";
 import LogoutIcon from "/src/assets/logout.svg?react";
-import CustomLink from "./SidebarSection/CustomLink";
+import CustomLink from "./SidebarSection/SuperAdminSidebar/CustomLink";
+import { useNavigate } from "react-router";
 
 const LogoutDialog = () => {
+  const navigate = useNavigate();
   return (
     <Dialog.Root>
       {/* Logout Button to Open Dialog */}
@@ -49,7 +51,12 @@ const LogoutDialog = () => {
             <Dialog.Footer>
               <Flex justify="center" gap={4} mt={4}>
                 <Dialog.Trigger asChild>
-                  <Button color="white" backgroundColor="red" px={12}>
+                  <Button
+                    color="white"
+                    backgroundColor="red"
+                    px={12}
+                    onClick={() => navigate("/login")}
+                  >
                     Logout
                   </Button>
                 </Dialog.Trigger>

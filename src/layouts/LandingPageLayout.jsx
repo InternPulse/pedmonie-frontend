@@ -6,7 +6,7 @@ function LandingPageLayout() {
   return (
     <Box
       bg="white"
-      w={["", "", "", "62em", "80em", "96em"]}
+      w={["", "", "", "", "80em", "96em"]}
       h="dvh"
       overflowY="auto"
       css={{

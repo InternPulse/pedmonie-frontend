@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router";
 import { Box, Icon } from "@chakra-ui/react";
-import Sidebar from "../SidebarSection/Sidebar";
+import Sidebar from "@/components/SidebarSection/MerchantSidebar/Sidebar";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Main from "../Main";
 
-export default function MainLayout() {
+export default function MerchantLayout() {
   const [closeSidebar, setCloseSidebar] = useState(true);
 
   return (
@@ -15,7 +15,7 @@ export default function MainLayout() {
       display="flex"
       direction="row"
       bg="#F8F8F8"
-      w={["", "", "", "62em", "80em", "96em"]}
+      w={["", "", "", "", "80em", "96em"]}
       h="dvh"
       m="auto"
     >
@@ -31,7 +31,7 @@ export default function MainLayout() {
         top={closeSidebar ? "34px" : "15px"}
         left={closeSidebar ? "225px" : "45px"}
         cursor="pointer"
-        position="fixed"
+        position="absolute"
         onClick={() => setCloseSidebar(!closeSidebar)}
         // display={}
       />

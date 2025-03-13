@@ -20,7 +20,7 @@ import { useState } from "react";
 function Header() {
   const [headerMsg, setHeaderMsg] = useState(true);
   const navigate = useNavigate();
-  console.log(headerMsg);
+
   return (
     <>
       <Alert.Root
@@ -122,6 +122,7 @@ function Header() {
             rounded="full"
             color="#2E5C38"
             border="1px solid #2E5C38"
+            onClick={() => navigate("/login")}
           >
             Log In
           </CustomButton>
@@ -136,6 +137,7 @@ function Header() {
             lineHeight="30px"
             rounded="full"
             color="white"
+            onClick={() => navigate("/signin")}
           >
             Sign Up
           </CustomButton>

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
-import MainLayout from "./components/Layout/MainLayout";
+import MainLayout from "./components/Layout/merchant-layout/MerchantLayout";
 import Loading from "./components/Loading";
 import AuthPage from "./pages/AuthPage";
 import Signup from "./SignUp/SignUp";
@@ -13,6 +13,16 @@ import IdVerification from "./auth-components/IdVerification";
 import BusinessRegNum from "./auth-components/BusinessRegNum";
 import Login from "./LoginUser/Login";
 import LandingPageLayout from "./layouts/LandingPageLayout";
+import SuperAdminLayout from "./components/Layout/SuperAdminLayout";
+import Overview from "./pages/superadmin/Overview";
+import Marchants from "./pages/superadmin/Marchants";
+import Transaction from "./pages/superadmin/Transaction";
+import Payouts from "./pages/superadmin/Payouts";
+import FraudDetection from "./pages/superadmin/FraudDetection";
+import Settings from "./pages/superadmin/Settings";
+import UserManagement from "./components/superadmin-components/main/settings/UserManagement";
+import SystemLogsAndManagement from "./components/superadmin-components/main/settings/SystemLogsAndManagement";
+import FraudDetectionSet from "./components/superadmin-components/main/settings/FraudDetection";
 // import "./index.css";
 
 function App() {
@@ -23,9 +33,12 @@ function App() {
     import("./components/transactionConfirmationUI/Payment")
   );
   const Support = lazy(() => import("./pages/merchant/support/Support"));
+  const AdminSupport = lazy(() => import("./pages/superadmin/Support"));
+  const AdminAnalytics = lazy(() => import("./pages/superadmin/Analytics"));
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        {/* Landing Page Routing */}
         <Route path="/" element={<LandingPageLayout />}>
           <Route index element={<LandingHome />} />
         </Route>
@@ -40,6 +53,7 @@ function App() {
         {/* Login routing */}
         <Route path="/login" element={<Login />} />
 
+        {/* Merchant Routing */}
         <Route path="merchant" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="analytics" element={<Analytics />} />
@@ -51,20 +65,65 @@ function App() {
           <Route path="payments" element={<Payment />} />
           <Route path="support" element={<Support />} />
         </Route>
+
+        {/* superadmin routing */}
+        <Route path="/admin" element={<SuperAdminLayout />}>
+          <Route index element={<Overview />} />
+          <Route path="analytics" element={<AdminAnalytics />} />
+          <Route path="marchants" element={<Marchants />} />
+          <Route path="transactions" element={<Transaction />} />
+          <Route path="payouts" element={<Payouts />} />
+          <Route path="support" element={<AdminSupport />} />
+          <Route path="fraud-detection" element={<FraudDetection />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="user-management" element={<UserManagement />} />
+          <Route path="system-logs" element={<SystemLogsAndManagement />} />
+          <Route path="fraud-detection-set" element={<FraudDetectionSet />} />
+          //{" "}
+        </Route>
       </Routes>
     </Suspense>
   );
 }
-// import { Route, Routes } from "react-router";
-// import MainLayout from "./layouts/MainLayout";
-// import Home from "./pages/Home";
-// const App = () => {
-//   return (
-//     <MainLayout>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//       </Routes>
-//     </MainLayout>
-//   );
-// };
 export default App;
+// import { Routes, Route } from 'react-router-dom';
+// import Overview from './pages/superadmin/Overview';
+// import Analytics from './pages/superadmin/Analytics';
+// import Marchants from './pages/superadmin/Marchants';
+// import Transaction from './pages/superadmin/Transaction';
+// import Payouts from './pages/superadmin/Payouts';
+// import Support from './pages/superadmin/Support';
+// import FraudDetection from './pages/superadmin/FraudDetection';
+// import Settings from './pages/superadmin/Settings';
+// import UserManagement from './components/superadmin-components/main/settings/UserManagement';
+// import SystemLogsAndManagement from './components/superadmin-components/main/settings/SystemLogsAndManagement';
+// import FraudDetectionSet from './components/superadmin-components/main/settings/FraudDetection';
+// import PlatformsConfig from './components/superadmin-components/main/settings/PlatformsConfig';
+// import MainLayout from './components/Layout/MainLayout';
+
+// const App = () => {
+
+//   return (
+//     <>
+//     {/* superadmin routing */}
+//       <Routes>
+//         <Route path='/' element={ <SuperAdminLayout /> }>
+//           <Route index element={ <Overview /> }/>
+//           <Route path='/analytics' element={ <Analytics /> }/>
+//           <Route path='/marchants' element={ <Marchants /> }/>
+//           <Route path='/transactions' element={ <Transaction /> }/>
+//           <Route path='/payouts' element={ <Payouts /> }/>
+//           <Route path='/support' element={ <Support /> }/>
+//           <Route path='/fraud-detection' element={ <FraudDetection /> }/>
+
+//           <Route path='/settings' element={ <Settings /> } />
+//           <Route path='user-management' element={ <UserManagement /> }/>
+//           <Route path='system-logs' element={ <SystemLogsAndManagement /> }/>
+//           <Route path='fraud-detection-set' element={ <FraudDetectionSet /> }/>
+
+//         </Route>
+//       </Routes>
+//     </>
+//   )
+// }
+// export default App

@@ -9,9 +9,17 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels"; 
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ChartDataLabels
+);
 
 const PaymentMethodDistributionBarChart = () => {
   const distributionData = [50, 30, 70, 20];
@@ -21,7 +29,7 @@ const PaymentMethodDistributionBarChart = () => {
     datasets: [
       {
         label: "Transactions (in thousands)",
-        data: distributionData, 
+        data: distributionData,
         backgroundColor: ["#4CAF50", "#2196F3", "#FF9800", "#9C27B0"],
         borderRadius: 6,
       },
@@ -37,7 +45,7 @@ const PaymentMethodDistributionBarChart = () => {
         beginAtZero: true,
         ticks: {
           stepSize: 20,
-          color: "fg.default", 
+          color: "fg.default",
         },
         grid: {
           color: "border.default",
@@ -45,7 +53,7 @@ const PaymentMethodDistributionBarChart = () => {
       },
       y: {
         ticks: {
-          color: "fg.default", 
+          color: "fg.default",
           font: {
             weight: "bold",
           },
@@ -66,27 +74,36 @@ const PaymentMethodDistributionBarChart = () => {
         font: {
           weight: "bold",
         },
-        formatter: (value) => `${value}k`,  //this format numbers with "k" for thousands
+        formatter: (value) => `${value}k`, // this format numbers with "k" for thousands
       },
     },
   };
 
   return (
     <Box
-      bg="bg.default" 
+      bg="white"
       p={5}
       borderRadius="lg"
-      boxShadow="lg"
       w={{ base: "100%", md: "600px" }}
       h="350px"
       mx="auto"
-      mt={5}
+      mt={1}
     >
-      <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
+      {/*   <Heading size="md" color="teal.600" mb={4} fontWeight="bold" textAlign="center" textTransform="uppercase">
         Payment Method Distribution
       </Heading>
-      <Separator mb={5} borderColor="teal.300" />
+      <Separator mb={5} borderColor="teal.300" /> */}
       <Box h="250px">
+        <Heading
+          size="sm"
+          color="grey.200"
+          mb={4}
+          fontWeight="bold"
+          textAlign="start"
+        >
+          Payment Method Distribution
+        </Heading>
+
         <Bar data={data} options={options} />
       </Box>
     </Box>

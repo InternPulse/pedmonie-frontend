@@ -14,34 +14,87 @@ function Login() {
     setError("");
 
     try {
-      const response = await djangoAPI.post("/api/v1/token/", { email, password });
+      const response = await djangoAPI.post("/api/v1/token/", {
+        email,
+        password,
+      });
 
-      if (response.data.access) { 
+      if (response.data.access) {
         localStorage.setItem("authToken", response.data.access);
-        djangoAPI.defaults.headers["Authorization"] = `Bearer ${response.data.access}`;
+        djangoAPI.defaults.headers[
+          "Authorization"
+        ] = `Bearer ${response.data.access}`;
 
-        navigate("/"); 
+        navigate("/merchant");
       }
     } catch (err) {
-      setError(err.response?.data?.message || err.response?.data?.detail || "Login failed. Try again.");
+      setError(
+        err.response?.data?.message ||
+          err.response?.data?.detail ||
+          "Login failed. Try again."
+      );
     }
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" height="100vh" bg="gray.100">
-      <Box p={8} maxWidth="400px" borderWidth={1} borderRadius={8} boxShadow="lg" bg="white">
-        <Heading mb={6} textAlign="center">Login</Heading>
-        {error && <Text color="red.500" textAlign="center">{error}</Text>}
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+      bg="gray.100"
+    >
+      <Box
+        p={8}
+        maxWidth="400px"
+        borderWidth={1}
+        borderRadius={8}
+        boxShadow="lg"
+        bg="white"
+      >
+        <Heading mb={6} textAlign="center" color="black">
+          Login
+        </Heading>
+        {error && (
+          <Text color="red.500" textAlign="center">
+            {error}
+          </Text>
+        )}
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align="stretch">
-            <Text fontWeight="bold">Email</Text>
-            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
-            
-            <Text fontWeight="bold">Password</Text>
-            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
-            
-            <Button type="submit" colorScheme="blue" width="full">Login</Button>
-            <Text textAlign="center" color="blue.500" fontSize="sm" _hover={{ textDecoration: "underline", cursor: "pointer" }}>Forgot password?</Text>
+            <Text fontWeight="bold" color="black">
+              Email
+            </Text>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              color="black"
+              placeholder="Enter your email"
+            />
+
+            <Text fontWeight="bold" color="black">
+              Password
+            </Text>
+            <Input
+              type="password"
+              value={password}
+              color="black"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+
+            <Button type="submit" colorScheme="blue" width="full">
+              Login
+            </Button>
+            <Text
+              textAlign="center"
+              color="blue.500"
+              fontSize="sm"
+              _hover={{ textDecoration: "underline", cursor: "pointer" }}
+            >
+              Forgot password?
+            </Text>
           </VStack>
         </form>
       </Box>

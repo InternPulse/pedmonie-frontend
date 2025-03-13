@@ -1,3 +1,4 @@
+
 import { Routes, Route } from 'react-router-dom';
 import Overview from './pages/superadmin/Overview';
 import Analytics from './pages/superadmin/Analytics';
@@ -26,7 +27,8 @@ const App = () => {
           <Route path='/transactions' element={ <Transaction /> }/>
           <Route path='/payouts' element={ <Payouts /> }/>
           <Route path='/support' element={ <Support /> }/>
-          <Route path='/fraud-detection' element={ <FraudDetection /> }/>
+          <Route path='/fraud-detection' element={<FraudDetection />} />
+          <Route path='/platforms-config' element={ <PlatformsConfig /> } />
 
           <Route path='/settings' element={ <Settings /> } />
           <Route path='user-management' element={ <UserManagement /> }/>

@@ -15,65 +15,56 @@ import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { djangoAPI } from "../../config/apiConfig"
 
 const Demos = () => {
 
   const [formData, setFormData] = useState({
-    first_name: '',
-    last_name: '',
-    middle_name: '',
-    business_name: '',
-    bvn: '',
+    firstName: '',
+    lastName: '',
+    middleName: '',
     email: '',
     phone: '',
+    dob: '',
     password: '',
-    confirm_password: '',
+    confirmPassword: '',
+    business_name: 'Tiatech',
+    bvn: '45678901234',
     agreed: false,
   })
-  
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-  
+    const { name, value, type, checked } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
     }))
   }
 
-  console.log('Outer form data.', formData)
-  
   const handleCreateAccount = useCallback(async () => {
     if (!formData.agreed) {
-      console.log('You must agree to the terms and conditions.')
+      setError('You must agree to the terms and conditions.');
       return
     }
-  
-    setLoading(true)
-  
-    try {
-      const { agreed, ...dataToSend } = formData;
-      const response = await djangoAPI.post("/api/v1/merchants/", dataToSend)
 
-      //testing
-      console.log('Newly registered merchant:', response.data)
-  
+    try {
+      const response = await django.post('/merchants', formData);
+
       if (response.data) {
-        console.log('Newly registered merchant:', response.data)
-        console.log('Form data:', response.data)
-        // navigate('/login')
+        //testing
+        console.log("Newly register merchant", response.data);
+       // navigate('/login');
       }
+        
     } catch (error) {
-      console.log(error.response?.data?.message || 'Signup failed. Try again.')
-      console.log('Error:', error)
+      setError(error.response?.data?.message || 'Login failed. Try again.')
     } finally {
       setLoading(false)
     }
-  }, [formData]);
+  })
 
   return (
     <Stack gap="16px">
@@ -81,8 +72,8 @@ const Demos = () => {
       <HStack gap="6" width="full">
         <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
           <Input
-            name="first_name"
-            value={formData.first_name}
+            name="firstName"
+            value={formData.firstName}
             onChange={handleChange}
             placeholder="Enter Your First Name"
             variant="subtle"
@@ -95,8 +86,8 @@ const Demos = () => {
         {/* Last Name */}
         <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
           <Input
-            name="last_name"
-            value={formData.last_name}
+            name="lastName"
+            value={formData.lastName}
             onChange={handleChange}
             placeholder="Enter Your Last Name"
             variant="subtle"
@@ -110,8 +101,8 @@ const Demos = () => {
       {/* Middle Name */}
       <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
         <Input
-          name="middle_name"
-          value={formData.middle_name}
+          name="middleName"
+          value={formData.middleName}
           onChange={handleChange}
           placeholder="Enter Your Middle Name (optional)"
           variant="subtle"
@@ -135,7 +126,7 @@ const Demos = () => {
         />
       </InputGroup>
 
-      {/* Phone Number*/}
+      {/* Phone Number */}
       <InputGroup flex="1" startElement={<LuPhone color="#292D32" />}>
         <Input
           name="phone"
@@ -150,34 +141,12 @@ const Demos = () => {
       </InputGroup>
 
       {/* Date of Birth */}
-      {/* <Input
+      <Input
         name="dob"
         value={formData.dob}
         onChange={handleChange}
         type="date"
         placeholder="Date of Birth"
-        variant="subtle"
-        color="#292D32"
-        bg="#EEEEEE"
-        _placeholder={{ color: '#292D32' }}
-      /> */}
-      <Input
-        name="business_name"
-        value={formData.business_name}
-        onChange={handleChange}
-        type="text"
-        placeholder="Enter Business Name"
-        variant="subtle"
-        color="#292D32"
-        bg="#EEEEEE"
-        _placeholder={{ color: '#292D32' }}
-      />
-      <Input
-        name="bvn"
-        value={formData.bvn}
-        onChange={handleChange}
-        type="text"
-        placeholder="Enter Bank Verification Number"
         variant="subtle"
         color="#292D32"
         bg="#EEEEEE"
@@ -204,8 +173,8 @@ const Demos = () => {
       <Stack>
         <InputGroup flex="1" startElement={<LuLock color="#292D32" />}>
           <PasswordInput
-            name="confirm_password"
-            value={formData.confirm_password}
+            name="confirmPassword"
+            value={formData.confirmPassword}
             onChange={handleChange}
             placeholder="Confirm Password"
             variant="subtle"

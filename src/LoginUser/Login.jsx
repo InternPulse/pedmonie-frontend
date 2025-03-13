@@ -12,7 +12,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { djangoAPI } from "../../config/apiConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/pedmonie-logo.svg";
 import { jwtDecode } from "jwt-decode";
 
@@ -21,11 +21,14 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const response = await djangoAPI.post("/api/v1/token/", {
@@ -54,6 +57,8 @@ function Login() {
           err.response?.data?.detail ||
           "Login failed. Try again."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +73,7 @@ function Login() {
         justifyContent="center" 
         flexDirection="column" 
         color="white" 
-        bg="linear(to-b, green.500, green.800)"
+        bg="grey.300"
       >
         <Image src={logo} alt="PedMonie Logo" mb={4} />
         <Heading fontSize="4xl" fontWeight="bold">PedMonie</Heading>
@@ -77,7 +82,16 @@ function Login() {
 
       {/* Right Section - Login Form */}
       <Box flex={1} display="flex" justifyContent="center" alignItems="center" bg="white" borderRadius={12} boxShadow="2xl" p={8} maxW="450px" m={4}>
-        <Box width="full">
+        ``<Box width="full">
+
+          <Image 
+            src={logo} 
+            alt="PedMonie Logo" 
+            display={{base: "block", md: "none"}} 
+            mx="auto" 
+            mb={4} 
+          />
+
           <Heading mb={6} color="green.800" textAlign="center">
             Welcome Back
           </Heading>
@@ -88,21 +102,49 @@ function Login() {
                 <Fieldset.Legend>Login to your account</Fieldset.Legend>
                 <Field.Root>
                   <Field.Label>Email</Field.Label>
-                  <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+                  <Input type="email" value={email} required onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
                 </Field.Root>
                 <Field.Root>
                   <Field.Label>Password</Field.Label>
-                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+                  <Input type="password" value={password} required onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
                 </Field.Root>
                 <Button type="submit" bg="green.800" color="white" _hover={{ bg: "green.00" }}>
-                  Login
+                  {loading ? "Loading..." : "Login"}
                 </Button>
+
+                <Link to="">
                 <Text fontSize="sm" color="green.800" textAlign="center" _hover={{ textDecoration: "underline", cursor: "pointer" }}>
                   Forgot password?
                 </Text>
+                </Link>
+
+                <Link to="/signin">
+                <Text fontSize="sm" color="green.800" textAlign="center" _hover={{ textDecoration: "underline", cursor: "pointer" }}>
+                  Don't have an account? Sign up
+                </Text>
+                </Link>
+
               </Stack>
             </Fieldset.Root>
           </form>
+
+        <Box display="flex" justifyContent="center" mt={4}>
+          <Button 
+            bg="green.800" 
+            color="white" 
+            size="lg" 
+            px={8} 
+            borderRadius="md"
+            _hover={{ bg: "green.700" }}
+            onClick={() => navigate("/")}
+          >
+            <Text fontSize="md" fontWeight="bold">
+              Back to Home
+            </Text>
+          </Button>
+        </Box>
+
+
         </Box>
       </Box>
     </Flex>

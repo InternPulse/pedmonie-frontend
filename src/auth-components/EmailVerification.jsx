@@ -33,13 +33,13 @@ const EmailVerification = () => {
       try {
         setLoading(true);
 
-        if (!token || email) {
+        if (!token || !email) {
           setError("Invalid request: Go back to sign-up page and start the process again.");
           //testing
           console.error("Email and token are required for email verification.");
         }
 
-        const response = await djangoAPI.post("/verify-email", { email, token });
+        const response = await djangoAPI.post("/api/v1/verify-email/", { email, token });
     
         if (response.data) {
           setSuccess("Email verified successfully! You can now log in.");

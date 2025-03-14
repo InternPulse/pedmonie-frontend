@@ -4,9 +4,12 @@ import { Box, Icon } from "@chakra-ui/react";
 import Sidebar from "@/components/SidebarSection/MerchantSidebar/Sidebar";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Main from "../Main";
+import ProtectedRoute from "@/components/ProtectedRoutes";
+import { jwtDecode } from "jwt-decode";
 
 export default function MerchantLayout() {
   const [closeSidebar, setCloseSidebar] = useState(true);
+  const isAuthenticated = localStorage.getItem("authToken");
 
   return (
     <Box
@@ -33,12 +36,14 @@ export default function MerchantLayout() {
         cursor="pointer"
         position="absolute"
         onClick={() => setCloseSidebar(!closeSidebar)}
+        display={!isAuthenticated ? "none" : "block"}
         // display={}
       />
 
       <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>
-        <Outlet />
-        {/* {children} */}
+        <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <Outlet />
+        </ProtectedRoute>
       </Main>
     </Box>
   );

@@ -4,9 +4,12 @@ import { Box, Icon } from "@chakra-ui/react";
 import Sidebar from "../SidebarSection/SuperAdminSidebar/Sidebar";
 import SidebarLeft from "/src/assets/sidebar-left.svg?react";
 import Main from "./Main";
+import ProtectedRoute from "../ProtectedRoutes";
+import { jwtDecode } from "jwt-decode";
 
-export default function SuperAdminLayout({ children }) {
+export default function SuperAdminLayout() {
   const [closeSidebar, setCloseSidebar] = useState(true);
+  const isAuthenticated = localStorage.getItem("authToken");
 
   return (
     <Box
@@ -33,12 +36,14 @@ export default function SuperAdminLayout({ children }) {
         cursor="pointer"
         position="absolute"
         onClick={() => setCloseSidebar(!closeSidebar)}
+        display={!isAuthenticated ? "none" : "block"}
         // display={}
       />
 
       <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>
-        <Outlet />
-        {/* {children} */}
+        <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <Outlet />
+        </ProtectedRoute>
       </Main>
     </Box>
   );

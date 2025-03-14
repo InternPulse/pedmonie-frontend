@@ -24,6 +24,8 @@ import UserManagement from "./components/superadmin-components/main/settings/Use
 import SystemLogsAndManagement from "./components/superadmin-components/main/settings/SystemLogsAndManagement";
 import FraudDetectionSet from "./components/superadmin-components/main/settings/FraudDetection";
 import NotFound from "./pages/NotFound";
+import { jwtDecode } from "jwt-decode";
+import ProtectedRoute from "./components/ProtectedRoutes";
 // import "./index.css";
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
   const Support = lazy(() => import("./pages/merchant/support/Support"));
   const AdminSupport = lazy(() => import("./pages/superadmin/Support"));
   const AdminAnalytics = lazy(() => import("./pages/superadmin/Analytics"));
+
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -57,6 +60,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Merchant Routing */}
+        {/* <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}> */}
         <Route path="/merchant" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="analytics" element={<Analytics />} />
@@ -68,6 +72,7 @@ function App() {
           <Route path="payments" element={<Payments />} />
           <Route path="support" element={<Support />} />
         </Route>
+        {/* </Route> */}
 
         {/* superadmin routing */}
         <Route path="/admin" element={<SuperAdminLayout />}>
@@ -81,8 +86,10 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="user-management" element={<UserManagement />} />
           <Route path="system-logs" element={<SystemLogsAndManagement />} />
-          <Route path="fraud-detection-set" element={<FraudDetectionSet />} />
-          {" "}
+          <Route
+            path="fraud-detection-set"
+            element={<FraudDetectionSet />}
+          />{" "}
         </Route>
       </Routes>
     </Suspense>

@@ -5,6 +5,11 @@ import { useNavigate } from "react-router";
 
 const LogoutDialog = () => {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
   return (
     <Dialog.Root>
       {/* Logout Button to Open Dialog */}
@@ -55,7 +60,7 @@ const LogoutDialog = () => {
                     color="white"
                     backgroundColor="red"
                     px={12}
-                    onClick={() => navigate("/login")}
+                    onClick={handleLogout}
                   >
                     Logout
                   </Button>

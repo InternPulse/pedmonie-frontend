@@ -29,8 +29,6 @@ const PaymentForm = ({
         handleProceed
 }) => {
 
-  
-
     return (
         <>
             <Box maxW="lg" mx="auto" bg="white" borderRadius="md" overflow="hidden" boxShadow="sm" p={6}>

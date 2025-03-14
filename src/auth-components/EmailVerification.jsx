@@ -39,7 +39,7 @@ const EmailVerification = () => {
           console.error("Email and token are required for email verification.");
         }
 
-        const response = await djangoAPI.post("/merchant/verification", { email, token });
+        const response = await djangoAPI.post("/merchant/verify-email", { email, token });
     
         if (response.data) {
           setSuccess("Email verified successfully! You can now log in.");

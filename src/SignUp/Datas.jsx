@@ -10,7 +10,7 @@ import {
 import { InputGroup } from '../components/ui/input-group'
 import { LuLock, LuMail, LuUser, LuPhone } from 'react-icons/lu'
 import React, { useState } from 'react'
-import { PasswordInput } from '../components/ui/password-input'
+import { PasswordInput } from '../merchant-settings/password-input'
 import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
 import { useNavigate } from 'react-router-dom'

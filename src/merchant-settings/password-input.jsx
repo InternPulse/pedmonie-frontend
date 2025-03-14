@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { LuEye, LuEyeOff } from 'react-icons/lu'
-import { InputGroup } from './input-group'
+import { InputGroup } from '../components/ui/input-group'
 
 export const PasswordInput = React.forwardRef(
   function PasswordInput(props, ref) {
@@ -34,7 +34,7 @@ export const PasswordInput = React.forwardRef(
 
     return (
       <InputGroup
-        width='full'
+        width='382.99px'
         endElement={
           <VisibilityTrigger
             disabled={rest.disabled}

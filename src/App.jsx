@@ -12,6 +12,8 @@ import BankVerification from "./auth-components/BankVerification";
 import IdVerification from "./auth-components/IdVerification";
 import BusinessRegNum from "./auth-components/BusinessRegNum";
 import Payment from "./components/transactionConfirmationUI/Payment";
+import Output from "./merchant-settings/Output";
+import Setttings from "./merchant-settings/Setttings";
 // import "./index.css";
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
           <Route path="/create-payment-link" element={<CreatePaymentLink />} />
           <Route path="/payment-link" element={<PaymentLink />} /> */}
           <Route path="/payments" element={<Payment />} />
+          <Route path="/settings/*" element={<Setttings/>} />
+ 
         </Route>
       </Routes>
     </Suspense>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const LinkSuccessMsg = () => {
   const navigate = useNavigate();
-  const toPath = "/payment-link"
+  const toPath = "/merchant/payment-link"
 
   const handleProceed = (toPath) => {
     if (!toPath) {

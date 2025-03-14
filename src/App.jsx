@@ -65,7 +65,7 @@ function App() {
           <Route path="select-payment-type" element={<SelectPayment />} />
           <Route path="create-payment-link" element={<CreatePaymentLink />} />
           <Route path="payment-link" element={<PaymentLink />} />
-          <Route path="payments" element={<Payment />} />
+          <Route path="payments" element={<Payments />} />
           <Route path="support" element={<Support />} />
         </Route>
 

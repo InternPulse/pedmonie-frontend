@@ -16,7 +16,7 @@ const PaymentLink = () => {
   const navigate = useNavigate();
 
   const paymentLink = "httmquiweoharr@!g5678";
-  const fromPath = "/create-payment-link";
+  const fromPath = "/merchant/create-payment-link";
 
   const handleGoBack = () => navigate(fromPath);
 

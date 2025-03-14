@@ -15,7 +15,7 @@ function SelectPayment() {
   const [selected, setSelected] = useState(""); //Keeps track of the selected payment type
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
-  const toPath = "/create-payment-link";
+  const toPath = "/merchant/create-payment-link";
 
   const handleProceed = () => {
     if (!selected) {

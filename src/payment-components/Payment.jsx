@@ -16,7 +16,7 @@ const Payment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
 
   const navigate = useNavigate();
-  const toPath = "/select-payment-type";
+  const toPath = "/merchant/select-payment-type";
 
   const handleProceed = () => {
     navigate(toPath);

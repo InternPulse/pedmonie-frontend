@@ -39,7 +39,7 @@ const CreateLinkForm = ({
     const navigate = useNavigate(); 
   
      //navigation to go back to select payment type
-     const fromPath = "/select-payment-type"
+     const fromPath = "/merchant/select-payment-type"
      const handleGoBack = (fromPath) => {
        if (!fromPath) {
          throw new Error("Path to get the previous page is missing.");

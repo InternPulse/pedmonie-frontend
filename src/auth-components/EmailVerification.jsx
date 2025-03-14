@@ -37,6 +37,7 @@ const EmailVerification = () => {
           setError("Invalid request: Go back to sign-up page and start the process again.");
           //testing
           console.error("Email and token are required for email verification.");
+          return;
         }
 
         const response = await djangoAPI.post("/api/v1/verify-email/", { email, token });
@@ -73,7 +74,7 @@ const EmailVerification = () => {
   const { pageIndex: emailVerIndex } = getPathDataById(1);
 
   const handleNextPage = () => {
-      navigate(bankVerPath);
+      navigate("/login");
   }
 
   
@@ -134,7 +135,7 @@ return (
          color="gray.500"
          pt={4}
          pb={4}
-         >{emailVerIndex} of {paths.length} - Email Verification</Text>
+         >{/* {emailVerIndex} of {paths.length}  - */} Email Verification</Text>
 
          <Flex
          spacing={8} 
@@ -238,9 +239,9 @@ return (
                         }}
                         value={email}
                     />     
-                    <Field.Label css={floatingStyles}> 
+                   {/*  <Field.Label css={floatingStyles}> 
                       <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>Check your email address</Text>
-                    </Field.Label>
+                    </Field.Label> */}
                     </Box>
                 </Field.Root>
                 </InputGroup>
@@ -264,6 +265,7 @@ return (
                       _hover={{ bgColor: "green.800", color: "white" }} 
                       mr={4}
                       fontSize={{base: "2xs", lg: "sm"}}
+                      onClick={handleVerifyEmail}
                       >
                       Resend Email
                       </Button>
@@ -276,9 +278,9 @@ return (
                       borderColor="green.800" 
                       _hover={{ bgColor: "green.800", color: "white" }}
                       fontSize={{base: "2xs", lg: "sm"}}
-                      onClick={handleVerifyEmail}
+                      onClick={handleNextPage}
                       >
-                      {loading ? "Validating email" : "Confirm Verification"}
+                      {loading ? "Loading..." : "Login now"}
                       </Button>
                      
                   </Box>

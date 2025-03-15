@@ -13,7 +13,6 @@ import React, { useState, useCallback } from 'react'
 import { PasswordInput } from '../components/ui/password-input'
 import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
-import { Link } from 'react-router-dom'
 import { djangoAPI } from "../../config/apiConfig"
 
 const Demos = () => {
@@ -78,9 +77,6 @@ const Demos = () => {
       setLoading(true);
       const { agreed, ...dataToSend } = formData;
 
-      // Testing
-      console.log('Data to send:', dataToSend);
-
       const response = await djangoAPI.post("/api/v1/merchants/", dataToSend);
 
       if (response.data) {
@@ -90,12 +86,8 @@ const Demos = () => {
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message || 'An error occurred. Please try again.');
-        //testing
-        console.error(error.response.data.message)
       } else {
         setError('An error occurred. Please try again');
-        //testing
-        console.error("Error:", error.message);
       }
     } finally {
       setLoading(false);

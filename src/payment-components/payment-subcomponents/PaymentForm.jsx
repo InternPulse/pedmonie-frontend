@@ -25,11 +25,20 @@ const PaymentForm = ({
         handlePaymentSelection,
         currencyOptions,
         countryOptions,
-        paymentMethodLogos,
-        handleProceed
+        paymentMethods,
+        handleProceed,
+        email,
+        setEmail,
+        err,
+        loading,
+        setLoading,
+        initiatePayment,
+        amount,
+        setAmount
 }) => {
 
-  
+  //testing 
+  console.log("selected currency", selectedCurrency)
 
     return (
         <>
@@ -39,23 +48,27 @@ const PaymentForm = ({
          <Text fontWeight="bold">{`${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}</Text>
         </Flex>
 
-        <Stack spacing={5}>
+        <Stack as="form" onSubmit={initiatePayment} spacing={5}>
           <Box>
             <Text fontWeight="bold">Name</Text>
             <InputGroup flex="1" width="full" startElement={<UserIcon size={18} />}>
-              <Input placeholder="Name" />
+              <Input 
+              placeholder="Name" 
+              />
             </InputGroup>
           </Box>
 
           <Box>
             <Text fontWeight="bold">Email Address</Text>
             <InputGroup flex="1" width="full" startElement={<MailIcon size={18} />}>
-              <Input placeholder="Email Address" />
+              <Input 
+              placeholder="Email Address" 
+              />
             </InputGroup>
           </Box>
 
           <Box>
-            <Text fontWeight="bold">Amount</Text>
+            <Text fontWeight="bold">Currency</Text>
             <Flex gap={2}>
               <Box flex={1}>
                 <Select 
@@ -65,30 +78,24 @@ const PaymentForm = ({
                 />
               </Box>
               <Input 
-                type="number" 
-                placeholder="0.00" 
+                type="text"  
+                placeholder="Currency Name"
                 flex={2} 
-                onChange={handleAmountChange} 
+                value={selectedCurrency?.name || ""}
+                readOnly 
               />
             </Flex>
           </Box>
 
           <Box>
-            <Text fontWeight="bold">Phone Number</Text>
+            <Text fontWeight="bold">Amount</Text>
             <Flex gap={2}>
-              <Box flex={1}>
-                <Select 
-                  options={countryOptions} 
-                  onChange={handleCountryChange} 
-                  placeholder="Country" 
-                />
-              </Box>
-              <Input 
-                type="tel" 
-                placeholder="+234 916 8746 416" 
+            <Input 
+                type="number" 
+                placeholder="0.00" 
                 flex={2} 
-                value={phoneNumber} 
-                onChange={(e) => setPhoneNumber(e.target.value)} 
+                value={amount}
+                onChange={handleAmountChange} 
               />
             </Flex>
           </Box>
@@ -99,7 +106,7 @@ const PaymentForm = ({
 
           <Text textAlign="center" fontSize="xs">Select Payment Option</Text>
           <Flex justify="center" gap={4} wrap="wrap">
-            {paymentMethodLogos.map((logo, index) => (
+            {paymentMethods.map((logo, index) => (
               <Button 
                 key={index} 
                 p={2} 
@@ -129,7 +136,7 @@ const PaymentForm = ({
             _hover={{ bg: "gray.300" }} 
             fontWeight="normal" 
             py={6}
-            onClick={handleProceed}
+           // onClick={handleProceed}
           >
            {`Pay ${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}
           </Button>

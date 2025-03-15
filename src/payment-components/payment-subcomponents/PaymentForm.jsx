@@ -6,39 +6,30 @@ import {
     Stack,
     Text,
     Image,
+    Spinner
   } from "@chakra-ui/react";
 import { InputGroup } from "../../components/ui/input-group";
 import Select from "react-select";
 import { LuUser as UserIcon, LuMail as MailIcon } from "react-icons/lu";
 import pedmonieLogo from "../../assets/pedmonie-logo.svg";
 import securedByPedmonieLogo from "../../assets/secured_by_pedmonie.svg";
-  
+
 const PaymentForm = ({
-        phoneNumber,
-        setPhoneNumber,
         amountValue,   
         selectedCurrency,   
         selectedPayment,
-        handleCountryChange,
-        handleCurrencyChange,
-        handleAmountChange,
         handlePaymentSelection,
-        currencyOptions,
-        countryOptions,
         paymentMethods,
-        handleProceed,
         email,
         setEmail,
         err,
         loading,
-        setLoading,
         initiatePayment,
         amount,
-        setAmount
+        userName,
+        setUserName,
+        setErr
 }) => {
-
-  //testing 
-  console.log("selected currency", selectedCurrency)
 
     return (
         <>
@@ -48,12 +39,14 @@ const PaymentForm = ({
          <Text fontWeight="bold">{`${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}</Text>
         </Flex>
 
-        <Stack as="form" onSubmit={initiatePayment} spacing={5}>
+        <Stack as="form" onSubmit={(e) => { e.preventDefault(); initiatePayment(); }} spacing={5}>
           <Box>
             <Text fontWeight="bold">Name</Text>
             <InputGroup flex="1" width="full" startElement={<UserIcon size={18} />}>
               <Input 
-              placeholder="Name" 
+               placeholder="Name"
+               value={userName}
+               onChange={(e) => setUserName(e.target.value)} 
               />
             </InputGroup>
           </Box>
@@ -61,9 +54,11 @@ const PaymentForm = ({
           <Box>
             <Text fontWeight="bold">Email Address</Text>
             <InputGroup flex="1" width="full" startElement={<MailIcon size={18} />}>
-              <Input 
-              placeholder="Email Address" 
-              />
+            <Input 
+              placeholder="Email Address"
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+            />
             </InputGroup>
           </Box>
 
@@ -72,16 +67,16 @@ const PaymentForm = ({
             <Flex gap={2}>
               <Box flex={1}>
                 <Select 
-                  options={currencyOptions} 
-                  onChange={handleCurrencyChange} 
-                  placeholder="Currency" 
+                  options={[selectedCurrency]} 
+                  value={selectedCurrency} 
+                  isDisabled={true}
                 />
               </Box>
               <Input 
                 type="text"  
                 placeholder="Currency Name"
                 flex={2} 
-                value={selectedCurrency?.name || ""}
+                value={selectedCurrency?.currencyCode || ""}
                 readOnly 
               />
             </Flex>
@@ -95,7 +90,7 @@ const PaymentForm = ({
                 placeholder="0.00" 
                 flex={2} 
                 value={amount}
-                onChange={handleAmountChange} 
+                readOnly
               />
             </Flex>
           </Box>
@@ -103,6 +98,12 @@ const PaymentForm = ({
           <Text fontWeight="bold" textAlign="center" fontSize="sm" my={5}>
             Click on any of the payment options below to begin the process
           </Text>
+
+          {err && (
+            <Text color="red.500" fontSize="sm" textAlign="center" mt={2}>
+              {err}
+            </Text>
+          )}
 
           <Text textAlign="center" fontSize="xs">Select Payment Option</Text>
           <Flex justify="center" gap={4} wrap="wrap">
@@ -129,6 +130,7 @@ const PaymentForm = ({
           </Flex>
           
           <Button 
+            type="submit"
             bg="gray.200" 
             color="gray.700" 
             size="lg" 
@@ -136,9 +138,12 @@ const PaymentForm = ({
             _hover={{ bg: "gray.300" }} 
             fontWeight="normal" 
             py={6}
-           // onClick={handleProceed}
+            isDisabled={loading}
           >
-           {`Pay ${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}
+            <Flex align="center" gap={2}>
+              {loading && <Spinner size="sm" color="gray.700" />}
+              {`Pay ${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}
+            </Flex>
           </Button>
 
           <Flex justify="center" align="center" mt={2}>

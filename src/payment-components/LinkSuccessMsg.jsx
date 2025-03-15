@@ -2,17 +2,17 @@ import { Button, Card, Image, Flex, Box } from "@chakra-ui/react";
 import createLinkIcon from "../assets/payment-section/linkOkMsgIcon.svg";
 import { useNavigate } from "react-router-dom";
 
-const LinkSuccessMsg = () => {
+const LinkSuccessMsg = ({ paymentUrl }) => {
   const navigate = useNavigate();
-  const toPath = "/merchant/payment-link"
+  const toPath = "/merchant/payment-link";
 
   const handleProceed = (toPath) => {
     if (!toPath) {
       throw new Error("Path to get payment-link is missing.");
     } else {
-      navigate(toPath);
+      navigate(toPath, { state: { paymentUrl } });
     }
-  }
+  };
 
   return (
     <Card.Root
@@ -20,7 +20,7 @@ const LinkSuccessMsg = () => {
       w="full"
       overflow="hidden"
       borderRadius="xl"
-      bg="transparent"
+      bg="white"
       border="none"
     >
       {/* Icon */}
@@ -49,8 +49,8 @@ const LinkSuccessMsg = () => {
           textAlign="center"
           lineHeight="tall"
         >
-          Your payment link has been created successfully. You can now share it as a
-          direct link or copy it for your customers for easy payments.
+          Your payment link has been created successfully. You can now share it
+          as a direct link or copy it for your customers for easy payments.
         </Card.Description>
       </Card.Body>
 

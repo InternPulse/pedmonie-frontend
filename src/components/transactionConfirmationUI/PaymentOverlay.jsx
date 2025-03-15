@@ -13,8 +13,12 @@ import PaymentSuccessMessage from "./PaymentSuccessMessage";
 import PaymentLinkPage from "./PaymentLinkPage";
 import { FaChevronDown, FaDownload } from "react-icons/fa";
 import { RiAddLargeFill } from "react-icons/ri";
+import { useNavigate } from "react-router";
 function PaymentOverlay() {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
+  const toPath = "/merchant/select-payment-type";
+
   return (
     <For each={["All Payment Link", "Download Link", "New Payment Link"]}>
       {(value) => (
@@ -42,9 +46,7 @@ function PaymentOverlay() {
           </DialogTrigger>
           <DialogContent>
             <DialogBody bg="gray.100">
-              {value === "New Payment Link" && step === 1 && (
-                <PaymentType step={step} setStep={setStep} />
-              )}
+              {value === "New Payment Link" && navigate(toPath)}
               {step === 2 && (
                 <CreatePaymentLink step={step} setStep={setStep} />
               )}

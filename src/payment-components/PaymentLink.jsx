@@ -1,5 +1,12 @@
-import { 
-  Box, VStack, HStack, Text, Button, Flex, Image, Icon 
+import {
+  Box,
+  VStack,
+  HStack,
+  Text,
+  Button,
+  Flex,
+  Image,
+  Icon,
 } from "@chakra-ui/react";
 import Email from "./paymentLinkAssets/email.png";
 import WhatsApp from "./paymentLinkAssets/whatsapp.png";
@@ -7,15 +14,31 @@ import Chat from "./paymentLinkAssets/sms.png";
 import { ClipboardButton, ClipboardRoot } from "../components/ui/clipboard";
 import { FcCheckmark as successIcon } from "react-icons/fc";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./style/animation.css";
-
 
 const PaymentLink = () => {
   const [show, setShow] = useState(false);
-  const navigate = useNavigate();
 
-  const paymentLink = "httmquiweoharr@!g5678";
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const paymentLink = location.state?.paymentUrl;
+
+  let shortUrl = "";
+
+  if (paymentLink) {
+    const startIndex = paymentLink.indexOf("?") + 1;
+
+    if (startIndex !== -1) {
+      const sURL = paymentLink.slice(startIndex, startIndex + 25) + "...";
+      shortUrl = sURL;
+    }
+  }
+
+  // const shortUrl = paymentLink.slice(indexOf(paymentLink.indexOf("?")));
+
+  // const paymentLink = "httmquiweoharr@!g5678";
   const fromPath = "/merchant/create-payment-link";
 
   const handleGoBack = () => navigate(fromPath);
@@ -36,9 +59,19 @@ const PaymentLink = () => {
         textAlign="center"
       >
         {/* Success Icon */}
-        <Icon as={successIcon} color="green.800" boxSize={12} className={show ? "scale-in" : ""} />
+        <Icon
+          as={successIcon}
+          color="green.800"
+          boxSize={12}
+          className={show ? "scale-in" : ""}
+        />
 
-        <Text fontSize={{ base: "14px", md: "18px" }} fontWeight="bold" color="gray.700" mt={4}>
+        <Text
+          fontSize={{ base: "14px", md: "18px" }}
+          fontWeight="bold"
+          color="gray.700"
+          mt={4}
+        >
           Payment link generated!
         </Text>
 
@@ -52,9 +85,10 @@ const PaymentLink = () => {
           bg="gray.50"
           justify="space-between"
           align="center"
-          flexWrap="wrap"
+          // flexWrap="wrap"
         >
           <Text
+            w="full"
             fontSize="16px"
             fontStyle="italic"
             fontWeight="400"
@@ -63,7 +97,7 @@ const PaymentLink = () => {
             maxW="70%"
             textAlign="left"
           >
-            {paymentLink}
+            {shortUrl}
           </Text>
           <ClipboardRoot value={paymentLink} timeout={1000}>
             <ClipboardButton
@@ -87,9 +121,15 @@ const PaymentLink = () => {
           Share the link via:
         </Text>
         <HStack spacing={6} justify="center" mt={2}>
-          <Link to=""><Image src={Email} alt="Email" boxSize="32px" /></Link>
-          <Link to=""><Image src={WhatsApp} alt="WhatsApp" boxSize="32px" /></Link>
-          <Link to=""><Image src={Chat} alt="Chat" boxSize="32px" /></Link>
+          <Link to="">
+            <Image src={Email} alt="Email" boxSize="32px" />
+          </Link>
+          <Link to="">
+            <Image src={WhatsApp} alt="WhatsApp" boxSize="32px" />
+          </Link>
+          <Link to="">
+            <Image src={Chat} alt="Chat" boxSize="32px" />
+          </Link>
         </HStack>
 
         {/* Action Buttons */}
@@ -102,11 +142,11 @@ const PaymentLink = () => {
             fontSize="18px"
             fontWeight="500"
             borderRadius="md"
-            _hover={{ 
-              bg: "green.800", 
-              color: "white", 
-              border: "2px solid", 
-              borderColor: "green.800" 
+            _hover={{
+              bg: "green.800",
+              color: "white",
+              border: "2px solid",
+              borderColor: "green.800",
             }}
             onClick={handleGoBack}
           >
@@ -114,19 +154,19 @@ const PaymentLink = () => {
           </Button>
 
           <Button
-           w="50%"
-           bg="white"
-           color="green.800"
-           border="2px solid"
-           fontSize="18px"
-           fontWeight="500"
-           borderRadius="md"
-           _hover={{ 
-             bg: "green.800", 
-             color: "white", 
-             border: "2px solid", 
-             borderColor: "green.800" 
-           }}
+            w="50%"
+            bg="white"
+            color="green.800"
+            border="2px solid"
+            fontSize="18px"
+            fontWeight="500"
+            borderRadius="md"
+            _hover={{
+              bg: "green.800",
+              color: "white",
+              border: "2px solid",
+              borderColor: "green.800",
+            }}
           >
             View QR code
           </Button>

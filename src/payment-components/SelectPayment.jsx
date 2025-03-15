@@ -5,11 +5,7 @@ import SinglePayment from "../assets/SinglePayment.svg";
 import RecurringPayment from "../assets/RecurringPayment.svg";
 import PaymentLink from "../assets/PaymentLink.svg";
 import { useNavigate } from "react-router-dom";
-import {
-  DialogBody,
-  DialogContent,
-  DialogRoot,
-} from "../components/ui/dialog";
+import { DialogBody, DialogContent, DialogRoot } from "../components/ui/dialog";
 
 function SelectPayment() {
   const [selected, setSelected] = useState(""); //Keeps track of the selected payment type
@@ -23,26 +19,32 @@ function SelectPayment() {
       return;
     }
 
-    navigate(toPath);
+    navigate(toPath, { state: { selected } });
   };
 
   return (
-    <Box bg="gray.100" pt="50px" pb="100px">
+    <Box bg="gray.100" pb="100px">
       <Box>
         <Text
           color="gray.800"
           fontWeight="medium"
           textAlign="center"
-          pt="89px"
+          // pt="89px"
           pb="71px"
           fontSize={["24px", "14px", "18px", "24px"]}
         >
           Select a payment type to continue
         </Text>
 
-        <Flex wrap="wrap" maxW="858px" gap="20px" m="auto" justify="space-between">
+        <Flex
+          wrap="wrap"
+          maxW="858px"
+          gap="20px"
+          m="auto"
+          justify="space-between"
+        >
           <Payment
-            value="single"
+            value="Single payments"
             selectedValue={selected}
             onChange={setSelected}
             imageSrc={SinglePayment}
@@ -50,7 +52,7 @@ function SelectPayment() {
             text2="Make a direct payment to clients or customers, modify the currency as needed."
           />
           <Payment
-            value="recurring"
+            value="Recurring payment"
             selectedValue={selected}
             onChange={setSelected}
             imageSrc={RecurringPayment}
@@ -58,7 +60,7 @@ function SelectPayment() {
             text2="For recurring payments or single payments, create a link in your preferred currency."
           />
           <Payment
-            value="link"
+            value="Link"
             selectedValue={selected}
             onChange={setSelected}
             imageSrc={PaymentLink}
@@ -75,52 +77,52 @@ function SelectPayment() {
         mx="auto"
         mt="69px"
         borderRadius="8px"
-        _hover={{ bg: "green.800" }} 
-        _active={{ bg: "green.900" }} 
+        _hover={{ bg: "green.800" }}
+        _active={{ bg: "green.900" }}
         display="block"
         onClick={handleProceed}
       >
         Proceed to generate link
       </Button>
 
-       {/* Dialog Component */}
-        <DialogRoot
-          open={isDialogOpen}
-          onOpenChange={(open) => {
-            if (open) {
-              setIsDialogOpen(true);
-            }
-          }}
+      {/* Dialog Component */}
+      <DialogRoot
+        open={isDialogOpen}
+        onOpenChange={(open) => {
+          if (open) {
+            setIsDialogOpen(true);
+          }
+        }}
+      >
+        <DialogContent
+          bg="white"
+          color="green.700"
+          borderRadius="lg"
+          p="6"
+          boxShadow="xl"
+          maxW="90vw"
+          w="400px"
+          position="fixed"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          textAlign="center"
         >
-          <DialogContent
-            bg="white"
-            color="green.700"
-            borderRadius="lg"
-            p="6"
-            boxShadow="xl"
-            maxW="90vw"
-            w="400px"
-            position="fixed"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-            textAlign="center"
-          >
-            <DialogBody>
-              <Text fontSize={["xs", "sm", "md"]} fontWeight="bold">
-                Kindly select a payment type before proceeding.
-              </Text>
-              <Button
-                mt="4"
-                bg="green.700"
-                color="white"
-                onClick={() => setIsDialogOpen(false)}
-              >
-                Ok
-              </Button>
-            </DialogBody>
-          </DialogContent>
-        </DialogRoot>
+          <DialogBody>
+            <Text fontSize={["xs", "sm", "md"]} fontWeight="bold">
+              Kindly select a payment type before proceeding.
+            </Text>
+            <Button
+              mt="4"
+              bg="green.700"
+              color="white"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              Ok
+            </Button>
+          </DialogBody>
+        </DialogContent>
+      </DialogRoot>
     </Box>
   );
 }

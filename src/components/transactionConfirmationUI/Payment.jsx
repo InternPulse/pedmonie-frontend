@@ -7,6 +7,7 @@ import {
   IconButton,
   Input,
   Table,
+  Link,
 } from "@chakra-ui/react";
 import { InputGroup } from "../ui/input-group";
 import {
@@ -17,8 +18,16 @@ import {
   SelectValueText,
 } from "../ui/select";
 import { LuCopy, LuSearch } from "react-icons/lu";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaDownload,
+} from "react-icons/fa";
 import PaymentOverlay from "./PaymentOverlay";
+import { RiAddLargeFill } from "react-icons/ri";
+import { useNavigate } from "react-router";
+import { BsFillChatDotsFill, BsThreeDotsVertical } from "react-icons/bs";
 
 const Payment = () => {
   // const [searchTerm, setSearchTerm] = useState("");
@@ -26,154 +35,159 @@ const Payment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Sample data
-  const paymentData = [
-    {
-      pageName: "Social",
-      amount: "1000 CAD",
-      linkType: "Single charge",
-      dateCreated: "18 hours ago",
-    },
-    {
-      pageName: "Fosted crown",
-      amount: "1000 EUR",
-      linkType: "Subscription",
-      dateCreated: "Dec 23rd, 2023 4:00",
-    },
-    {
-      pageName: "Event Registration",
-      amount: "500 USD",
-      linkType: "Single charge",
-      dateCreated: "2 days ago",
-    },
-    {
-      pageName: "Product Launch",
-      amount: "750 CAD",
-      linkType: "Subscription",
-      dateCreated: "3 days ago",
-    },
-    {
-      pageName: "Webinar Sign-up",
-      amount: "300 EUR",
-      linkType: "Single charge",
-      dateCreated: "5 days ago",
-    },
-    {
-      pageName: "Online Course",
-      amount: "200 USD",
-      linkType: "Subscription",
-      dateCreated: "1 week ago",
-    },
-    {
-      pageName: "Donation",
-      amount: "150 CAD",
-      linkType: "Single charge",
-      dateCreated: "1 week ago",
-    },
-    {
-      pageName: "Membership Fee",
-      amount: "120 EUR",
-      linkType: "Subscription",
-      dateCreated: "2 weeks ago",
-    },
-    {
-      pageName: "Conference Ticket",
-      amount: "400 USD",
-      linkType: "Single charge",
-      dateCreated: "3 weeks ago",
-    },
-    {
-      pageName: "Workshop Registration",
-      amount: "350 CAD",
-      linkType: "Single charge",
-      dateCreated: "4 weeks ago",
-    },
-    {
-      pageName: "E-book Purchase",
-      amount: "25 USD",
-      linkType: "Single charge",
-      dateCreated: "1 month ago",
-    },
-    {
-      pageName: "Monthly Subscription",
-      amount: "30 EUR",
-      linkType: "Subscription",
-      dateCreated: "1 month ago",
-    },
-    {
-      pageName: "Annual Subscription",
-      amount: "300 CAD",
-      linkType: "Subscription",
-      dateCreated: "2 months ago",
-    },
-    {
-      pageName: "Merchandise Sale",
-      amount: "100 USD",
-      linkType: "Single charge",
-      dateCreated: "2 months ago",
-    },
-    {
-      pageName: "Service Fee",
-      amount: "200 CAD",
-      linkType: "Single charge",
-      dateCreated: "3 months ago",
-    },
-    {
-      pageName: "Consultation Fee",
-      amount: "150 EUR",
-      linkType: "Single charge",
-      dateCreated: "3 months ago",
-    },
-    {
-      pageName: "Online Class",
-      amount: "80 USD",
-      linkType: "Subscription",
-      dateCreated: "4 months ago",
-    },
-    {
-      pageName: "Fitness Program",
-      amount: "200 CAD",
-      linkType: "Subscription",
-      dateCreated: "5 months ago",
-    },
-    {
-      pageName: "Cooking Class",
-      amount: "60 EUR",
-      linkType: "Single charge",
-      dateCreated: "6 months ago",
-    },
-    {
-      pageName: "Art Workshop",
-      amount: "90 USD",
-      linkType: "Single charge",
-      dateCreated: "7 months ago",
-    },
-    {
-      pageName: "Photography Course",
-      amount: "120 CAD",
-      linkType: "Subscription",
-      dateCreated: "8 months ago",
-    },
-    {
-      pageName: "Language Course",
-      amount: "150 EUR",
-      linkType: "Subscription",
-      dateCreated: "9 months ago",
-    },
-  ];
+  const paymentData = JSON.parse(localStorage?.getItem("paymentData")) || [];
+
+  // // Sample data
+  // const paymentData = [
+  //   {
+  //     pageName: "Social",
+  //     amount: "1000 CAD",
+  //     linkType: "Single charge",
+  //     dateCreated: "18 hours ago",
+  //   },
+  //   {
+  //     pageName: "Fosted crown",
+  //     amount: "1000 EUR",
+  //     linkType: "Subscription",
+  //     dateCreated: "Dec 23rd, 2023 4:00",
+  //   },
+  //   {
+  //     pageName: "Event Registration",
+  //     amount: "500 USD",
+  //     linkType: "Single charge",
+  //     dateCreated: "2 days ago",
+  //   },
+  //   {
+  //     pageName: "Product Launch",
+  //     amount: "750 CAD",
+  //     linkType: "Subscription",
+  //     dateCreated: "3 days ago",
+  //   },
+  //   {
+  //     pageName: "Webinar Sign-up",
+  //     amount: "300 EUR",
+  //     linkType: "Single charge",
+  //     dateCreated: "5 days ago",
+  //   },
+  //   {
+  //     pageName: "Online Course",
+  //     amount: "200 USD",
+  //     linkType: "Subscription",
+  //     dateCreated: "1 week ago",
+  //   },
+  //   {
+  //     pageName: "Donation",
+  //     amount: "150 CAD",
+  //     linkType: "Single charge",
+  //     dateCreated: "1 week ago",
+  //   },
+  //   {
+  //     pageName: "Membership Fee",
+  //     amount: "120 EUR",
+  //     linkType: "Subscription",
+  //     dateCreated: "2 weeks ago",
+  //   },
+  //   {
+  //     pageName: "Conference Ticket",
+  //     amount: "400 USD",
+  //     linkType: "Single charge",
+  //     dateCreated: "3 weeks ago",
+  //   },
+  //   {
+  //     pageName: "Workshop Registration",
+  //     amount: "350 CAD",
+  //     linkType: "Single charge",
+  //     dateCreated: "4 weeks ago",
+  //   },
+  //   {
+  //     pageName: "E-book Purchase",
+  //     amount: "25 USD",
+  //     linkType: "Single charge",
+  //     dateCreated: "1 month ago",
+  //   },
+  //   {
+  //     pageName: "Monthly Subscription",
+  //     amount: "30 EUR",
+  //     linkType: "Subscription",
+  //     dateCreated: "1 month ago",
+  //   },
+  //   {
+  //     pageName: "Annual Subscription",
+  //     amount: "300 CAD",
+  //     linkType: "Subscription",
+  //     dateCreated: "2 months ago",
+  //   },
+  //   {
+  //     pageName: "Merchandise Sale",
+  //     amount: "100 USD",
+  //     linkType: "Single charge",
+  //     dateCreated: "2 months ago",
+  //   },
+  //   {
+  //     pageName: "Service Fee",
+  //     amount: "200 CAD",
+  //     linkType: "Single charge",
+  //     dateCreated: "3 months ago",
+  //   },
+  //   {
+  //     pageName: "Consultation Fee",
+  //     amount: "150 EUR",
+  //     linkType: "Single charge",
+  //     dateCreated: "3 months ago",
+  //   },
+  //   {
+  //     pageName: "Online Class",
+  //     amount: "80 USD",
+  //     linkType: "Subscription",
+  //     dateCreated: "4 months ago",
+  //   },
+  //   {
+  //     pageName: "Fitness Program",
+  //     amount: "200 CAD",
+  //     linkType: "Subscription",
+  //     dateCreated: "5 months ago",
+  //   },
+  //   {
+  //     pageName: "Cooking Class",
+  //     amount: "60 EUR",
+  //     linkType: "Single charge",
+  //     dateCreated: "6 months ago",
+  //   },
+  //   {
+  //     pageName: "Art Workshop",
+  //     amount: "90 USD",
+  //     linkType: "Single charge",
+  //     dateCreated: "7 months ago",
+  //   },
+  //   {
+  //     pageName: "Photography Course",
+  //     amount: "120 CAD",
+  //     linkType: "Subscription",
+  //     dateCreated: "8 months ago",
+  //   },
+  //   {
+  //     pageName: "Language Course",
+  //     amount: "150 EUR",
+  //     linkType: "Subscription",
+  //     dateCreated: "9 months ago",
+  //   },
+  // ];
 
   // Calculate total pages
-  const totalPages = Math.ceil(paymentData.length / itemsPerPage);
+  const totalPages = Math.ceil(paymentData?.length / itemsPerPage);
 
   // Get current items
-  const currentItems = paymentData.slice(
+  const currentItems = paymentData?.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
   // Calculate current range
   const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, paymentData.length);
+  const endItem = Math.min(currentPage * itemsPerPage, paymentData?.length);
+
+  const navigate = useNavigate();
+  const toPath = "/merchant/select-payment-type";
 
   return (
     <Box w="100%" h="100vh" bg="#F8F8F8" overflow="hidden">
@@ -295,10 +309,45 @@ const Payment = () => {
             <Box align="right">
               <Flex align="center" justify="space-between" py={8}>
                 <Text fontSize="14px" color="#637381">
-                  {paymentData.length} Payment links
+                  {paymentData?.length} Payment links
                 </Text>
                 <Flex gap={4}>
-                  <PaymentOverlay />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    bg="#919191"
+                    color="white"
+                    px={4}
+                    py={2}
+                    disabled={true}
+                  >
+                    All Payment Link <FaChevronDown />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    bg="#919191"
+                    color="white"
+                    px={4}
+                    py={2}
+                    disabled={true}
+                  >
+                    Download Link <FaDownload />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    bg="green"
+                    color="white"
+                    px={4}
+                    py={2}
+                    // disabled={}
+                    onClick={() => navigate(toPath)}
+                  >
+                    New Payment Link <RiAddLargeFill />
+                  </Button>
+
+                  {/* <PaymentOverlay /> */}
                 </Flex>
               </Flex>
             </Box>
@@ -321,19 +370,28 @@ const Payment = () => {
                   <Table.ColumnHeader color="#424141">
                     Date created
                   </Table.ColumnHeader>
+                  <Table.ColumnHeader color="#424141"></Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {currentItems.map((item, index) => (
+                {currentItems?.map((item, index) => (
                   <Table.Row key={index}>
-                    <Table.Cell color="#424141">{item.pageName}</Table.Cell>
-                    <Table.Cell color="#424141">{item.amount}</Table.Cell>
+                    <Table.Cell color="#424141">{item.name}</Table.Cell>
+                    <Table.Cell color="#424141">
+                      {item.amount}&nbsp;
+                      {item.currency}
+                    </Table.Cell>
                     <Table.Cell color="#424141">{item.linkType}</Table.Cell>
                     <Table.Cell color="#424141">
                       <Flex align="center">
-                        <Button variant="link" color="#F5C724" size="sm">
+                        <Link
+                          variant="underline"
+                          href={item.url}
+                          color="#F5C724"
+                          size="sm"
+                        >
                           Copy link
-                        </Button>
+                        </Link>
                         <IconButton
                           size="sm"
                           variant="outline"
@@ -341,14 +399,21 @@ const Payment = () => {
                           aria-label="Copy link"
                           border="none"
                           onClick={() => {
-                            navigator.clipboard.writeText(item.linkType); // Copy linkType as a placeholder
+                            navigator.clipboard.writeText(item.url); // Copy linkType as a placeholder
                           }}
                         >
                           <LuCopy />
                         </IconButton>
                       </Flex>
                     </Table.Cell>
-                    <Table.Cell color="#424141">{item.dateCreated}</Table.Cell>
+                    <Table.Cell color="#424141">{item.date}</Table.Cell>
+                    <Table.Cell color="#424141">
+                      <BsThreeDotsVertical
+                        size="18px"
+                        cursor="pointer"
+                        onClick={() => alert(item.payment_id)}
+                      />
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
@@ -365,7 +430,8 @@ const Payment = () => {
                 fontWeight="500"
                 wordBreak="break-word"
               >
-                Showing {startItem} to {endItem} of {paymentData.length} entries
+                Showing {startItem} to {endItem} of {paymentData?.length}
+                entries
               </Text>
             </Box>
             <Flex alignItems="center" gap={2}>

@@ -24,8 +24,6 @@ import UserManagement from "./components/superadmin-components/main/settings/Use
 import SystemLogsAndManagement from "./components/superadmin-components/main/settings/SystemLogsAndManagement";
 import FraudDetectionSet from "./components/superadmin-components/main/settings/FraudDetection";
 import NotFound from "./pages/NotFound";
-import { jwtDecode } from "jwt-decode";
-import ProtectedRoute from "./components/ProtectedRoutes";
 // import "./index.css";
 
 function App() {
@@ -58,6 +56,7 @@ function App() {
         <Route path="/signin" element={<Signup />} />
         {/* Login routing */}
         <Route path="/login" element={<Login />} />
+        <Route path="/make-payment" element={<Payments />} />
 
         {/* Merchant Routing */}
         {/* <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}> */}
@@ -69,7 +68,7 @@ function App() {
           <Route path="select-payment-type" element={<SelectPayment />} />
           <Route path="create-payment-link" element={<CreatePaymentLink />} />
           <Route path="payment-link" element={<PaymentLink />} />
-          <Route path="payments" element={<Payments />} />
+          <Route path="payments" element={<Payment />} />
           <Route path="support" element={<Support />} />
         </Route>
         {/* </Route> */}

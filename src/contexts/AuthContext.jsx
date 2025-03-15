@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const paths = [
-    { id: 1, path: "/verification" },
+    { id: 1, path: "/verify-email"},
     { id: 2, path: "/bank-verification" },
     { id: 3, path: "/id-verification" },
     { id: 4, path: "/business-verification" },

@@ -12,71 +12,20 @@ import {  FaLongArrowAltRight as SkipArrowIcon } from "react-icons/fa";
 import { RiErrorWarningLine as WarningIcon} from "react-icons/ri";
 import { CiMail as EmailIcon } from "react-icons/ci";
 import { InputGroup } from "../components/ui/input-group";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useEffect, useState, useCallback } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { djangoAPI } from "../../config/apiConfig";
 
 const EmailVerification = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
 
-  //get email verification logic
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
-
-    const email = searchParams.get("email");
-    const token = searchParams.get("token");
-
-    const handleVerifyEmail = useCallback(async () => {
-      try {
-        setLoading(true);
-
-        if (!token || !email) {
-          setError("Invalid request: Go back to sign-up page and start the process again.");
-          //testing
-          console.error("Email and token are required for email verification.");
-          return;
-        }
-
-        const response = await djangoAPI.post("/api/v1/verify-email/", { email, token });
-    
-        if (response.data) {
-          setSuccess("Email verified successfully! You can now log in.");
-          //testing
-          console.log(response.data);
-        }
-      } catch (error) {
-        if (error.response) {
-          setError(error.response.data.message || "Verification failed. Please try again.");
-          //testing
-          console.error(error.response.data.message);
-        } else {
-          setError("Verification failed. Please try again.");
-          //testing
-          console.error("Verification failed. Please try again.", error.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }, [email, token]);
-    
-    useEffect(() => {
-      if (email && token) {
-        handleVerifyEmail();
-      }
-    }, [email, token, handleVerifyEmail]); 
-
-  //set navigation and page indexes
   const {paths, getPathDataById} = useAuth();
+
+  const navigate = useNavigate();
   const { path: bankVerPath } = getPathDataById(2);
   const { pageIndex: emailVerIndex } = getPathDataById(1);
 
   const handleNextPage = () => {
-      navigate("/login");
+      navigate(bankVerPath);
   }
-
   
   const floatingStyles = defineStyle({
     pos: "absolute",
@@ -135,7 +84,7 @@ return (
          color="gray.500"
          pt={4}
          pb={4}
-         >{/* {emailVerIndex} of {paths.length}  - */} Email Verification</Text>
+         >{emailVerIndex} of {paths.length} - Email Verification</Text>
 
          <Flex
          spacing={8} 
@@ -189,7 +138,7 @@ return (
                     bg="transparent"
                     border="none"
                     _hover={{ color: "green.800" }} 
-                   // onClick={handleNextPage}
+                    onClick={handleNextPage}
                   >
                     <Text 
                       fontWeight="600" 
@@ -214,11 +163,8 @@ return (
                      <Flex direction="column">         
                       <Text as="h1" fontSize={{base:"sm", lg: "md"}} color="gray.800" textAlign={{base: "center", lg: "left"}} fontWeight="bold" pb={4} mb={2}>Check your email for a verification link</Text>  
                         
-                {/* CAC number verification*/}   
-                 {/* Error and Success Messages */}
-                 {error && <Text color="red.500" textAlign="center">{error}</Text>}
-                 {success && <Text color="green.500" textAlign="center">{success}</Text>}             
-                <Box as="div" display="flex" alignItems="center" gap={4} mt={3} w="full">
+                {/* CAC number verification*/}                
+                <Box as="div" display="flex" alignItems="center" gap={4} w="full">
                 <InputGroup flex="1" startElement={ <EmailIcon /> }>
                 <Field.Root>
                     <Box pos="relative" w="full">
@@ -237,11 +183,11 @@ return (
                         outline: "none",
                         border: "none"
                         }}
-                        value={email}
-                    />     
-                   {/*  <Field.Label css={floatingStyles}> 
-                      <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>Check your email address</Text>
-                    </Field.Label> */}
+                    />
+                    
+                    <Field.Label css={floatingStyles}>
+                        <Text fontSize={{base: "xs", lg: "sm"}} pl={4}>Check your email address</Text>
+                    </Field.Label>
                     </Box>
                 </Field.Root>
                 </InputGroup>
@@ -265,7 +211,6 @@ return (
                       _hover={{ bgColor: "green.800", color: "white" }} 
                       mr={4}
                       fontSize={{base: "2xs", lg: "sm"}}
-                      onClick={handleVerifyEmail}
                       >
                       Resend Email
                       </Button>
@@ -280,7 +225,7 @@ return (
                       fontSize={{base: "2xs", lg: "sm"}}
                       onClick={handleNextPage}
                       >
-                      {loading ? "Loading..." : "Login now"}
+                      Next
                       </Button>
                      
                   </Box>
@@ -294,6 +239,7 @@ return (
  </Flex>
 );
 };
+
 export default EmailVerification;
 
 

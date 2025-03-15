@@ -48,7 +48,7 @@ function App() {
         </Route>
 
         {/* Authentication Routing */}
-        <Route path="/verification" element={<AuthPage />} />
+        <Route path="/verify-email" element={<AuthPage />} />
         <Route path="/bank-verification" element={<BankVerification />} />
         <Route path="/id-verification" element={<IdVerification />} />
         <Route path="/business-verification" element={<BusinessRegNum />} />

@@ -13,12 +13,10 @@ import React, { useState, useCallback } from 'react'
 import { PasswordInput } from '../components/ui/password-input'
 import { Checkbox } from '../components/ui/checkbox'
 import google from '../svgs/google.svg'
-import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { djangoAPI } from "../../config/apiConfig"
 
 const Demos = () => {
-
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -31,53 +29,82 @@ const Demos = () => {
     confirm_password: '',
     agreed: false,
   })
-  
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-  
+
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
-  
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
     }))
   }
 
-  console.log('Outer form data.', formData)
-  
-  const handleCreateAccount = useCallback(async () => {
-    if (!formData.agreed) {
-      console.log('You must agree to the terms and conditions.')
-      return
-    }
-  
-    setLoading(true)
-  
-    try {
-      const { agreed, ...dataToSend } = formData;
-      const response = await djangoAPI.post("/api/v1/merchants/", dataToSend)
+  const handleCreateAccount = useCallback(async (e) => {
+    e.preventDefault();
 
-      //testing
-      console.log('Newly registered merchant:', response.data)
-  
+    // Reset previous error message
+    setError('');
+    setSuccess('');
+
+    // Form validation
+    if (
+      !formData.first_name || 
+      !formData.last_name || 
+      !formData.email || 
+      !formData.password ||
+      !formData.phone ||
+      !formData.bvn ||
+      !formData.business_name ||
+      !formData.confirm_password
+    ) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+
+    if (formData.password !== formData.confirm_password) {
+      setError('Password and confirm password do not match.');
+      return;
+    }
+
+    if (!formData.agreed) {
+      setError('You must agree to the terms and conditions.');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const { agreed, ...dataToSend } = formData;
+
+      // Testing
+      console.log('Data to send:', dataToSend);
+
+      const response = await djangoAPI.post("/api/v1/merchants/", dataToSend);
+
       if (response.data) {
-        console.log('Newly registered merchant:', response.data)
-        console.log('Form data:', response.data)
-        // navigate('/login')
+        setSuccess(response.data.message);
+        console.log('Newly registered merchant:', response.data);
       }
     } catch (error) {
-      console.log(error.response?.data?.message || 'Signup failed. Try again.')
-      console.log('Error:', error)
+      if (error.response) {
+        setError(error.response.data.message || 'An error occurred. Please try again.');
+        //testing
+        console.error(error.response.data.message)
+      } else {
+        setError('An error occurred. Please try again');
+        //testing
+        console.error("Error:", error.message);
+      }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }, [formData]);
 
   return (
-    <Stack gap="16px">
-      {/* First Name */}
+    <Stack gap="16px" as="form" onSubmit={handleCreateAccount}>
+      {/* First Name & Last Name */}
       <HStack gap="6" width="full">
         <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
           <Input
@@ -92,7 +119,6 @@ const Demos = () => {
           />
         </InputGroup>
 
-        {/* Last Name */}
         <InputGroup flex="1" startElement={<LuUser color="#292D32" />}>
           <Input
             name="last_name"
@@ -121,7 +147,7 @@ const Demos = () => {
         />
       </InputGroup>
 
-      {/* Email Address */}
+      {/* Email */}
       <InputGroup flex="1" startElement={<LuMail color="#292D32" />}>
         <Input
           name="email"
@@ -135,7 +161,7 @@ const Demos = () => {
         />
       </InputGroup>
 
-      {/* Phone Number*/}
+      {/* Phone Number */}
       <InputGroup flex="1" startElement={<LuPhone color="#292D32" />}>
         <Input
           name="phone"
@@ -149,23 +175,11 @@ const Demos = () => {
         />
       </InputGroup>
 
-      {/* Date of Birth */}
-      {/* <Input
-        name="dob"
-        value={formData.dob}
-        onChange={handleChange}
-        type="date"
-        placeholder="Date of Birth"
-        variant="subtle"
-        color="#292D32"
-        bg="#EEEEEE"
-        _placeholder={{ color: '#292D32' }}
-      /> */}
+      {/* Business Name & BVN */}
       <Input
         name="business_name"
         value={formData.business_name}
         onChange={handleChange}
-        type="text"
         placeholder="Enter Business Name"
         variant="subtle"
         color="#292D32"
@@ -176,7 +190,6 @@ const Demos = () => {
         name="bvn"
         value={formData.bvn}
         onChange={handleChange}
-        type="text"
         placeholder="Enter Bank Verification Number"
         variant="subtle"
         color="#292D32"
@@ -185,88 +198,62 @@ const Demos = () => {
       />
 
       {/* Password */}
-      <Stack>
-        <InputGroup flex="1" startElement={<LuLock color="#292D32" />}>
-          <PasswordInput
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter Password"
-            variant="subtle"
-            bg="#EEEEEE"
-            _placeholder={{ color: '#292D32' }}
-            color="#292D32"
-          />
-        </InputGroup>
-      </Stack>
+      <InputGroup flex="1" startElement={<LuLock color="#292D32" />}>
+        <PasswordInput
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Enter Password"
+          variant="subtle"
+          bg="#EEEEEE"
+          _placeholder={{ color: '#292D32' }}
+          color="#292D32"
+        />
+      </InputGroup>
 
       {/* Confirm Password */}
-      <Stack>
-        <InputGroup flex="1" startElement={<LuLock color="#292D32" />}>
-          <PasswordInput
-            name="confirm_password"
-            value={formData.confirm_password}
-            onChange={handleChange}
-            placeholder="Confirm Password"
-            variant="subtle"
-            bg="#EEEEEE"
-            _placeholder={{ color: '#292D32' }}
-            color="#292D32"
-          />
-        </InputGroup>
-      </Stack>
+      <InputGroup flex="1" startElement={<LuLock color="#292D32" />}>
+        <PasswordInput
+          name="confirm_password"
+          value={formData.confirm_password}
+          onChange={handleChange}
+          placeholder="Confirm Password"
+          variant="subtle"
+          bg="#EEEEEE"
+          _placeholder={{ color: '#292D32' }}
+          color="#292D32"
+        />
+      </InputGroup>
 
       {/* Checkbox */}
-      <Checkbox
-        color="#2D3748"
-        name="agreed"
-        isChecked={formData.agreed}
-        onChange={handleChange}
-      >
+      <Checkbox name="agreed" isChecked={formData.agreed} onChange={handleChange}>
         I agree to all the Terms and Privacy policy
       </Checkbox>
 
       {/* Buttons */}
       <ButtonGroup variant="subtle" gap="6%">
         <Button
-          onClick={handleCreateAccount}
+          type="submit"
           bg={formData.agreed ? '#2E5C38' : '#CBCBCB'}
-          color={formData.agreed ? 'white' : '#8E8E8E'}
+          color="white"
           w="47%"
           h="49px"
-          cursor={formData.agreed ? 'pointer' : 'not-allowed'}
           isDisabled={!formData.agreed}
         >
-          Create Account
+          {loading ? 'Creating Account...' : 'Create Account'}
         </Button>
 
         <Button bg="#737375" color="white" w="47%" h="49px">
-          <Image src={google} />
-          Sign-up with google
+          <Image src={google} alt="Sign up with Google" />
+          Sign-up with Google
         </Button>
       </ButtonGroup>
 
-      {/* Sign-up Option */}
-      <Stack align="center">
-        <HStack>
-          <Text textAlign="center" fontSize="sm" color="#2D3748">
-            Don't have an account?
-          </Text>
-          <Text
-            textAlign="center"
-            color="#2E5C38"
-            fontWeight="bold"
-            fontSize="sm"
-            as={Link}
-            to="/login"
-            _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
-          >
-            Log in
-          </Text>
-        </HStack>
-      </Stack>
+      {/* Error and Success Messages */}
+      {error && <Text color="red.500" textAlign="center">{error}</Text>}
+      {success && <Text color="green.500" textAlign="center">{success}</Text>}
     </Stack>
-  )
-}
+  );
+};
 
-export default Demos
+export default Demos;

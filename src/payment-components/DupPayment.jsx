@@ -1,41 +1,32 @@
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "@chakra-ui/react";
 import { countriesData } from "../utils/countriesModule";
 import flutterwaveLogo from "../assets/flutterwave_logo.svg";
 import paypalLogo from "../assets/paypal_logo.svg";
+import quicktellerLogo from "../assets/quickteller_logo.svg";
 import monnifyLogo from "../assets/monnify_logo.svg";
-import paystackLogo from "../assets/paystackLogoBlack.svg";
-import stripeLogo from "../assets/stripeLogo.svg";
 import PaymentForm from "./payment-subcomponents/PaymentForm";
 import { useNavigate } from "react-router";
-import axios from "axios";
-import paymentUrls from "@/utils/paymentUrls";
-import generatePaymentPayload from "@/utils/generatePaymentPayload";
 
 const Payment = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amountValue, setAmountValue] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
-  const [email, setEmail] = useState("");
-  const [merchantId, setMerchantId] = useState("");
-
-  const [err, setErr] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const toPath = "/merchant/select-payment-type";
 
-  const handleProceed = () => navigate(toPath);
+  const handleProceed = () => {
+    navigate(toPath);
+  };
 
-  const paymentMethods = [
-    { name: "PayPal", src: paypalLogo, url: paymentUrls.paypalPaymentURL },
-    { name: "Flutterwave", src: flutterwaveLogo, url: paymentUrls.flutterwavePaymentURL },
-    { name: "Paystack", src: paystackLogo, url: paymentUrls.paystackPaymentURL },
-    { name: "Stripe", src: stripeLogo, url: paymentUrls.stripePaymentURL },
-    { name: "Monnify", src: monnifyLogo, url: paymentUrls.monifyPaymentURL },
+  const paymentMethodLogos = [
+    { src: paypalLogo, name: "PayPal" },
+    { src: flutterwaveLogo, name: "Flutterwave" },
+    { src: quicktellerLogo, name: "Quickteller" },
+    { src: monnifyLogo, name: "Monnify" },
   ];
 
   const countryOptions = countriesData.map((country) => ({
@@ -59,7 +50,6 @@ const Payment = () => {
         </div>
       ),
       currencyCode: country.currency?.code,
-      name: country.currency?.name
     }))
     .filter((currency) => currency.value);
 
@@ -73,63 +63,20 @@ const Payment = () => {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value || "0.00");
-  };
+    const amount = e.target.value;
+    setAmountValue(amount || "0.00");
+  };  
 
   const handlePaymentSelection = (name) => {
     setSelectedPayment(name);
   };
 
-  const initiatePayment = async () => {
-    if (!selectedPayment || !amount || !email || !selectedCurrency) {
-      setErr("Please fill in all required fields.");
-      return;
-    }
-
-    setLoading(true);
-    setErr("");
-
-    const paymentUrl = paymentMethods.find((method) => method.name === selectedPayment)?.url;
-   
-    if (!paymentUrl) {
-      setErr("Invalid payment method selected.");
-      setLoading(false);
-      return;
-    }
-
-    const payload = generatePaymentPayload({
-      selectedPayment,
-      amount,
-      email,
-      currency: selectedCurrency?.value,
-      merchantId,
-    });
-
-    try {
-      const res = await axios.post(paymentUrl, new URLSearchParams(payload), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
-
-      if (res.data?.url) {
-        window.location.href = res.data.url;
-      } else {
-        setErr("Failed to initiate payment. Please try again.");
-      }
-    } catch (error) {
-      setErr(error.response?.data?.message || "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <Container maxW="full" bg="gray.100" py={8} px={4}>
-      <PaymentForm
+      <PaymentForm 
         phoneNumber={phoneNumber}
         setPhoneNumber={setPhoneNumber}
-        amountValue={amount}
+        amountValue={amountValue}
         selectedCurrency={selectedCurrency}
         selectedPayment={selectedPayment}
         setSelectedPayment={setSelectedPayment}
@@ -139,16 +86,8 @@ const Payment = () => {
         handlePaymentSelection={handlePaymentSelection}
         currencyOptions={currencyOptions}
         countryOptions={countryOptions}
-        paymentMethods={paymentMethods}
+        paymentMethodLogos={paymentMethodLogos}
         handleProceed={handleProceed}
-        email={email}
-        setEmail={setEmail}
-        err={err}
-        loading={loading}
-        setLoading={setLoading}
-        initiatePayment={initiatePayment}
-        amount={amount}
-        setAmount={setAmount}
       />
     </Container>
   );

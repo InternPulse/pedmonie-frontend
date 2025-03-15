@@ -35,8 +35,6 @@ const EmailVerification = () => {
 
         if (!token || !email) {
           setError("Invalid request: Go back to sign-up page and start the process again.");
-          //testing
-          console.error("Email and token are required for email verification.");
           return;
         }
 
@@ -44,18 +42,12 @@ const EmailVerification = () => {
     
         if (response.data) {
           setSuccess("Email verified successfully! You can now log in.");
-          //testing
-          console.log(response.data);
         }
       } catch (error) {
         if (error.response) {
           setError(error.response.data.message || "Verification failed. Please try again.");
-          //testing
-          console.error(error.response.data.message);
         } else {
           setError("Verification failed. Please try again.");
-          //testing
-          console.error("Verification failed. Please try again.", error.message);
         }
       } finally {
         setLoading(false);

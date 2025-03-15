@@ -37,42 +37,58 @@ const Payment = () => {
 
   //form data from url query
   const dataQuery = useQuery();
-  const merchantIdFromQuery = dataQuery.get("merchantId");
+  const merchantIdFromQuery = dataQuery.get("merchant_id");
   const { merchantIdFromParam } = useParams();
 
-  const merchantId = merchantIdFromParam || merchantIdFromQuery || paymentUrls.merchantId || "";
+  const merchantId =
+    merchantIdFromParam || merchantIdFromQuery || paymentUrls.merchantId || "";
   const amount = dataQuery.get("amount") || "45000";
   const currencyFromQuery = dataQuery.get("currency") || "NGN";
 
   const paymentMethods = [
     { name: "PayPal", src: paypalLogo, url: paymentUrls.paypalPaymentURL },
-    { name: "Flutterwave", src: flutterwaveLogo, url: paymentUrls.flutterwavePaymentURL },
-    { name: "Paystack", src: paystackLogo, url: paymentUrls.paystackPaymentURL },
+    {
+      name: "Flutterwave",
+      src: flutterwaveLogo,
+      url: paymentUrls.flutterwavePaymentURL,
+    },
+    {
+      name: "Paystack",
+      src: paystackLogo,
+      url: paymentUrls.paystackPaymentURL,
+    },
     { name: "Stripe", src: stripeLogo, url: paymentUrls.stripePaymentURL },
     { name: "Monnify", src: monnifyLogo, url: paymentUrls.monifyPaymentURL },
   ];
 
   // this find the matching currency in countriesData
   const currentCurrency = currencyFromQuery
-  ? countriesData.find(
-      (country) => country.currency?.code?.toLowerCase() === currencyFromQuery.toLowerCase()
-    )
-  : null;
+    ? countriesData.find(
+        (country) =>
+          country.currency?.code?.toLowerCase() ===
+          currencyFromQuery.toLowerCase()
+      )
+    : null;
 
   const selectedCurrency = currentCurrency
-  ? {
-      value: currentCurrency.currency.code, 
-      label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img src={currentCurrency.flag} alt={currentCurrency.name.common} width="20" height="15" />
-          {currentCurrency.currency.code}
-        </div>
-      ),
-      currencyCode: currentCurrency.currency.code,
-      name: currentCurrency.currency.name
-    }
-  : null;
- 
+    ? {
+        value: currentCurrency.currency.code,
+        label: (
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <img
+              src={currentCurrency.flag}
+              alt={currentCurrency.name.common}
+              width="20"
+              height="15"
+            />
+            {currentCurrency.currency.code}
+          </div>
+        ),
+        currencyCode: currentCurrency.currency.code,
+        name: currentCurrency.currency.name,
+      }
+    : null;
+
   const handlePaymentSelection = (name) => {
     setSelectedPayment(name);
   };
@@ -82,12 +98,14 @@ const Payment = () => {
       setErr("Please fill in all required fields.");
       return;
     }
-    
+
     setLoading(true);
     setErr("");
 
-    const paymentUrl = paymentMethods.find((method) => method.name === selectedPayment)?.url;
-   
+    const paymentUrl = paymentMethods.find(
+      (method) => method.name === selectedPayment
+    )?.url;
+
     if (!paymentUrl) {
       setErr("Invalid payment method selected.");
       setLoading(false);
@@ -103,7 +121,6 @@ const Payment = () => {
     });
 
     try {
-
       const formData = new URLSearchParams();
 
       Object.entries(payload).forEach(([key, value]) => {
@@ -123,19 +140,23 @@ const Payment = () => {
 
         //this set redirection for paypal
         if (res.data?.data.links && Array.isArray(res.data?.data.links)) {
-          const approvedUrl = res.data?.data?.links?.find(link => link.rel === "approve")?.href;
+          const approvedUrl = res.data?.data?.links?.find(
+            (link) => link.rel === "approve"
+          )?.href;
 
           if (approvedUrl) {
             window.location.href = approvedUrl;
           }
         }
-      
       } else {
         setErr("Failed to initiate payment. Please try again.");
       }
     } catch (error) {
       if (error.response) {
-        setErr(error.response?.data?.message || "Internal server error. Please try again.");
+        setErr(
+          error.response?.data?.message ||
+            "Internal server error. Please try again."
+        );
       } else {
         setErr("Something went wrong. Please try again.");
       }

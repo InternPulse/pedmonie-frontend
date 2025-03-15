@@ -141,8 +141,8 @@ const PaymentForm = ({
             isDisabled={loading}
           >
             <Flex align="center" gap={2}>
-              {loading && <Spinner size="sm" color="gray.700" />}
               {`Pay ${selectedCurrency?.currencyCode || ""} ${amountValue || "0.00"}`}
+              {loading && <Spinner size="sm" color="gray.700" />}
             </Flex>
           </Button>
 

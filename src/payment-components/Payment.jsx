@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Container } from "@chakra-ui/react";
 import { countriesData } from "../utils/countriesModule";
@@ -83,7 +82,7 @@ const Payment = () => {
       setErr("Please fill in all required fields.");
       return;
     }
-
+    
     setLoading(true);
     setErr("");
 
@@ -94,8 +93,6 @@ const Payment = () => {
       setLoading(false);
       return;
     }
-      //testing
-    console.log("Payment URL", paymentUrl)
 
     const payload = generatePaymentPayload({
       selectedPayment,
@@ -105,31 +102,34 @@ const Payment = () => {
       merchantId,
     });
 
-    //testing
-    console.log("Payload Data", payload);
-    console.log("Payload Data", payload, "Type of payload is:", typeof payload);
-
-    const dynamicPaymentUrl = Object.keys(payload).includes("merchantId") 
-    ? paymentUrl 
-    : `${paymentUrl}?merchantId=${merchantId}`;
-
     try {
-   /*    const res = await axios.post(paymentUrl, new URLSearchParams(payload), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }); */
 
-      const res = await axios.post(dynamicPaymentUrl, payload, {
-        headers: { "Content-Type": "application/json" },
+      const formData = new URLSearchParams();
+
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, value);
       });
 
-      //testing
-      console.log("Response Data", res.data)
-      
+      const res = await axios.post(paymentUrl, formData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
 
-      if (res.data?.url) {
-        window.location.href = res.data.url;
+      if (res.data?.data) {
+        //this set redirection for paystack
+        if (res.data?.data.authorization_url) {
+          const checkOutUrl = res.data?.data?.authorization_url;
+          window.location.href = checkOutUrl;
+        }
+
+        //this set redirection for paypal
+        if (res.data?.data.links && Array.isArray(res.data?.data.links)) {
+          const approvedUrl = res.data?.data?.links?.find(link => link.rel === "approve")?.href;
+
+          if (approvedUrl) {
+            window.location.href = approvedUrl;
+          }
+        }
+      
       } else {
         setErr("Failed to initiate payment. Please try again.");
       }

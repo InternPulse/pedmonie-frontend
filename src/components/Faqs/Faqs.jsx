@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Box,
@@ -46,35 +47,48 @@ const faqs = [
 
 export default function Faqs() {
   return (
-    <Box bg="gray.50" px="95px">
+    <Box bg="gray.50" px={{ base: 4, md: "95px" }}>
       {/* FAQ Polygon Section */}
       <Box
         position="relative"
-        // maxW="800px"
+        maxW={{ base: "full", md: "full" }} // Full width on mobile, 800px on desktop
         mx="auto"
-        mt={10}
+        mt={{ base: 4, md: 10 }}
         overflow="hidden"
         clipPath="polygon(5% 0%, 95% 0%, 100% 10%, 100% 100%, 0% 100%, 0% 10%)"
+        /*
+          If you want to remove the polygon on mobile, uncomment below:
+          clipPath={{ 
+            base: "none", 
+            md: "polygon(5% 0%, 95% 0%, 100% 10%, 100% 100%, 0% 100%, 0% 10%)" 
+          }}
+        */
         bg="gray.100"
-        p={6}
+        p={{ base: 4, md: 6 }}
         borderRadius="lg"
       >
-        <Container>
+        <Container maxW="container.md" px={{ base: 0, md: 4 }}>
           {/* FAQ Title */}
-          <VStack spacing={2} textAlign="center" mb={4}>
-            <Text fontSize="2xl" fontWeight="bold" color="black">
+          <VStack spacing={2} textAlign="center" mb={{ base: 4, md: 6 }}>
+            <Text
+              fontSize={{ base: "xl", md: "2xl" }}
+              fontWeight="bold"
+              color="black"
+            >
               Frequently Asked Questions (FAQs)
             </Text>
-            <Text fontSize="md" color="gray.600">
+            <Text
+              fontSize={{ base: "sm", md: "md" }}
+              color="gray.600"
+            >
               Everything You Need to Know About Pedmonie
             </Text>
           </VStack>
 
           {/* Accordion without lines */}
-          <Box bg="white" p={6} borderRadius="lg">
+          <Box bg="white" p={{ base: 4, md: 6 }} borderRadius="lg">
             <AccordionRoot type="single" collapsible>
               <VStack spacing={4} align="stretch">
-                {/* Ensures spacing without borders */}
                 {faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}
@@ -84,7 +98,7 @@ export default function Faqs() {
                     <AccordionItemTrigger>
                       <Text
                         fontWeight="medium"
-                        fontSize="md"
+                        fontSize={{ base: "md", md: "md" }}
                         py={2}
                         color="black"
                       >
@@ -92,7 +106,11 @@ export default function Faqs() {
                       </Text>
                     </AccordionItemTrigger>
                     <AccordionItemContent>
-                      <Text fontSize="sm" color="black" mt={2}>
+                      <Text
+                        fontSize={{ base: "sm", md: "sm" }}
+                        color="black"
+                        mt={2}
+                      >
                         {faq.answer}
                       </Text>
                     </AccordionItemContent>
@@ -112,9 +130,8 @@ export default function Faqs() {
         px={4}
         textAlign="center"
         mt={10}
-        height={200}
-        backgroundImage="url('/small_circular_lines.png')" // Set your image path
-        backgroundPosition="right" // Adjust position
+        backgroundImage="url('/small_circular_lines.png')"
+        backgroundPosition="right"
         backgroundRepeat="no-repeat"
         backgroundSize="contain"
       >
@@ -122,21 +139,25 @@ export default function Faqs() {
           align="center"
           justify="center"
           direction={{ base: "column", md: "row" }}
-          gap={60}
+          gap={{ base: 6, md: 10, lg: 60 }}
+          maxW="1100px"
+          mx="auto"
         >
           <Image
             src="https://www.idcrypt.global/_next/static/chunks/images/business-header-457a884bda4cb7ff394467beb7c80005.webp"
             alt="Support Avatar"
             borderRadius="full"
-            boxSize="150px"
+            boxSize={{ base: "120px", md: "180px", lg: "150px" }}
           />
-          <Box maxW="400px" textAlign="left">
-            <Text fontSize="lg" fontWeight="bold">
+          <Box
+            maxW="500px"
+            textAlign={{ base: "center", md: "left" }}
+          >
+            <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
               Still have questions?
             </Text>
-            <Text fontSize="sm">
-              Can't find the answer you're looking for? Please chat with our
-              friendly team.
+            <Text fontSize={{ base: "sm", md: "md" }}>
+              Can't find the answer you're looking for? Please chat with our friendly team.
             </Text>
           </Box>
           <Button
@@ -145,6 +166,7 @@ export default function Faqs() {
             rounded="full"
             size="md"
             _hover={{ bg: "white", color: "teal.600" }}
+            mt={{ base: 4, md: 0 }}
           >
             Get in Touch
           </Button>
@@ -152,111 +174,110 @@ export default function Faqs() {
       </Box>
 
       {/* Footer */}
-      <Box bg="gray.50" py={8} px={4}>
-        <SimpleGrid
-          columns={{ base: 1, md: 4 }}
-          spacing={8}
-          // maxW="1200px"
-          mx="auto"
-          textAlign={{ base: "center", md: "left" }}
+      <Box bg="gray.50" py={20} px={20}>
+  <SimpleGrid
+    columns={{ base: 1, md: 4 }}
+    spacing={{ base: 25, md: 10 }}
+     mx="auto"
+     textAlign={{ base: "center", md: "left" }}
+  >
+    {/* Logo & Contact */}
+    <VStack mt={8} spacing={4} align="start">
+      <Image
+        src="/pedmonie.png"
+        alt="Footer Logo"
+        boxSize="150px"
+        objectFit="contain"
+        margin="-55px"
+      />
+      <Link href="mailto:hello@pedmonie.com" color="gray.600">
+        hello@pedmonie.com
+      </Link>
+      <Text color="gray.600">+234 856 600 0000</Text>
+    </VStack>
+
+    {/* Company */}
+    <VStack mt={8} spacing={4} align="start">
+      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+        Company
+      </Text>
+      <Link href="#" color="gray.600">
+        Blog
+      </Link>
+      <Link href="#" color="gray.600">
+        Career
+      </Link>
+      <Link href="#" color="gray.600">
+        Pricing
+      </Link>
+    </VStack>
+
+    {/* Resources */}
+    <VStack mt={8} spacing={4} align="start">
+      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+        Resources
+      </Text>
+      <Link href="#" color="gray.600">
+        Documentation
+      </Link>
+      <Link href="#" color="gray.600">
+        Papers
+      </Link>
+      <Link href="#" color="gray.600">
+        Press Conferences
+      </Link>
+      <Link href="#" color="gray.600">
+        Data Processing
+      </Link>
+    </VStack>
+
+    {/* Legal */}
+    <VStack mt={8} spacing={4} align="start">
+      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+        Legal
+      </Text>
+      <Link href="#" color="gray.600">
+        Terms of Service
+      </Link>
+      <Link href="#" color="gray.600">
+        Privacy Policy
+      </Link>
+      <Link href="#" color="gray.600">
+        Cookies Policy
+      </Link>
+      <Link href="#" color="gray.600">
+        Data Processing
+      </Link>
+    </VStack>
+  </SimpleGrid>
+
+  <Flex
+    mt={10}
+    pt={9}
+    borderTop="1px solid"
+    borderColor="gray.200"
+    direction={{ base: "column", md: "row" }}
+    gap={4}
+    align="flex-start" // Align items to the left
         >
-          {/* Logo & Contact */}
-          <VStack spacing={3} align={{ base: "center", md: "start" }}>
-            <Image
-              src="/pedmonie.png" // Replace with actual path
-              alt="Footer Logo"
-              boxSize="150px"
-              objectFit="contain"
-              margin="-55px"
-            />
-            <Link href="mailto:hello@pedmonie.com" color="gray.600">
-              hello@pedmonie.com
-            </Link>
-            <Text color="gray.600">+234 856 600 0000</Text>
-          </VStack>
+          
+    <Text color="gray.500" fontSize="sm">
+      © 2025, Pedmonie Inc.
+    </Text>
+    <Flex gap={10}>
+      <Link href="#" color="gray.600">
+        <Icon as={FaTwitter} boxSize={5} />
+      </Link>
+      <Link href="#" color="gray.600">
+        <Icon as={FaFacebookF} boxSize={5} />
+      </Link>
+      <Link href="#" color="gray.600">
+        <Icon as={FaInstagram} boxSize={5} />
+      </Link>
+    </Flex>
+  </Flex>
+</Box>
 
-          {/* Company */}
-          <VStack spacing={3} align={{ base: "center", md: "start" }}>
-            <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-              Company
-            </Text>
-            <Link href="#" color="gray.600">
-              Blog
-            </Link>
-            <Link href="#" color="gray.600">
-              Career
-            </Link>
-            <Link href="#" color="gray.600">
-              Pricing
-            </Link>
-          </VStack>
-
-          {/* Resources */}
-          <VStack spacing={3} align={{ base: "center", md: "start" }}>
-            <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-              Resources
-            </Text>
-            <Link href="#" color="gray.600">
-              Documentation
-            </Link>
-            <Link href="#" color="gray.600">
-              Papers
-            </Link>
-            <Link href="#" color="gray.600">
-              Press Conferences
-            </Link>
-            <Link href="#" color="gray.600">
-              Data Processing
-            </Link>
-          </VStack>
-
-          {/* Legal */}
-          <VStack spacing={3} align={{ base: "center", md: "start" }}>
-            <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-              Legal
-            </Text>
-            <Link href="#" color="gray.600">
-              Terms of Service
-            </Link>
-            <Link href="#" color="gray.600">
-              Privacy Policy
-            </Link>
-            <Link href="#" color="gray.600">
-              Cookies Policy
-            </Link>
-            <Link href="#" color="gray.600">
-              Data Processing
-            </Link>
-          </VStack>
-        </SimpleGrid>
-        <Flex
-          mt={8}
-          pt={4}
-          borderTop="1px solid"
-          borderColor="gray.200"
-          justify="space-between"
-          align="center"
-          maxW="1200px"
-          mx="auto"
-          direction={{ base: "column", md: "row" }}
-          gap={4}
-        >
-          <Text color="gray.500" fontSize="sm">
-            © 2025, Pedmonie Inc.
-          </Text>
-          <Flex gap={4}>
-            <Link href="#" color="gray.600">
-              <Icon as={FaTwitter} boxSize={5} />
-            </Link>
-            <Link href="#" color="gray.600">
-              <Icon as={FaFacebookF} boxSize={5} />
-            </Link>
-            <Link href="#" color="gray.600">
-              <Icon as={FaInstagram} boxSize={5} />
-            </Link>
-          </Flex>
-        </Flex>
-      </Box>
     </Box>
   );
 }

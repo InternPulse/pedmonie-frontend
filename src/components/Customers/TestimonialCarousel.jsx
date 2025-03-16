@@ -1,33 +1,38 @@
-import { Box } from '@chakra-ui/react';
-import Slider from 'react-slick';
-import Card from './Cards';
+import { Box, useBreakpointValue } from "@chakra-ui/react";
+import Slider from "react-slick";
+import Card from "./Cards";
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './carousel.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./carousel.css";
 
 const Carousel = () => {
+  // Dynamically change slidesToShow for mobile vs. desktop
+  const slidesToShow = useBreakpointValue({ base: 1, md: 2.5 });
+
+  // For the top row (L to R)
   const settingsTop = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2.5, // Showing 2 and a half cards
+    slidesToShow: slidesToShow, // single card on mobile, 2.5 on desktop
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    rtl: false, // Left to right
+    rtl: false,
     arrows: false,
   };
 
+  // For the bottom row (R to L)
   const settingsBottom = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2.5, // Showing 2 and a half cards
+    slidesToShow: slidesToShow, // single card on mobile, 2.5 on desktop
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    rtl: true, // Right to left
+    rtl: true,
     arrows: false,
   };
 
@@ -35,18 +40,42 @@ const Carousel = () => {
     <Box maxW="100%" mx="auto" p={4} overflow="hidden">
       {/* Top Row */}
       <Slider {...settingsTop}>
-        <Card title="Card 1" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 2" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 3" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 4" imageUrl="https://via.placeholder.com/150" />
+        <Card
+          title="Card 1"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+1"
+        />
+        <Card
+          title="Card 2"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+2"
+        />
+        <Card
+          title="Card 3"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+3"
+        />
+        <Card
+          title="Card 4"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+4"
+        />
       </Slider>
 
       {/* Bottom Row */}
-      <Slider {...settingsBottom} style={{ marginTop: '20px' }}>
-        <Card title="Card 5" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 6" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 7" imageUrl="https://via.placeholder.com/150" />
-        <Card title="Card 8" imageUrl="https://via.placeholder.com/150" />
+      <Slider {...settingsBottom} style={{ marginTop: "20px" }}>
+        <Card
+          title="Card 5"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+5"
+        />
+        <Card
+          title="Card 6"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+6"
+        />
+        <Card
+          title="Card 7"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+7"
+        />
+        <Card
+          title="Card 8"
+          imageUrl="https://via.placeholder.com/300x150.png?text=Card+8"
+        />
       </Slider>
     </Box>
   );

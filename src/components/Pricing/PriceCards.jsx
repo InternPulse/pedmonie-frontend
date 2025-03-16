@@ -13,13 +13,16 @@ import WhatsIncluded from "./Hidden";
 const Cards = () => {
   return (
     <Stack width="90%" margin="0 auto" pt={10} pb={10}>
-      <Box bgColor="var(--Colors-Yellow, rgba(255, 204, 0, 1))">
+      <Box>
         <Card.Root
+          // Make the top border thicker and solid
+          borderTop="10px solid"
+          borderTopColor="yellow"
           size="lg"
           display="flex"
           flexDirection={{ base: "column", md: "row", lg: "row" }}
           gap="5%"
-          bgColor=" rgba(255, 255, 255, 1)"
+          bgColor="rgba(255, 255, 255, 1)"
         >
           <Box w={{ base: "100%", md: "45%", lg: "45%" }}>
             <Card.Header>
@@ -45,7 +48,7 @@ const Cards = () => {
                   fontSize="sm"
                   pt={4}
                   fontWeight="100"
-                  color=" rgba(0, 0, 0, 0.4)"
+                  color="rgba(0, 0, 0, 0.4)"
                   textAlign={{ base: "center" }}
                 >
                   pay per transaction
@@ -91,15 +94,16 @@ const Cards = () => {
               <li>Secure transactions with fraud protection</li>
               <li>Access to real-time transaction reports</li>
             </Card.Body>
-            <WhatsIncluded></WhatsIncluded>
+            <WhatsIncluded />
           </Box>
         </Card.Root>
       </Box>
 
       <Card.Root
-        size="lg"
+        borderTop="10px solid"
         borderTopColor="rgba(141, 239, 136, 1)"
-        bgColor=" rgba(255, 255, 255, 1)"
+        size="lg"
+        bgColor="rgba(255, 255, 255, 1)"
         display="flex"
         flexDirection={{ base: "column", md: "row", lg: "row" }}
         gap="5%"
@@ -127,7 +131,7 @@ const Cards = () => {
               <Box
                 fontSize="sm"
                 pt={4}
-                color=" rgba(0, 0, 0, 0.4)"
+                color="rgba(0, 0, 0, 0.4)"
                 textAlign={{ base: "center" }}
               >
                 per month
@@ -141,7 +145,6 @@ const Cards = () => {
               Best for Growing Businesses
             </Text>
             <Button
-              width="40%"
               w={{ lg: "40%", md: "60%" }}
               bgColor="white"
               color="black"
@@ -173,17 +176,18 @@ const Cards = () => {
             <li>Everything in Basic, plus.</li>
             <li>Lower transaction fees for higher volumes</li>
             <li>Automated payouts for faster access to funds</li>
-            <li> Customizable payment pages </li>
+            <li>Customizable payment pages</li>
             <li>Priority customer support</li>
           </Card.Body>
-          <WhatsIncluded></WhatsIncluded>
+          <WhatsIncluded />
         </Box>
       </Card.Root>
 
       <Card.Root
-        size="lg"
+        borderTop="10px solid"
         borderTopColor="blue"
-        bgColor=" rgba(255, 255, 255, 1)"
+        size="lg"
+        bgColor="rgba(255, 255, 255, 1)"
         display="flex"
         flexDirection={{ base: "column", md: "row", lg: "row" }}
         gap="5%"
@@ -239,16 +243,17 @@ const Cards = () => {
             fontSize={{ lg: "sm", md: "xs", sm: "xs" }}
             display={{ base: "none", md: "block", lg: "block" }}
           >
-            <li> Everything in Pro, plus:</li>
+            <li>Everything in Pro, plus:</li>
             <li>Dedicated account manager</li>
             <li>Advanced API access for custom integrations</li>
             <li>Multi-currency support for global payments</li>
             <li>Tailored pricing based on business needs</li>
           </Card.Body>
-          <WhatsIncluded></WhatsIncluded>
+          <WhatsIncluded />
         </Box>
       </Card.Root>
     </Stack>
   );
 };
+
 export default Cards;

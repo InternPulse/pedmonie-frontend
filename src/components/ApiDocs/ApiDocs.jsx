@@ -144,6 +144,7 @@ const ApiDocs = () => {
               textAlign={"center"}
               lineHeight={"38px"}
               fontFamily={""}
+              color="#000"
             >
               Well documented and ready-to-use APIs for developers
             </Text>
@@ -168,6 +169,7 @@ const ApiDocs = () => {
               lineHeight={"24px"}
               opacity={"60%"}
               fontFamily={""}
+              color="gray.600"
             >
               We have done the core payment integrations and abstractions so
               your team can easily integrate with our APIs and access multiple

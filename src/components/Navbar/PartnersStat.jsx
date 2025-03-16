@@ -27,58 +27,61 @@ const PartnersStat = () => {
     <Box>
       {/* PATNERS SECTION */}
       <Container
-        maxW="container.xl"
-        px={{ base: 6, md: 10, xl: 24 }}
-        py={{ base: 6, md: 10 }}
-      >
-        <Flex
-          direction={{ base: "column", sm: "row" }}
-          justify="space-between"
-          align="center"
-          width="full"
-          gap={{ base: 6, md: 4 }}
-        >
-          <Text
-            fontSize={{ base: "md", md: "sm", sm: "sm", xl: "md" }}
-            fontWeight="medium"
-            color="gray.600"
-            whiteSpace="nowrap"
-          >
-            We proudly partner with over 1,000+ businesses
-          </Text>
+  maxW="container.xl"
+  px={{ base: 6, md: 10, xl: 24 }}
+  py={{ base: 6, md: 10 }}
+>
+  <Flex
+    direction={{ base: "column", md: "row" }}   // Column on mobile, row on desktop
+    justify="space-between"
+    align="center"
+    width="full"
+    gap={{ base: 6, md: 4 }}
+  >
+    {/* Text */}
+    <Text
+      fontSize={{ base: "md", md: "sm", xl: "md" }}
+      fontWeight="medium"
+      color="gray.600"
+      textAlign={{ base: "center", md: "left" }} // Centered on mobile, left on desktop
+      whiteSpace={{ base: "normal", md: "nowrap" }} // Wrap text on mobile, no-wrap on desktop
+    >
+      We proudly partner with over 1,000+ businesses
+    </Text>
 
-          {/* LOGOS */}
-          <HStack
-            w="fit-content"
-            display="flex"
-            spacing={{ base: 4, md: 6, xl: 8 }}
-            gap={{ base: 4, md: 6, xl: 8 }}
-            // justify={{ base: "center", md: "flex-start", xl: "flex-end" }}
-            // flexWrap="wrap"
-          >
-            <Image
-              src={flutterwave}
-              alt="Flutterwave"
-              h={{ base: "20px", md: "20px", xl: "20px" }}
-            />
-            <Image
-              src={opay}
-              alt="Opay"
-              h={{ base: "20px", md: "20px", xl: "30px" }}
-            />
-            <Image
-              src={paystack}
-              alt="Paystack"
-              h={{ base: "10px", md: "20px", xl: "25px" }}
-            />
-            <Image
-              src={trivago}
-              alt="Trivago"
-              h={{ base: "20px", md: "20px", xl: "25px" }}
-            />
-          </HStack>
-        </Flex>
-      </Container>
+    {/* Logos */}
+    <HStack
+      // On mobile, stack logos below the text & center them
+      // On desktop, logos remain on the right
+      w={{ base: "full", md: "fit-content" }}
+      justify={{ base: "center", md: "flex-start" }}
+      spacing={{ base: 4, md: 6, xl: 8 }}
+      flexWrap={{ base: "wrap", md: "nowrap" }} // Allow wrapping on mobile if needed
+    >
+      <Image
+        src={flutterwave}
+        alt="Flutterwave"
+        h={{ base: "20px", md: "20px", xl: "20px" }}
+      />
+      <Image
+        src={opay}
+        alt="Opay"
+        h={{ base: "20px", md: "20px", xl: "30px" }}
+      />
+      <Image
+        src={paystack}
+        alt="Paystack"
+        h={{ base: "10px", md: "20px", xl: "25px" }}
+      />
+      <Image
+        src={trivago}
+        alt="Trivago"
+        h={{ base: "20px", md: "20px", xl: "25px" }}
+      />
+    </HStack>
+  </Flex>
+</Container>
+
 
       {/* STAT SECTION */}
       <Box

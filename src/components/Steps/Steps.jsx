@@ -4,7 +4,7 @@ import img1 from "../../assets/images/arrow-down.png";
 const data = [
   {
     id: 1,
-    heading: "Sign Up ",
+    heading: "Sign Up",
     text: "Create an account and customize your payment preferences.",
   },
   {
@@ -27,56 +27,75 @@ const data = [
 const Steps = () => {
   return (
     <Flex
-      style={{ backgroundColor: "#2E5C38", color: "#FFFFFF" }}
+      bg="#2E5C38"
+      color="#FFFFFF"
       direction="column"
-      alignItems="center"
-      padding={10}
+      align="center"
+      px={{ base: 4, md: 10 }}
+      py={{ base: 10, md: 10 }}
     >
-      <Text fontWeight="600" textAlign="center" fontSize="3rem">
+      <Text
+        fontWeight="600"
+        textAlign="center"
+        fontSize={{ base: "2rem", md: "3rem" }}
+      >
         Seamless Payments in Just a Few Steps
       </Text>
 
       <Flex
         className="or-bx"
-        justifyContent="center"
+        direction={{ base: "column", md: "row" }} // Stack vertically on mobile, row on desktop
+        justify="center"
         gap="10px"
-        margin="70px"
-        width="auto"
+        my={{ base: 6, md: 10 }}
+        width="100%"
       >
-        {data.map((item) => {
-          return (
-            <Flex
-              direction="column"
-              flex="0 1 400px"
-              position="relative"
+        {data.map((item) => (
+          <Flex
+            key={item.id}
+            direction="column"
+            align="center"
+            gap="10px"
+            p="7px"
+            width={{ base: "100%", md: "0 1 400px" }}
+          >
+            <Box
+              fontSize={{ base: "2rem", md: "3rem" }}
+              border="2px solid #FFFFFF99"
+              borderRadius="50%"
+              width={{ base: "60px", md: "80px" }}
+              height={{ base: "60px", md: "80px" }}
+              display="flex"
               alignItems="center"
-              gap="10px"
-              padding="7px"
+              justifyContent="center"
+              textAlign="center"
+              className="numBox"
             >
-              <Box
-                fontSize="3rem"
-                border="solid  #FFFFFF99 2px"
-                borderRadius="50%"
-                width="80px"
-                textAlign="center"
-                className="numBox"
-              >
-                {item.id}
-              </Box>
-              <div className="hline"></div>
-
-              <Text fontSize="1.87rem" textAlign="center">
-                {item.heading}
-              </Text>
-
-              <Text fontSize="1.3rem" textAlign="center" fontWeight="200">
-                {item.text}
-              </Text>
-            </Flex>
-          );
-        })}
+              {item.id}
+            </Box>
+            {/* Horizontal line element – ensure your CSS handles its styling */}
+            <div className="hline" />
+            <Text
+              fontSize={{ base: "1.2rem", md: "1.87rem" }}
+              textAlign="center"
+            >
+              {item.heading}
+            </Text>
+            <Text
+              fontSize={{ base: "1rem", md: "1.3rem" }}
+              textAlign="center"
+              fontWeight="200"
+            >
+              {item.text}
+            </Text>
+          </Flex>
+        ))}
       </Flex>
-      <Button className="btn" fontSize="15px">
+      <Button
+        className="btn"
+        fontSize={{ base: "14px", md: "15px" }}
+        width={{ base: "90%", md: "auto" }}
+      >
         Create a Free Account <img src={img1} alt="button" />
       </Button>
     </Flex>

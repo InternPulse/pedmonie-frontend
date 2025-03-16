@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   Box,
   Button,
@@ -10,253 +10,188 @@ import {
   Fieldset,
   Image,
   Flex,
-} from "@chakra-ui/react";
-import { djangoAPI } from "../../config/apiConfig";
-import { useNavigate, Link } from "react-router-dom";
-import logo from "../assets/pedmonie-logo.svg";
-import { jwtDecode } from "jwt-decode";
+} from '@chakra-ui/react'
+import { djangoAPI } from '../../config/apiConfig'
+import { useNavigate, Link } from 'react-router-dom'
+import logo from '../assets/pedmonie-logo.svg'
+import { jwtDecode } from 'jwt-decode'
 
 function Login() {
- 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+    e.preventDefault()
+    setError('')
+    setLoading(true)
 
     try {
-      const response = await djangoAPI.post("/api/v1/token/", {
+      const response = await djangoAPI.post('/api/v1/token/', {
         email,
         password,
-      });
+      })
 
       if (response.data.access) {
-        localStorage.setItem("authToken", response.data.access);
+        localStorage.setItem('authToken', response.data.access)
         djangoAPI.defaults.headers[
-          "Authorization"
-        ] = `Bearer ${response.data.access}`;
+          'Authorization'
+        ] = `Bearer ${response.data.access}`
 
-        const decodedToken = jwtDecode(response.data.access);
+        const decodedToken = jwtDecode(response.data.access)
 
-        if (decodedToken.role === "superadmin") {
-          navigate("/admin");
-        } else if (decodedToken.role === "merchant") {
-          navigate("/merchant");
+        if (decodedToken.role === 'superadmin') {
+          navigate('/admin')
+        } else if (decodedToken.role === 'merchant') {
+          navigate('/merchant')
         }
-
       }
     } catch (err) {
       setError(
         err.response?.data?.message ||
           err.response?.data?.detail ||
-          "Login failed. Try again."
-      );
+          'Login failed. Try again.'
+      )
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <Flex height="100vh" width="100vw" bgGradient="linear(to-r, green.500, green.700)">
-     
+    <Flex
+      height="100vh"
+      width="100vw"
+      bgGradient="linear(to-r, green.500, green.700)"
+    >
       {/* Left Section - Branding */}
-      <Box 
-        flex={1} 
-        display={{base: "none", md: "flex"}} 
-        alignItems="center" 
-        justifyContent="center" 
-        flexDirection="column" 
-        color="white" 
+      <Box
+        flex={1}
+        display={{ base: 'none', md: 'flex' }}
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        color="white"
         bg="grey.300"
       >
         <Image src={logo} alt="PedMonie Logo" mb={4} />
-        <Heading fontSize="4xl" fontWeight="bold">PedMonie</Heading>
-        <Text fontSize="lg" mt={2}>Seamless Finance at Your Fingertips</Text>
+        <Heading fontSize="4xl" fontWeight="bold">
+          PedMonie
+        </Heading>
+        <Text fontSize="lg" mt={2}>
+          Seamless Finance at Your Fingertips
+        </Text>
       </Box>
 
       {/* Right Section - Login Form */}
-      <Box flex={1} display="flex" justifyContent="center" alignItems="center" bg="white" borderRadius={12} boxShadow="2xl" p={8} maxW="450px" m={4}>
-        ``<Box width="full">
-
-          <Image 
-            src={logo} 
-            alt="PedMonie Logo" 
-            display={{base: "block", md: "none"}} 
-            mx="auto" 
-            mb={4} 
+      <Box
+        flex={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        bg="white"
+        borderRadius={12}
+        boxShadow="2xl"
+        p={8}
+        maxW="450px"
+        m={4}
+      >
+        <Box width="full">
+          <Image
+            src={logo}
+            alt="PedMonie Logo"
+            display={{ base: 'block', md: 'none' }}
+            mx="auto"
+            mb={4}
           />
 
           <Heading mb={6} color="green.800" textAlign="center">
             Welcome Back
           </Heading>
-          {error && <Text color="red.500" textAlign="center">{error}</Text>}
+          {error && (
+            <Text color="red.500" textAlign="center">
+              {error}
+            </Text>
+          )}
           <form onSubmit={handleSubmit}>
             <Fieldset.Root size="lg">
               <Stack spacing={5}>
                 <Fieldset.Legend>Login to your account</Fieldset.Legend>
                 <Field.Root>
                   <Field.Label>Email</Field.Label>
-                  <Input type="email" value={email} required onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+                  <Input
+                    type="email"
+                    value={email}
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                  />
                 </Field.Root>
                 <Field.Root>
                   <Field.Label>Password</Field.Label>
-                  <Input type="password" value={password} required onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+                  <Input
+                    type="password"
+                    value={password}
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                  />
                 </Field.Root>
-                <Button type="submit" bg="green.800" color="white" _hover={{ bg: "green.00" }}>
-                  {loading ? "Loading..." : "Login"}
+                <Button
+                  type="submit"
+                  bg="green.800"
+                  color="white"
+                  _hover={{ bg: 'green.00' }}
+                >
+                  {loading ? 'Loading...' : 'Login'}
                 </Button>
 
                 <Link to="">
-                <Text fontSize="sm" color="green.800" textAlign="center" _hover={{ textDecoration: "underline", cursor: "pointer" }}>
-                  Forgot password?
-                </Text>
+                  <Text
+                    fontSize="sm"
+                    color="green.800"
+                    textAlign="center"
+                    _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+                  >
+                    Forgot password?
+                  </Text>
                 </Link>
 
                 <Link to="/signin">
-                <Text fontSize="sm" color="green.800" textAlign="center" _hover={{ textDecoration: "underline", cursor: "pointer" }}>
-                  Don't have an account? Sign up
-                </Text>
+                  <Text
+                    fontSize="sm"
+                    color="green.800"
+                    textAlign="center"
+                    _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+                  >
+                    Don't have an account? Sign up
+                  </Text>
                 </Link>
-
               </Stack>
             </Fieldset.Root>
           </form>
 
-        <Box display="flex" justifyContent="center" mt={4}>
-          <Button 
-            bg="green.800" 
-            color="white" 
-            size="lg" 
-            px={8} 
-            borderRadius="md"
-            _hover={{ bg: "green.700" }}
-            onClick={() => navigate("/")}
-          >
-            <Text fontSize="md" fontWeight="bold">
-              Back to Home
-            </Text>
-          </Button>
-        </Box>
-
-
+          <Box display="flex" justifyContent="center" mt={4}>
+            <Button
+              bg="green.800"
+              color="white"
+              size="lg"
+              px={8}
+              borderRadius="md"
+              _hover={{ bg: 'green.700' }}
+              onClick={() => navigate('/')}
+            >
+              <Text fontSize="md" fontWeight="bold">
+                Back to Home
+              </Text>
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Flex>
-  );
+  )
 }
 
-export default Login;
-
-
-/* import { useState } from "react";
-import { Box, Button, Input, Heading, VStack, Text } from "@chakra-ui/react";
-import { djangoAPI } from "../../config/apiConfig";
-import { useNavigate } from "react-router-dom";
-
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const response = await djangoAPI.post("/api/v1/token/", {
-        email,
-        password,
-      });
-
-      if (response.data.access) {
-        localStorage.setItem("authToken", response.data.access);
-        djangoAPI.defaults.headers[
-          "Authorization"
-        ] = `Bearer ${response.data.access}`;
-
-        navigate("/merchant");
-      }
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          err.response?.data?.detail ||
-          "Login failed. Try again."
-      );
-    }
-  };
-
-  return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-      bg="gray.100"
-    >
-      <Box
-        p={8}
-        maxWidth="400px"
-        borderWidth={1}
-        borderRadius={8}
-        boxShadow="lg"
-        bg="white"
-      >
-        <Heading mb={6} textAlign="center" color="black">
-          Login
-        </Heading>
-        {error && (
-          <Text color="red.500" textAlign="center">
-            {error}
-          </Text>
-        )}
-        <form onSubmit={handleSubmit}>
-          <VStack spacing={4} align="stretch">
-            <Text fontWeight="bold" color="black">
-              Email
-            </Text>
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              color="black"
-              placeholder="Enter your email"
-            />
-
-            <Text fontWeight="bold" color="black">
-              Password
-            </Text>
-            <Input
-              type="password"
-              value={password}
-              color="black"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-
-            <Button type="submit" colorScheme="blue" width="full">
-              Login
-            </Button>
-            <Text
-              textAlign="center"
-              color="blue.500"
-              fontSize="sm"
-              _hover={{ textDecoration: "underline", cursor: "pointer" }}
-            >
-              Forgot password?
-            </Text>
-          </VStack>
-        </form>
-      </Box>
-    </Box>
-  );
-}
-
-export default Login;
- */
+export default Login

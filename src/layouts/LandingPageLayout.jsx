@@ -1,12 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import Header from "../components/landingPage/Header";
 import { Outlet } from "react-router";
+import Header from "../components/landingPage/Header";
 
 function LandingPageLayout() {
   return (
     <Box
       bg="white"
-      w={["", "", "", "", "80em", "96em"]}
       h="dvh"
       overflowY="auto"
       css={{
@@ -18,7 +17,9 @@ function LandingPageLayout() {
       m="auto"
     >
       <Header />
-      <Outlet />
+      <Box w={{ base: "full", xl: ["", "", "", "", "80em", "96em"] }} m="auto">
+        <Outlet />
+      </Box>
     </Box>
   );
 }

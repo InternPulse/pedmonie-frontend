@@ -37,7 +37,7 @@ export default function MerchantLayout() {
         position="absolute"
         onClick={() => setCloseSidebar(!closeSidebar)}
         display={!isAuthenticated ? "none" : "block"}
-        // display={}
+        hideBelow="xl"
       />
 
       <Main closeSidebar={closeSidebar} setCloseSidebar={setCloseSidebar}>

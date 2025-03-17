@@ -25,17 +25,27 @@ function Header() {
     <>
       <Alert.Root
         bg="#E5F3E8"
+        display="flex"
         height="54px"
         color="black"
         alignItems="center"
+        justifyContent="center"
         hidden={headerMsg ? false : true}
-        pl={{ base: "", md: "50px", xl: "280px" }}
+        m="auto"
         hideBelow="md"
       >
-        <Button bg="#4E995E" w="90px" h="40px" color="white" rounded="full">
+        <Button
+          bg="#4E995E"
+          w="90px"
+          h="40px"
+          ml="150px"
+          color="white"
+          rounded="full"
+        >
           New
         </Button>
         <Box
+          w="800px"
           display="flex"
           flexDirection="row"
           alignItems="center"

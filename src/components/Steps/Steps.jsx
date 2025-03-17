@@ -1,6 +1,6 @@
-
 import { Flex, Text, Box, Button } from "@chakra-ui/react";
 import img1 from "../../assets/images/arrow-down.png";
+import { useNavigate } from "react-router";
 
 const data = [
   {
@@ -26,6 +26,7 @@ const data = [
 ];
 
 const Steps = () => {
+  const navigate = useNavigate();
   return (
     <Flex
       bg="#2E5C38"
@@ -96,6 +97,7 @@ const Steps = () => {
         className="btn"
         fontSize={{ base: "14px", md: "15px" }}
         width={{ base: "90%", md: "auto" }}
+        onClick={() => navigate("/signin")}
       >
         Create a Free Account <img src={img1} alt="button" />
       </Button>

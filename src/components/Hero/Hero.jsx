@@ -3,8 +3,10 @@ import smallCircles from "../../assets/images/smallCircles.svg";
 import paymentImage from "../../assets/images/paymentImage.svg?url";
 import globe from "../../assets/images/globe.svg?url";
 import CustomButton from "../CustomButton";
+import { useNavigate } from "react-router";
 
 function Hero() {
+  const navigate = useNavigate();
   return (
     <Box
       w="full"
@@ -82,7 +84,13 @@ function Hero() {
           alignSelf={{ base: "center", md: "center", xl: "self-start" }}
           // border="1px solid #000"
         >
-          <CustomButton bg="#2E5C38" color="white" px="4" rounded="full">
+          <CustomButton
+            bg="#2E5C38"
+            color="white"
+            px="4"
+            rounded="full"
+            onClick={() => navigate("/signin")}
+          >
             Get Started Today
           </CustomButton>
           <CustomButton

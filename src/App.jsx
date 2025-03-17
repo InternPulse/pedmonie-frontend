@@ -1,41 +1,41 @@
-import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router";
-import MainLayout from "./components/Layout/merchant-layout/MerchantLayout";
-import Loading from "./components/Loading";
-import AuthPage from "./pages/AuthPage";
-import Signup from "./SignUp/SignUp";
-import SelectPayment from "./payment-components/SelectPayment";
-import CreatePaymentLink from "./payment-components/CreatePaymentLink";
-import PaymentLink from "./payment-components/PaymentLink";
-import Payments from "./pages/Payments";
-import BankVerification from "./auth-components/BankVerification";
-import IdVerification from "./auth-components/IdVerification";
-import BusinessRegNum from "./auth-components/BusinessRegNum";
-import Login from "./LoginUser/Login";
-import LandingPageLayout from "./layouts/LandingPageLayout";
-import SuperAdminLayout from "./components/Layout/SuperAdminLayout";
-import Overview from "./pages/superadmin/Overview";
-import Marchants from "./pages/superadmin/Marchants";
-import Transaction from "./pages/superadmin/Transaction";
-import Payouts from "./pages/superadmin/Payouts";
-import FraudDetection from "./pages/superadmin/FraudDetection";
-import Settings from "./pages/superadmin/Settings";
-import UserManagement from "./components/superadmin-components/main/settings/UserManagement";
-import SystemLogsAndManagement from "./components/superadmin-components/main/settings/SystemLogsAndManagement";
-import FraudDetectionSet from "./components/superadmin-components/main/settings/FraudDetection";
-import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router'
+import MainLayout from './components/Layout/merchant-layout/MerchantLayout'
+import Loading from './components/Loading'
+import AuthPage from './pages/AuthPage'
+import Signup from './SignUp/SignUp'
+import SelectPayment from './payment-components/SelectPayment'
+import CreatePaymentLink from './payment-components/CreatePaymentLink'
+import PaymentLink from './payment-components/PaymentLink'
+import Payments from './pages/Payments'
+import BankVerification from './auth-components/BankVerification'
+import IdVerification from './auth-components/IdVerification'
+import BusinessRegNum from './auth-components/BusinessRegNum'
+import Login from './LoginUser/Login'
+import LandingPageLayout from './layouts/LandingPageLayout'
+import SuperAdminLayout from './components/Layout/SuperAdminLayout'
+import Overview from './pages/superadmin/Overview'
+import Merchants from './pages/superadmin/Merchants'
+import Transaction from './pages/superadmin/Transaction'
+import Payouts from './pages/superadmin/Payouts'
+import FraudDetection from './pages/superadmin/FraudDetection'
+import Settings from './pages/superadmin/Settings'
+import UserManagement from './components/superadmin-components/main/settings/UserManagement'
+import SystemLogsAndManagement from './components/superadmin-components/main/settings/SystemLogsAndManagement'
+import FraudDetectionSet from './components/superadmin-components/main/settings/FraudDetection'
+import NotFound from './pages/NotFound'
 // import "./index.css";
 
 function App() {
-  const LandingHome = lazy(() => import("./pages/landingPage/LandingHome"));
-  const Home = lazy(() => import("./pages/merchant/Home"));
-  const Analytics = lazy(() => import("./pages/merchant/analytics"));
+  const LandingHome = lazy(() => import('./pages/landingPage/LandingHome'))
+  const Home = lazy(() => import('./pages/merchant/Home'))
+  const Analytics = lazy(() => import('./pages/merchant/analytics'))
   const Payment = lazy(() =>
-    import("./components/transactionConfirmationUI/Payment")
-  );
-  const Support = lazy(() => import("./pages/merchant/support/Support"));
-  const AdminSupport = lazy(() => import("./pages/superadmin/Support"));
-  const AdminAnalytics = lazy(() => import("./pages/superadmin/Analytics"));
+    import('./components/transactionConfirmationUI/Payment')
+  )
+  const Support = lazy(() => import('./pages/merchant/support/Support'))
+  const AdminSupport = lazy(() => import('./pages/superadmin/Support'))
+  const AdminAnalytics = lazy(() => import('./pages/superadmin/Analytics'))
 
   return (
     <Suspense fallback={<Loading />}>
@@ -77,7 +77,7 @@ function App() {
         <Route path="/admin" element={<SuperAdminLayout />}>
           <Route index element={<Overview />} />
           <Route path="analytics" element={<AdminAnalytics />} />
-          <Route path="marchants" element={<Marchants />} />
+          <Route path="merchants" element={<Merchants />} />
           <Route path="transactions" element={<Transaction />} />
           <Route path="payouts" element={<Payouts />} />
           <Route path="support" element={<AdminSupport />} />
@@ -88,13 +88,13 @@ function App() {
           <Route
             path="fraud-detection-set"
             element={<FraudDetectionSet />}
-          />{" "}
+          />{' '}
         </Route>
       </Routes>
     </Suspense>
-  );
+  )
 }
-export default App;
+export default App
 // import { Routes, Route } from 'react-router-dom';
 // import Overview from './pages/superadmin/Overview';
 // import Analytics from './pages/superadmin/Analytics';

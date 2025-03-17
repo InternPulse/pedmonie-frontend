@@ -1,7 +1,7 @@
 // import Profile from "../../components/superadmin-components/main/marchants/Profile"
 // import TransactionHistory from "../../components/superadmin-components/main/marchants/TransactionHistory"
 // import NavigationBar from "../../components/superadmin-components/main/marchants/NavigationBar"
-import { useState } from "react"
+import { useState } from 'react'
 import {
   Box,
   Flex,
@@ -10,186 +10,185 @@ import {
   Table,
   NativeSelect,
   Image,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 import GreenCheck from './../../assets/GreenCheck.svg'
 import RedCheck from './../../assets/RedCheck.svg'
 
-
-const Marchants = () => {
-  const [statusFilter, setStatusFilter] = useState("Approved");
+const Merchants = () => {
+  const [statusFilter, setStatusFilter] = useState('Approved')
 
   const items = [
     {
       id: 1,
-      name: "Jane Cooper",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Approved",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Jane Cooper',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Approved',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 2,
-      name: "Coffee Maker",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Approved",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Coffee Maker',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Approved',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 3,
-      name: "Desk Chair",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Approved",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Desk Chair',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Approved',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 4,
-      name: "Smartphone",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Approved",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Smartphone',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Approved',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 5,
-      name: "Headphones",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Approved",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Headphones',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Approved',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 6,
-      name: "Jane Cooper",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Declined",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Jane Cooper',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Declined',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 7,
-      name: "Coffee Maker",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Declined",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Coffee Maker',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Declined',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 8,
-      name: "Desk Chair",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Declined",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Desk Chair',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Declined',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 9,
-      name: "Smartphone",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Declined",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Smartphone',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Declined',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 10,
-      name: "Headphones",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Declined",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Headphones',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Declined',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 11,
-      name: "Jane Cooper",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Pending",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Jane Cooper',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Pending',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 12,
-      name: "Coffee Maker",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Pending",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Coffee Maker',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Pending',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 13,
-      name: "Desk Chair",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Pending",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Desk Chair',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Pending',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 14,
-      name: "Smartphone",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Pending",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Smartphone',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Pending',
+      date: '1/28/17',
+      action: 'Send message',
     },
     {
       id: 15,
-      name: "Headphones",
-      BVN: "Validated",
-      IDCard: "View File",
-      utility: "View File",
-      status: "Pending",
-      date: "1/28/17",
-      action: "Send message",
+      name: 'Headphones',
+      BVN: 'Validated',
+      IDCard: 'View File',
+      utility: 'View File',
+      status: 'Pending',
+      date: '1/28/17',
+      action: 'Send message',
     },
-  ];
+  ]
 
   const filteredItems =
-    statusFilter === "All"
+    statusFilter === 'All'
       ? items
-      : items.filter((item) => item.status === statusFilter);
+      : items.filter((item) => item.status === statusFilter)
 
   return (
-    <Box bg="#F5F5F5" w="100vw" minH="100vh" p={["20px", "40px"]}>
+    <Box bg="#F5F5F5" w="100vw" minH="100vh" p={['20px', '40px']}>
       <Flex
         gap="20px"
-        flexDirection={["column", "column", "row"]}
+        flexDirection={['column', 'column', 'row']}
         justifyContent="space-between"
       >
         <Box>
           <Text
             fontWeight="medium"
-            fontSize={["20px", "24px", "28px", "32px"]}
+            fontSize={['20px', '24px', '28px', '32px']}
             color="#575757"
           >
-            Marchants
+            Merchants
           </Text>
           <Text color="#B2B2B2" fontWeight="medium" fontSize="14px">
             Verification
@@ -197,8 +196,8 @@ const Marchants = () => {
         </Box>
         <Flex
           gap="20px"
-          w={["90%", "380px"]}
-          flexDirection={["column", "row"]}
+          w={['90%', '380px']}
+          flexDirection={['column', 'row']}
           justifyContent="space-between"
           alignItems="center"
         >
@@ -235,40 +234,40 @@ const Marchants = () => {
         wrap="wrap"
         gap="10px"
         fontSize="14px"
-        mt={["40px", "60px", "80px"]}
+        mt={['40px', '60px', '80px']}
         borderBottom="2px solid #E5E5E5"
       >
         <Text
           mr="50px"
           borderBottom={
-            statusFilter === "Approved" ? "2px solid #5EB070" : "none"
+            statusFilter === 'Approved' ? '2px solid #5EB070' : 'none'
           }
-          color={statusFilter === "Approved" ? "#5EB070" : "#979EAC"}
+          color={statusFilter === 'Approved' ? '#5EB070' : '#979EAC'}
           cursor="pointer"
-          onClick={() => setStatusFilter("Approved")}
+          onClick={() => setStatusFilter('Approved')}
         >
-          {" "}
+          {' '}
           Approved verification
         </Text>
         <Text
           mr="50px"
           borderBottom={
-            statusFilter === "Pending" ? "2px solid #5EB070" : "none"
+            statusFilter === 'Pending' ? '2px solid #5EB070' : 'none'
           }
-          color={statusFilter === "Pending" ? "#5EB070" : "#979EAC"}
+          color={statusFilter === 'Pending' ? '#5EB070' : '#979EAC'}
           cursor="pointer"
-          onClick={() => setStatusFilter("Pending")}
+          onClick={() => setStatusFilter('Pending')}
         >
-          {" "}
+          {' '}
           Pending verification
         </Text>
         <Text
           borderBottom={
-            statusFilter === "Declined" ? "2px solid #5EB070" : "none"
+            statusFilter === 'Declined' ? '2px solid #5EB070' : 'none'
           }
-          color={statusFilter === "Declined" ? "#5EB070" : "#979EAC"}
+          color={statusFilter === 'Declined' ? '#5EB070' : '#979EAC'}
           cursor="pointer"
-          onClick={() => setStatusFilter("Declined")}
+          onClick={() => setStatusFilter('Declined')}
         >
           Declined verification
         </Text>
@@ -281,21 +280,21 @@ const Marchants = () => {
             </Table.ColumnHeader>
             <Table.ColumnHeader
               border="none"
-              display={{ base: "none", md: "table-cell" }}
+              display={{ base: 'none', md: 'table-cell' }}
               color="#000000"
             >
               BVN
             </Table.ColumnHeader>
             <Table.ColumnHeader
               border="none"
-              display={{ base: "none", md: "table-cell" }}
+              display={{ base: 'none', md: 'table-cell' }}
               color="#000000"
             >
               Identity Card
             </Table.ColumnHeader>
             <Table.ColumnHeader
               border="none"
-              display={{ base: "none", md: "table-cell" }}
+              display={{ base: 'none', md: 'table-cell' }}
               color="#000000"
             >
               Utility bill
@@ -305,7 +304,7 @@ const Marchants = () => {
             </Table.ColumnHeader>
             <Table.ColumnHeader
               border="none"
-              display={{ base: "none", md: "table-cell" }}
+              display={{ base: 'none', md: 'table-cell' }}
               color="#000000"
             >
               Submission Date
@@ -323,11 +322,11 @@ const Marchants = () => {
               </Table.Cell>
               <Table.Cell
                 border="none"
-                display={{ base: "none", md: "table-cell" }}
+                display={{ base: 'none', md: 'table-cell' }}
                 color="#4B4EFC"
               >
                 <Flex alignItems="center" gap="8px">
-                  {item.BVN}{" "}
+                  {item.BVN}{' '}
                   <Image
                     rounded="md"
                     src={GreenCheck}
@@ -339,11 +338,11 @@ const Marchants = () => {
               </Table.Cell>
               <Table.Cell
                 border="none"
-                display={{ base: "none", md: "table-cell" }}
+                display={{ base: 'none', md: 'table-cell' }}
                 color="#4B4EFC"
               >
                 <Flex alignItems="center" gap="8px">
-                  {item.IDCard}{" "}
+                  {item.IDCard}{' '}
                   <Image
                     rounded="md"
                     src={RedCheck}
@@ -355,11 +354,11 @@ const Marchants = () => {
               </Table.Cell>
               <Table.Cell
                 border="none"
-                display={{ base: "none", md: "table-cell" }}
+                display={{ base: 'none', md: 'table-cell' }}
                 color="#4B4EFC"
               >
                 <Flex alignItems="center" gap="8px">
-                  {item.utility}{" "}
+                  {item.utility}{' '}
                   <Image
                     rounded="md"
                     src={GreenCheck}
@@ -372,24 +371,24 @@ const Marchants = () => {
               <Table.Cell
                 border="none"
                 color={
-                  statusFilter === "Pending"
-                    ? "#FA8C16"
-                    : statusFilter === "Approved"
-                    ? "rgb(143, 235, 159)"
-                    : statusFilter === "Declined"
-                    ? "#EF4444"
-                    : "#00000"
+                  statusFilter === 'Pending'
+                    ? '#FA8C16'
+                    : statusFilter === 'Approved'
+                    ? 'rgb(143, 235, 159)'
+                    : statusFilter === 'Declined'
+                    ? '#EF4444'
+                    : '#00000'
                 }
               >
                 <Text
                   bg={
-                    statusFilter === "Pending"
-                      ? "rgb(243, 201, 155)"
-                      : statusFilter === "Approved"
-                      ? "rgb(208, 243, 213)"
-                      : statusFilter === "Declined"
-                      ? "rgb(243, 171, 171)"
-                      : "#00000"
+                    statusFilter === 'Pending'
+                      ? 'rgb(243, 201, 155)'
+                      : statusFilter === 'Approved'
+                      ? 'rgb(208, 243, 213)'
+                      : statusFilter === 'Declined'
+                      ? 'rgb(243, 171, 171)'
+                      : '#00000'
                   }
                   display="inline-block"
                   border="1px solid"
@@ -400,7 +399,7 @@ const Marchants = () => {
               </Table.Cell>
               <Table.Cell
                 border="none"
-                display={{ base: "none", md: "table-cell" }}
+                display={{ base: 'none', md: 'table-cell' }}
                 color="#000000"
               >
                 {item.date}
@@ -413,7 +412,7 @@ const Marchants = () => {
         </Table.Body>
       </Table.Root>
     </Box>
-  );
-};
+  )
+}
 
-export default Marchants;
+export default Merchants

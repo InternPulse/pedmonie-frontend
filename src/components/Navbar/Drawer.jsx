@@ -101,6 +101,7 @@ function Drawer() {
             rounded="full"
             color="#2E5C38"
             border="1px solid #2E5C38"
+            onClick={() => navigate("/login")}
           >
             Log In
           </CustomButton>
@@ -115,6 +116,7 @@ function Drawer() {
             lineHeight="30px"
             rounded="full"
             color="white"
+            onClick={() => navigate("/signin")}
           >
             Sign Up
           </CustomButton>

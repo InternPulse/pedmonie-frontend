@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Box,
@@ -121,162 +120,176 @@ export default function Faqs() {
           </Box>
         </Container>
       </Box>
-
-      {/* Contact Section */}
       <Box
-        bg="#2E5C38"
-        color="white"
-        py={6}
-        px={4}
-        textAlign="center"
-        mt={10}
-        backgroundImage="url('/small_circular_lines.png')"
-        backgroundPosition="right"
-        backgroundRepeat="no-repeat"
-        backgroundSize="contain"
-      >
-        <Flex
-          align="center"
-          justify="center"
-          direction={{ base: "column", md: "row" }}
-          gap={{ base: 6, md: 10, lg: 60 }}
-          maxW="1100px"
-          mx="auto"
-        >
-          <Image
-            src="https://www.idcrypt.global/_next/static/chunks/images/business-header-457a884bda4cb7ff394467beb7c80005.webp"
-            alt="Support Avatar"
-            borderRadius="full"
-            boxSize={{ base: "120px", md: "180px", lg: "150px" }}
-          />
-          <Box
-            maxW="500px"
-            textAlign={{ base: "center", md: "left" }}
-          >
-            <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
-              Still have questions?
-            </Text>
-            <Text fontSize={{ base: "sm", md: "md" }}>
-              Can't find the answer you're looking for? Please chat with our friendly team.
-            </Text>
-          </Box>
-          <Button
-            colorScheme="whiteAlpha"
-            variant="outline"
-            rounded="full"
-            size="md"
-            _hover={{ bg: "white", color: "teal.600" }}
-            mt={{ base: 4, md: 0 }}
-          >
-            Get in Touch
-          </Button>
-        </Flex>
-      </Box>
-
-      {/* Footer */}
-      <Box bg="gray.50" py={20} px={20}>
-  <SimpleGrid
-    columns={{ base: 1, md: 4 }}
-    spacing={{ base: 25, md: 10 }}
-     mx="auto"
-     textAlign={{ base: "center", md: "left" }}
-  >
-    {/* Logo & Contact */}
-    <VStack mt={8} spacing={4} align="start">
-      <Image
-        src="/pedmonie.png"
-        alt="Footer Logo"
-        boxSize="150px"
-        objectFit="contain"
-        margin="-55px"
-      />
-      <Link href="mailto:hello@pedmonie.com" color="gray.600">
-        hello@pedmonie.com
-      </Link>
-      <Text color="gray.600">+234 856 600 0000</Text>
-    </VStack>
-
-    {/* Company */}
-    <VStack mt={8} spacing={4} align="start">
-      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-        Company
-      </Text>
-      <Link href="#" color="gray.600">
-        Blog
-      </Link>
-      <Link href="#" color="gray.600">
-        Career
-      </Link>
-      <Link href="#" color="gray.600">
-        Pricing
-      </Link>
-    </VStack>
-
-    {/* Resources */}
-    <VStack mt={8} spacing={4} align="start">
-      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-        Resources
-      </Text>
-      <Link href="#" color="gray.600">
-        Documentation
-      </Link>
-      <Link href="#" color="gray.600">
-        Papers
-      </Link>
-      <Link href="#" color="gray.600">
-        Press Conferences
-      </Link>
-      <Link href="#" color="gray.600">
-        Data Processing
-      </Link>
-    </VStack>
-
-    {/* Legal */}
-    <VStack mt={8} spacing={4} align="start">
-      <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
-        Legal
-      </Text>
-      <Link href="#" color="gray.600">
-        Terms of Service
-      </Link>
-      <Link href="#" color="gray.600">
-        Privacy Policy
-      </Link>
-      <Link href="#" color="gray.600">
-        Cookies Policy
-      </Link>
-      <Link href="#" color="gray.600">
-        Data Processing
-      </Link>
-    </VStack>
-  </SimpleGrid>
-
+  bg="#2E5C38"
+  color="white"
+  py={6}
+  px={4}
+  textAlign="center"
+  mt={10}
+  backgroundImage="url('/small_circular_lines.png')"
+  backgroundPosition="right"
+  backgroundRepeat="no-repeat"
+  backgroundSize="contain"
+>
   <Flex
-    mt={10}
-    pt={9}
-    borderTop="1px solid"
-    borderColor="gray.200"
-    direction={{ base: "column", md: "row" }}
-    gap={4}
-    align="flex-start" // Align items to the left
-        >
-          
-    <Text color="gray.500" fontSize="sm">
-      © 2025, Pedmonie Inc.
-    </Text>
-    <Flex gap={10}>
-      <Link href="#" color="gray.600">
-        <Icon as={FaTwitter} boxSize={5} />
-      </Link>
-      <Link href="#" color="gray.600">
-        <Icon as={FaFacebookF} boxSize={5} />
-      </Link>
-      <Link href="#" color="gray.600">
-        <Icon as={FaInstagram} boxSize={5} />
-      </Link>
-    </Flex>
+    align="center"
+    justify="center"
+    direction={{ base: "column", lg: "row" }} // Vertical on mobile and tablet, horizontal on desktop
+    gap={{ base: 6, lg: 10 }} // Consistent spacing for column, adjusted for row
+    maxW="1100px"
+    mx="auto"
+  >
+    <Image
+      src="https://www.idcrypt.global/_next/static/chunks/images/business-header-457a884bda4cb7ff394467beb7c80005.webp"
+      alt="Support Avatar"
+      borderRadius="full"
+      boxSize={{ base: "120px", lg: "180px" }} // Same size on mobile and tablet, larger on desktop
+    />
+    <Box
+      maxW="500px"
+      textAlign={{ base: "center", lg: "left" }} // Centered on mobile and tablet, left on desktop
+    >
+      <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
+        Still have questions?
+      </Text>
+      <Text fontSize={{ base: "sm", md: "md" }}>
+        Can't find the answer you're looking for? Please chat with our friendly team.
+      </Text>
+    </Box>
+    <Button
+      colorScheme="whiteAlpha"
+      variant="outline"
+      rounded="full"
+      size="md"
+      _hover={{ bg: "white", color: "teal.600" }}
+      mt={{ base: 4, lg: 0 }} // Space above button on mobile and tablet, none on desktop
+    >
+      Get in Touch
+    </Button>
   </Flex>
 </Box>
+
+      <Box bg="gray.50" py={{ base: 10, md: 20 }} px={{ base: 5, md: 20 }}>
+      <SimpleGrid 
+  columns={{ base: 1, md: 2, lg: 4 }}  // Tablet: 2 cols, Desktop: 4 cols
+  spacing={{ base: 10, md: 8, lg: 10 }}  // Balanced spacing for tablet
+  mx="auto"
+  textAlign={{ base: "center", md: "left" }}
+>
+          
+        {/* Logo & Contact - Only for Desktop */}
+        <VStack spacing={4} align="start" display={{ base: "none", md: "flex" }}>
+          <Image 
+            src="/pedmonie.png" 
+            alt="Footer Logo" 
+            boxSize="150px" 
+            objectFit="contain" 
+            margin="-55px"
+          />
+          <Link href="mailto:hello@pedmonie.com" color="gray.600">
+            hello@pedmonie.com
+          </Link>
+          <Text color="gray.600">+234 856 600 0000</Text>
+        </VStack>
+
+        {/* Company */}
+        <VStack spacing={4} align="start">
+          <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+            Company
+          </Text>
+          <Link href="#" color="gray.600">Blog</Link>
+          <Link href="#" color="gray.600">Career</Link>
+          <Link href="#" color="gray.600">Pricing</Link>
+        </VStack>
+
+        {/* Resources */}
+        <VStack spacing={4} align="start" mt={{ base: 6, md: 0 }}>
+          <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+            Resources
+          </Text>
+          <Link href="#" color="gray.600">Documentation</Link>
+          <Link href="#" color="gray.600">Papers</Link>
+          <Link href="#" color="gray.600">Press Conferences</Link>
+          <Link href="#" color="gray.600">Data Processing</Link>
+        </VStack>
+
+        {/* Legal */}
+        <VStack spacing={4} align="start" mt={{ base: 6, md: 0 }}>
+          <Text fontSize="md" fontWeight="bold" color="blackAlpha.950">
+            Legal
+          </Text>
+          <Link href="#" color="gray.600">Terms of Service</Link>
+          <Link href="#" color="gray.600">Privacy Policy</Link>
+          <Link href="#" color="gray.600">Cookies Policy</Link>
+          <Link href="#" color="gray.600">Data Processing</Link>
+        </VStack>
+      </SimpleGrid>
+
+        {/* Mobile View */}
+        <Flex direction="column" align="center" display={{ base: "flex", md: "none" }}>
+        {/* Row for Logo & Contact and Social Icons */}
+        <Flex direction="row" justify="space-between" w="100%" align="center">
+          {/* Logo & Contact */}
+          <VStack spacing={4} align="start">
+            <Image
+              src="/pedmonie.png"
+              alt="Footer Logo"
+              boxSize="100px"
+              objectFit="contain"
+            />
+            <Link href="mailto:hello@pedmonie.com" color="gray.600">
+              hello@pedmonie.com
+            </Link>
+            <Text color="gray.600">+234 856 600 0000</Text>
+          </VStack>
+          {/* Social Icons */}
+          <Flex gap={4}>
+            <Link href="#" color="gray.600">
+              <Icon as={FaTwitter} boxSize={5} />
+            </Link>
+            <Link href="#" color="gray.600">
+              <Icon as={FaFacebookF} boxSize={5} />
+            </Link>
+            <Link href="#" color="gray.600">
+              <Icon as={FaInstagram} boxSize={5} />
+            </Link>
+          </Flex>
+        </Flex>
+        {/* Copyright */}
+        <Text color="gray.500" fontSize="sm" mt={6}>
+          © 2025, Pedmonie Inc.
+        </Text>
+      </Flex>
+
+      {/* Desktop View: Keep original layout */}
+      <Flex
+        mt={10}
+        pt={6}
+        borderTop="2px solid"
+        borderColor="gray.300"
+        justify="space-between"
+        align="center"
+        flexDir={{ base: "column", md: "row" }}
+        display={{ base: "none", md: "flex" }}
+      >
+        <Text color="gray.500" fontSize="sm">
+          © 2025, Pedmonie Inc.
+        </Text>
+        <Flex gap={4}>
+          <Link href="#" color="gray.600">
+            <Icon as={FaTwitter} boxSize={5} />
+          </Link>
+          <Link href="#" color="gray.600">
+            <Icon as={FaFacebookF} boxSize={5} />
+          </Link>
+          <Link href="#" color="gray.600">
+            <Icon as={FaInstagram} boxSize={5} />
+          </Link>
+        </Flex>
+      </Flex>
+    </Box>
+      
 
     </Box>
   );
